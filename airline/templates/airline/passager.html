@@ -1,0 +1,35 @@
+{% extends "airline/index.html" %}
+{% block content %}
+
+<div class="table">
+    <h1>
+        All flights registered for passager: {{passager}}
+    </h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Flight number:</th>
+            <th>Flight start:</th>
+            <th>Flight destination:</th>
+            <th>Flight date:</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if passager.flights.all %}
+            {% for fli in passager.flights.all %}
+            <tr>
+                <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</td></a>
+                <td><a href="/airline/airport/{{fli.start.id}}">{{fli.start}}</td></a>
+                <td><a href="/airline/airport/{{fli.destination.id}}">{{fli.destination}}</td></a>
+                <td>{{fli.date}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td>Sorry, no flight avaible</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

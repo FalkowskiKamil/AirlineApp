@@ -1,0 +1,60 @@
+{% extends "airline/index.html" %}
+{% block content %}
+<div class="table">
+    <h1>
+        All flight registered for {{airport}} airline
+    </h1>
+<table class="table">
+    <thead>
+        <h2>Flight to {{airport}}:</h2>
+        <tr>
+            <th>Flight id: </th>
+            <th>Flight start: </th>
+            <th>Flight date: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if airport.departures.all %}
+            {% for fli in airport.departures.all %}
+                <tr>
+                        <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+                        <td><a href="/airline/airport/{{fli.destination.id}}">{{fli.destination}} </a></td>
+                        <td>{{fli.date}}</td>
+                </tr>
+            
+            {% endfor %}
+        {% else %}
+                <tr>
+                    <td>No flight to this airport</td>
+                </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <h2>Flight from {{airport}}:</h2>
+        <tr>
+            <th>Flight id: </th>
+            <th>Flight destination: </th>
+            <th>Flight date: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if airport.arrivals.all %}
+            {% for fli in airport.arrivals.all %}
+            <tr>
+                <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+                <td><a href="/airline/airport/{{fli.start.id}}">{{fli.start}} </a></td>
+                <td>{{fli.date}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td>No flight from this airport</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
