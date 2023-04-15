@@ -1,12 +1,18 @@
 from django.db import models
+import pandas as pd
+import csv
 
 # Create your models here.
 class Airport(models.Model):
-    name = models.CharField(max_length=40, null=None)
-    code = models.CharField(max_length=3, null=None)
-    def __str__(self):
-        return self.name
+    airport_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
 
+    def __str__(self):
+        return f"{self.name}"
 
 class Flight(models.Model):
     flight_number = models.IntegerField()

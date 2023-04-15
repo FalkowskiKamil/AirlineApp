@@ -18,7 +18,7 @@
             {% for fli in airport.departures.all %}
                 <tr>
                         <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
-                        <td><a href="/airline/airport/{{fli.destination.id}}">{{fli.destination}} </a></td>
+                        <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} </a></td>
                         <td>{{fli.date}}</td>
                 </tr>
             
@@ -45,7 +45,7 @@
             {% for fli in airport.arrivals.all %}
             <tr>
                 <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
-                <td><a href="/airline/airport/{{fli.start.id}}">{{fli.start}} </a></td>
+                <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} </a></td>
                 <td>{{fli.date}}</td>
             </tr>
             {% endfor %}

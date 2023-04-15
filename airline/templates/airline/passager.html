@@ -19,8 +19,8 @@
             {% for fli in passager.flights.all %}
             <tr>
                 <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</td></a>
-                <td><a href="/airline/airport/{{fli.start.id}}">{{fli.start}}</td></a>
-                <td><a href="/airline/airport/{{fli.destination.id}}">{{fli.destination}}</td></a>
+                <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}}</td></a>
+                <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}}</td></a>
                 <td>{{fli.date}}</td>
             </tr>
             {% endfor %}

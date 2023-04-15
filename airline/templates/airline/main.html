@@ -12,26 +12,49 @@
     </tr>
 </thead>
 <tbody>
+    {% if not airport %}
+        <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
+            {% csrf_token %}
+            <label for="vol">Enter quantity of Airport to load: (2-250)</label>
+            <input type="number" id="vol" name="vol" min="2" max="250">
+            <button class="btn btn-primary" type="submit">Upload Airport Data</button>
+        </form>
+    {% else %}
+
     {% if flight %}
-    {% for fli in flight %}
-    <tr>
-        <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
-        <td><a href="/airline/airport/{{fli.start.id}}">{{fli.start}}</a></td>
-        <td><a href="/airline/airport/{{fli.destination.id}}">{{fli.destination}}</a></td>
-        <td>{{fli.date}}</td>
-        {% if fli.passengers.all %}
-            <td>{% for passagers in fli.passengers.all %} 
-            <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
-        {% else %}
-            <td>No Passagers</td>
-        {% endif %}
-    </tr>
-    {% endfor %}
+        {% for fli in flight %}
+        <tr>
+            <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+            <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}}</a></td>
+            <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}}</a></td>
+            <td>{{fli.date}}</td>
+            {% if fli.passengers.all %}
+                <td>{% for passagers in fli.passengers.all %} 
+                <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
+            {% else %}
+                <td>No Passagers</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
     {% else %}
     <tr>
         <td>Sorry, currently no flight data are avaible</td>
+        <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
+            {% csrf_token %}
+            <label for="vol">Enter quantity of flight to load: (1-100)</label>
+            <input type="number" id="quan" name="quan" min="1" max="100">
+            <button class="btn btn-primary" type="submit">Upload flight Data</button>
+        </form>
     </tr>
     {% endif %}
     </tbody>
     </table>
+
+    {% if message %}
+    <div class="alert alert-warning">
+      {{ message }}
+      </div>
+    {% endif %}
+
+    {% endif %}
 {% endblock %}

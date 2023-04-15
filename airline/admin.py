@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Airport, Flight, Passager
 
 # Register your models here.
-
 class AirportAdmin(admin.ModelAdmin):
-    list_display = ['id','name', 'code']
+    list_display=['airport_id', 'name', 'country', 'city']
+    list_filter=['country']
 
 
 class FlightAdmin(admin.ModelAdmin):
@@ -14,7 +14,6 @@ class FlightAdmin(admin.ModelAdmin):
 class PassagerAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'surname']
     filter_horizontal = ['flights']
-
 
 
 
