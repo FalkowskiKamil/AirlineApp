@@ -56,16 +56,37 @@ def upload_flight(request):
     flights = []
     if request.method == "POST":
         airports = Airport.objects.all()
-        flight_count=len(Flight.objects.all())
         num_flights = int(request.POST['quan'])
         for i in range(num_flights):
             start = random.choice(airports)
             destination = random.choice(airports.exclude(airport_id=start.airport_id))
-            date = datetime.date(random.randint(2022, 2030), random.randint(1, 12), random.randint(1, 28))
-            flight = Flight(start=start, destination=destination, date=date, flight_number=i+flight_count)
+            date = datetime.datetime(random.randint(2022, 2030), random.randint(1, 12), random.randint(1, 28), random.randint(0, 23), random.choice([0, 30]))
+            flight = Flight(start=start, destination=destination, date=date)
             flights.append(flight)
         Flight.objects.bulk_create(flights)
         return redirect('airline:index')
+    return redirect('airline:index')
+
+def upload_passager(request):
+    passagers = []
+    flights = Flight.objects.all()
+    if request.method == "POST":
+        num_passager = int(request.POST['quan'])
+        for i in range(num_passager):
+            fullname = fake.name()
+            first_name, surname = fullname.split(" ", 1)
+            passager = Passager(first_name=first_name, surname=surname)
+            passagers.append(passager)
+        Passager.objects.bulk_create(passagers)
+
+        # utwórz listę tupli z ID nowo utworzonych pasażerów i ID losowych lotów
+        passager_flight_ids = [(passager.id, random.choice(flights).id) for passager in passagers]
+
+        # utwórz wiele obiektów many-to-many za pomocą metody bulk_create()
+        Passager.flights.through.objects.bulk_create(
+            [Passager.flights.through(passager_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids]
+        )
+
     return redirect('airline:index')
 
 def add_data(request):

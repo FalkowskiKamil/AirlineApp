@@ -9,5 +9,6 @@ urlpatterns=[
     path('airport/<int:airport_id>', views.airport, name='airport'),
     path('upload_airport/', views.upload_airport, name='upload_airport'),
     path('upload_flight/', views.upload_flight, name='upload_flight'),
-    path('add_data/', views.add_data, name='add_data')
+    path('add_data/', views.add_data, name='add_data'),
+    path('upload_passager/', views.upload_passager, name="upload_passager")
 ]

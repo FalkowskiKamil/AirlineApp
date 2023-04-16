@@ -14,8 +14,8 @@
         </tr>
     </thead>
     <tbody>
-        {% if airport.departures.all %}
-            {% for fli in airport.departures.all %}
+        {% if airport.departure_flights.all %}
+            {% for fli in airport.departure_flights.all %}
                 <tr>
                         <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
                         <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} </a></td>
@@ -41,8 +41,8 @@
         </tr>
     </thead>
     <tbody>
-        {% if airport.arrivals.all %}
-            {% for fli in airport.arrivals.all %}
+        {% if airport.arrival_flights.all %}
+            {% for fli in airport.arrival_flights.all %}
             <tr>
                 <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
                 <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} </a></td>

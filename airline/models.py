@@ -1,6 +1,4 @@
 from django.db import models
-import pandas as pd
-import csv
 
 # Create your models here.
 class Airport(models.Model):
@@ -10,14 +8,15 @@ class Airport(models.Model):
     country = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    departures = models.ManyToManyField('Flight', related_name='departure_airports', blank=True)
+    arrivals = models.ManyToManyField('Flight', related_name='arrival_airports', blank=True)
 
     def __str__(self):
         return f"{self.name}"
 
 class Flight(models.Model):
-    flight_number = models.IntegerField()
-    start = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='departures')
-    destination = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='arrivals')
+    start = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='departure_flights')
+    destination = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='arrival_flights')
     date = models.DateTimeField()
 
     def clean(self):
@@ -25,8 +24,8 @@ class Flight(models.Model):
             raise ValueError("Start and destination cannot be the same.")
         
     def __str__(self):
-        return f"Flight {self.flight_number}"
-
+        return f'{self.id}'
+        
 class Passager(models.Model):
     first_name = models.CharField(max_length=20)
     surname = models.CharField(max_length=30)
