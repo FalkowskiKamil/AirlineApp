@@ -6,6 +6,7 @@ class AirportAdmin(admin.ModelAdmin):
     list_display = ['name', 'city', 'country']
     list_filter = ['country']
     exclude = ('longitude', 'latitude', 'departures', 'arrivals')
+    search_fields =['airport_id','name', 'city', 'country']
     
     def has_add_permission(self, request):
         return False
@@ -28,11 +29,12 @@ class AirportAdmin(admin.ModelAdmin):
 class FlightAdmin(admin.ModelAdmin):
     list_display = ['id', 'start', 'destination', 'date']
     list_filter = ['start', 'destination' ]
-    search_fields=['start', 'destination']
+    search_fields = ['start__name', 'start__city', 'start__country', 'destination__name', 'destination__city', 'destination__country', 'id']
 
 class PassagerAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'surname']
     filter_horizontal = ['flights']
+    search_fields = ['id', 'first_name', 'surname']
 
 
 

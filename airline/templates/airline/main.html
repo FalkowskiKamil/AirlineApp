@@ -8,7 +8,7 @@
         <th>Start: </th>
         <th>Destination: </th>
         <th>Date: </th>
-        <th>Passager: </th>
+        {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}<th>Passager: </th>{% endif %}
     </tr>
 </thead>
 <tbody>
@@ -29,8 +29,12 @@
             <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}}</a></td>
             <td>{{fli.date}}</td>
             {% if fli.passengers.all %}
-                <td>{% for passagers in fli.passengers.all %} 
-                <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
+                {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+                    <td>{% for passagers in fli.passengers.all %} 
+                    <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
+                {% else %}
+                        <td>{{ fli.passagers.all }}</td>
+                {% endif %}
             {% else %}
                 <td>No Passagers</td>
             {% endif %}

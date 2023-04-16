@@ -1,13 +1,16 @@
 {% extends "airline/index.html" %}
 {% block content %}
-
 <div class="table">
     <h1>
-        All passager registered for flight "{{flight.id}}"</a> 
+       
+        Flight "{{flight.id}}"</a>
         from:  <a href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
         to <a href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
         on {{flight.date}}
     </h1>
+
+ {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+ <h1>All of the passagers: </h1>
 <table class="table">
     <thead>
         <tr>
@@ -34,4 +37,5 @@
     </tbody>
 </table>
 </div>
+{% endif %}
 {% endblock %}
