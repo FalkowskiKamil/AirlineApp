@@ -30,9 +30,14 @@ def airport(request, airport_id):
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
     airports = []
+    existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()] # Get the existing airport ids
     if request.method == "POST":
-        for index, row in csv_file.iterrows():
-            if index < int(request.POST['vol']):
+        max_vol = int(request.POST['vol'])
+        for i in range(max_vol):
+            random_index = random.randint(0, len(csv_file)-1)
+            row = csv_file.iloc[random_index]
+            # Check if the airport already exists, if not then create a new object
+            if row[0] not in existing_airport_ids:
                 airport = Airport(
                     airport_id=row[0],
                     name=row[1],
@@ -42,8 +47,7 @@ def upload_airport(request):
                     longitude=row[7]
                 )
                 airports.append(airport)
-            else:
-                break
+                existing_airport_ids.append(row[0]) # Add the newly created airport id to the existing list
         Airport.objects.bulk_create(airports)
         return redirect('airline:index')
     return redirect('airline:index')
@@ -52,13 +56,17 @@ def upload_flight(request):
     flights = []
     if request.method == "POST":
         airports = Airport.objects.all()
+        flight_count=len(Flight.objects.all())
         num_flights = int(request.POST['quan'])
         for i in range(num_flights):
             start = random.choice(airports)
             destination = random.choice(airports.exclude(airport_id=start.airport_id))
             date = datetime.date(random.randint(2022, 2030), random.randint(1, 12), random.randint(1, 28))
-            flight = Flight(start=start, destination=destination, date=date, flight_number=i+1)
+            flight = Flight(start=start, destination=destination, date=date, flight_number=i+flight_count)
             flights.append(flight)
         Flight.objects.bulk_create(flights)
         return redirect('airline:index')
     return redirect('airline:index')
+
+def add_data(request):
+    return render(request, template_name='airline/add_data.html')

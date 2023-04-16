@@ -18,6 +18,7 @@
                 <li>
                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                     <a class="btn btn-link" href="{% url 'user:logout' %}">Logout</a>
+                    <a class="btn btn-link" href="/airline/add_data">Add data</a>
                 </li>
                 {% else %}
                 <li>
