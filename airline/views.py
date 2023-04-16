@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Airport, Passager, Flight
+import folium
+from folium.vector_layers import PolyLine
 import pandas as pd
 import datetime
 import random
@@ -20,12 +22,25 @@ def passager(request, passager_id):
     return render(request, template_name="airline/passager.html", context=passager)
 
 def flight(request, fli_id):
-    flight = {"flight": get_object_or_404(Flight, pk=fli_id)}
-    return render(request, template_name="airline/flight.html", context=flight)
+    flight = get_object_or_404(Flight, pk=fli_id)
+    start_airport = flight.start
+    dest_airport = flight.destination
+    map = folium.Map(location=[start_airport.latitude, start_airport.longitude], zoom_start=6)
+    map.options['scrollWheelZoom'] = False
+    folium.Marker(location=[start_airport.latitude, start_airport.longitude], popup=f'Start: {start_airport.name}', icon=folium.Icon(color='green')).add_to(map)
+    folium.Marker(location=[dest_airport.latitude, dest_airport.longitude], popup=f'Destination: {dest_airport.name}', icon=folium.Icon(color='red')).add_to(map)
+    line = PolyLine(locations=[[start_airport.latitude, start_airport.longitude], [dest_airport.latitude, dest_airport.longitude]], color='blue', weight=2, opacity=10)
+    line.add_to(map)
+    context = {'flight': flight, 'map': map._repr_html_()}
+    return render(request, template_name='airline/flight.html', context=context)
 
 def airport(request, airport_id):
-    airport= {"airport": get_object_or_404(Airport, pk=airport_id)}
-    return render(request, template_name="airline/airport.html", context=airport)
+    airport = get_object_or_404(Airport, pk=airport_id)
+    map = folium.Map(location=[airport.latitude, airport.longitude], zoom_start=12)
+    map.options['scrollWheelZoom'] = False
+    folium.Marker(location=[airport.latitude, airport.longitude], popup=airport.name).add_to(map)
+    context = {'airport': airport, 'map': map._repr_html_()}
+    return render(request, template_name='airline/airport.html', context=context)
 
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
