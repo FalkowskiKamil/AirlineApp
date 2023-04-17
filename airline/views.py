@@ -25,8 +25,7 @@ def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
     start_airport = flight.start
     dest_airport = flight.destination
-    map = folium.Map(location=[start_airport.latitude, start_airport.longitude], zoom_start=6)
-    map.options['scrollWheelZoom'] = False
+    map = folium.Map(location=[start_airport.latitude, start_airport.longitude], zoom_start=6, height=250)
     folium.Marker(location=[start_airport.latitude, start_airport.longitude], popup=f'Start: {start_airport.name}', icon=folium.Icon(color='green')).add_to(map)
     folium.Marker(location=[dest_airport.latitude, dest_airport.longitude], popup=f'Destination: {dest_airport.name}', icon=folium.Icon(color='red')).add_to(map)
     line = PolyLine(locations=[[start_airport.latitude, start_airport.longitude], [dest_airport.latitude, dest_airport.longitude]], color='blue', weight=2, opacity=10)
@@ -36,8 +35,7 @@ def flight(request, fli_id):
 
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
-    map = folium.Map(location=[airport.latitude, airport.longitude], zoom_start=12)
-    map.options['scrollWheelZoom'] = False
+    map = folium.Map(location=[airport.latitude, airport.longitude], zoom_start=10, height=250)
     folium.Marker(location=[airport.latitude, airport.longitude], popup=airport.name).add_to(map)
     context = {'airport': airport, 'map': map._repr_html_()}
     return render(request, template_name='airline/airport.html', context=context)

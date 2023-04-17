@@ -1,64 +1,100 @@
 {% extends "airline/index.html" %}
 
 {% block content %}
-<table class="table">
-<thead>
-    <tr>
-        <th>Flight number: </th>
-        <th>Start: </th>
-        <th>Destination: </th>
-        <th>Date: </th>
-        {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}<th>Passager: </th>{% endif %}
-    </tr>
-</thead>
-<tbody>
-    {% if not airport %}
-        <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
-            {% csrf_token %}
-            <label for="vol">Enter quantity of Airport to load: (2-250)</label>
-            <input type="number" id="vol" name="vol" min="2" max="250">
-            <button class="btn btn-primary" type="submit">Upload Airport Data</button>
-        </form>
-    {% else %}
-
-    {% if flight %}
-        {% for fli in flight %}
-        <tr>
-            <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
-            <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}}</a></td>
-            <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}}</a></td>
-            <td>{{fli.date}}</td>
-            {% if fli.passengers.all %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Flight number: </th>
+                <th><label for="start">Start: </label>
+                    <select id="start">
+                        <option value="">All</option>
+                        {% if flight %}
+                        {% for fli in flight %}
+                            <option value="{{fli.start.country}}">{{fli.start.country}}</option>
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                </th>
+                <th><label for="destination">Destination: </label>
+                    <select id="destination">
+                        <option value="">All</option>
+                        {% if flight %}
+                        {% for fli in flight %}
+                            <option value="{{fli.destination.country}}">{{fli.destination.country}}</option>
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                </th>
+                <th>Date: </th>
                 {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
-                    <td>{% for passagers in fli.passengers.all %} 
-                    <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
-                {% else %}
-                        <td>{{ fli.passagers.all }}</td>
+                    <th>Passager: </th>
                 {% endif %}
+            </tr>
+        </thead>
+        <tbody id="flight-table-body">
+            {% if not airport %}
+                <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
+                    {% csrf_token %}
+                    <label for="vol">Enter quantity of Airport to load: (2-250)</label>
+                    <input type="number" id="vol" name="vol" min="2" max="250">
+                    <button class="btn btn-primary" type="submit">Upload Airport Data</button>
+                </form>
             {% else %}
-                <td>No Passagers</td>
+                {% if flight %}
+                    {% for fli in flight %}
+                    <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
+                        <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+                        <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
+                        <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.start.country}})</a></td>
+                        <td>{{fli.date}}</td>
+                        {% if fli.passengers.all %}
+                            {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+                                <td>{% for passagers in fli.passengers.all %} 
+                                <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
+                            {% else %}
+                                <td>{{ fli.passengers.all }}</td>
+                            {% endif %}
+                        {% else %}
+                            <td>No Passagers</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td>Sorry, currently no flight data are avaible</td>
+                    <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
+                        {% csrf_token %}
+                        <label for="vol">Enter quantity of flight to load: (1-100)</label>
+                        <input type="number" id="quan" name="quan" min="1" max="100">
+                        <button class="btn btn-primary" type="submit">Upload flight Data</button>
+                    </form>
+                </tr>
+                {% endif %}
             {% endif %}
-        </tr>
-        {% endfor %}
-    {% else %}
-    <tr>
-        <td>Sorry, currently no flight data are avaible</td>
-        <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
-            {% csrf_token %}
-            <label for="vol">Enter quantity of flight to load: (1-100)</label>
-            <input type="number" id="quan" name="quan" min="1" max="100">
-            <button class="btn btn-primary" type="submit">Upload flight Data</button>
-        </form>
-    </tr>
-    {% endif %}
-    </tbody>
+        </tbody>
     </table>
-
-    {% if message %}
-    <div class="alert alert-warning">
-      {{ message }}
-      </div>
-    {% endif %}
-
-    {% endif %}
+    <script>
+    var startSelect = document.getElementById('start');
+    var destinationSelect = document.getElementById('destination');
+    var tableRows = document.querySelectorAll('#flight-table-body tr');
+    
+    function filterRows() {
+      var selectedStart = startSelect.value;
+      var selectedDestination = destinationSelect.value;
+      for (var i = 0; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        var start = row.getAttribute('data-start');
+        var destination = row.getAttribute('data-destination');
+        if ((selectedStart === '' || start.includes(selectedStart)) &&
+            (selectedDestination === '' || destination.includes(selectedDestination))) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    }
+    
+    startSelect.addEventListener('change', filterRows);
+    destinationSelect.addEventListener('change', filterRows);
+</script>
 {% endblock %}
