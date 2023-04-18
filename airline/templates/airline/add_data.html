@@ -9,11 +9,11 @@
 
             <tr>
             <td>
-            <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
+            <form class="form-inline mt-2" action="{% url 'airline:upload_airport' %}" method="post">
                 {% csrf_token %}
-                <label for="vol">Enter quantity of random Airport to load: (2-250)</label>
-                <input type="number" id="vol" name="vol" min="2" max="250">
-                <button class="btn btn-primary" type="submit">Upload Airport Data</button>
+                <label for="vol">Enter quantity of random airport to load: (2-250)</label>
+                <input class='m-2' type="number" id="vol" name="vol" min="2" max="250">
+                <button class="btn btn-primary m-2" type="submit">Upload airport Data</button>
             </form>
             </td>
         </tr>
@@ -23,19 +23,19 @@
             <td>
         <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
             {% csrf_token %}
-            <label for="vol">Enter quantity of flight to load: (1-100)</label>
-            <input type="number" id="quan" name="quan" min="1" max="100">
-            <button class="btn btn-primary" type="submit">Upload flight Data</button>
+            <label for="vol">Enter quantity of fake flight to load: (1-100)</label>
+            <input class='m-2' type="number" id="quan" name="quan" min="1" max="100">
+            <button class="btn btn-primary m-2" type="submit">Upload flight Data</button>
         </form>
         </td>
         </tr>
         <tr>
-            <td>
+            <td class="border-bottom">
                 <form class="form-inline" action="{% url 'airline:upload_passager' %}" method="post">
                     {% csrf_token %}
-                    <label for="vol">Enter quantity of passager to load: (1-100)</label>
-                    <input type="number" id="quan" name="quan" min="1" max="100">
-                    <button class="btn btn-primary" type="submit">Upload passager Data</button>
+                    <label for="vol">Enter quantity of fake passager to load: (1-100)</label>
+                    <input class = 'm-2' type="number" id="quan" name="quan" min="1" max="100">
+                    <button class="btn btn-primary m-2" type="submit">Upload passager Data</button>
             </td>
         </tr>
     

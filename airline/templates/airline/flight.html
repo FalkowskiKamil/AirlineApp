@@ -1,40 +1,45 @@
 {% extends "airline/index.html" %}
 {% block content %}
 <div style="max-height: 250px; overflow:auto;">{{ map|safe }}</div>
-<div class="table">
-    <p class="bg-success">
-        Flight "{{flight.id}}"</a>
-        from:  <a href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
-        to <a href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
+<div class="p-3 bg-info text-white text-center" style="position: absolute;  width: 100%;">
+    <h1 class="text-shadow" style="text-shadow: 0.15rem 0.15rem 0.5rem rgba(0, 0, 0, 0.5)">
+        Flight "{{flight.id}}"
+        from: <a style="color: black;" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
+        to: <a style="color:black;" class="link-danger" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
         on {{flight.date}}
-    </p>
- {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
- <h1>All of the passagers: </h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Passager id: </th>
-            <th>Passager first name: </th>
-            <th>Passager surname: </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% if flight.passengers.all %}
-            {% for passager in flight.passengers.all %}
-                <tr>
-                        <td><a href="/airline/passager/{{passager.id}}">{{passager.id}}</a></td>
-                        <td>{{passager.first_name}}</td>
-                        <td>{{passager.surname}}</td>
+    </h1>
+    {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+    <div style="border-width: 2px; border-style: solid; border-color: black;" class="shadow-lg p-3 mb-5 bg-white rounded">  
+        <table class="table table-striped table-secondary table-bordered shadow-lg p-3 mb-5 bg-white rounded">
+            <thead>
+                <div class="p-3 mt-0 bg-light text-dark text-center border border-dark">
+                    <h2 >All of the passagers {% if flight.passengers.all %}({{ flight.passengers.all|length }}):{% endif %}</h2>
+                </div>
+                <tr> 
+                    <th>Passager id: </th>
+                    <th>Passager first name: </th>
+                    <th>Passager surname: </th>
                 </tr>
-            
-            {% endfor %}
-        {% else %}
-                <tr>
-                    <td>No passager</td>
-                </tr>
-        {% endif %}
-    </tbody>
-</table>
+            </thead>
+            <tbody class="text-left">
+                {% if flight.passengers.all %}
+                    {% for passager in flight.passengers.all %}
+                        <tr>
+                            <td><a href="/airline/passager/{{passager.id}}">{{passager.id}}</a></td>
+                            <td>{{passager.first_name}}</td>
+                            <td>{{passager.surname}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>No passager</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% endif %}  
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 {% endblock %}

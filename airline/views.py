@@ -10,10 +10,12 @@ fake=Faker()
 
 # Create your views here.
 def index(request):
+    countries=set(Airport.objects.values_list('country', flat=True))
     context = {
         "airport": Airport.objects.all(),
         "passager":Passager.objects.all(),
-        "flight":Flight.objects.all(),
+        "flight":Flight.objects.all().order_by('date'),
+        "countries": countries,
         }
     return render(request, template_name="airline/main.html", context=context)
 
@@ -25,6 +27,7 @@ def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
     start_airport = flight.start
     dest_airport = flight.destination
+    
     map = folium.Map(location=[start_airport.latitude, start_airport.longitude], zoom_start=6, height=250)
     folium.Marker(location=[start_airport.latitude, start_airport.longitude], popup=f'Start: {start_airport.name}', icon=folium.Icon(color='green')).add_to(map)
     folium.Marker(location=[dest_airport.latitude, dest_airport.longitude], popup=f'Destination: {dest_airport.name}', icon=folium.Icon(color='red')).add_to(map)
@@ -43,13 +46,12 @@ def airport(request, airport_id):
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
     airports = []
-    existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()] # Get the existing airport ids
+    existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()] 
     if request.method == "POST":
         max_vol = int(request.POST['vol'])
         for i in range(max_vol):
             random_index = random.randint(0, len(csv_file)-1)
             row = csv_file.iloc[random_index]
-            # Check if the airport already exists, if not then create a new object
             if row[0] not in existing_airport_ids:
                 airport = Airport(
                     airport_id=row[0],
@@ -60,7 +62,7 @@ def upload_airport(request):
                     longitude=row[7]
                 )
                 airports.append(airport)
-                existing_airport_ids.append(row[0]) # Add the newly created airport id to the existing list
+                existing_airport_ids.append(row[0]) 
         Airport.objects.bulk_create(airports)
         return redirect('airline:index')
     return redirect('airline:index')
@@ -87,19 +89,16 @@ def upload_passager(request):
         num_passager = int(request.POST['quan'])
         for i in range(num_passager):
             fullname = fake.name()
-            first_name, surname = fullname.split(" ", 1)
+            if len(fullname.split(" "))==3:
+                _,first_name, surname = fullname.split(" ", 1)
+            else:
+                first_name, surname = fullname.split(" ", 1)
             passager = Passager(first_name=first_name, surname=surname)
             passagers.append(passager)
         Passager.objects.bulk_create(passagers)
-
-        # utwórz listę tupli z ID nowo utworzonych pasażerów i ID losowych lotów
         passager_flight_ids = [(passager.id, random.choice(flights).id) for passager in passagers]
-
-        # utwórz wiele obiektów many-to-many za pomocą metody bulk_create()
         Passager.flights.through.objects.bulk_create(
-            [Passager.flights.through(passager_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids]
-        )
-
+            [Passager.flights.through(passager_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids])
     return redirect('airline:index')
 
 def add_data(request):

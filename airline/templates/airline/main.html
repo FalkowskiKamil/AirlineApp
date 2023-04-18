@@ -1,34 +1,35 @@
 {% extends "airline/index.html" %}
-
 {% block content %}
-    <table class="table table-striped">
+    <table class="table">
         <thead>
-            <tr>
-                <th>Flight number: </th>
-                <th><label for="start">Start: </label>
-                    <select id="start">
+            <tr class="bg-info">
+                <th class="align-middle">Flight number: </th>
+                <th class="align-middle"><label for="start">Start: </label>
+                    {% if countries|length > 5 %}
+                        <input class="align-middle type="text" id="start" placeholder="Search start country...">
+                    {% else %}
+                        <select class="align-middle id="start">
                         <option value="">All</option>
-                        {% if flight %}
-                        {% for fli in flight %}
-                            <option value="{{fli.start.country}}">{{fli.start.country}}</option>
-                        {% endfor %}
-                        {% endif %}
-                    </select>
+                            {% for country in countries %}
+                                <option value="{{country}}">{{country}}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
                 </th>
-                <th><label for="destination">Destination: </label>
-                    <select id="destination">
+                <th class="align-middle"><label for="destination">Destination: </label>
+                    {% if countries|length > 5 %}
+                        <input class="align-middle type="text" id="destination" placeholder="Search destination country...">
+                    {% else %}
+                        <select class="align-middle id="destination">
                         <option value="">All</option>
-                        {% if flight %}
-                        {% for fli in flight %}
-                            <option value="{{fli.destination.country}}">{{fli.destination.country}}</option>
+                        {% for country in countries %}
+                            <option value="{{country}}">{{country}}</option>
                         {% endfor %}
-                        {% endif %}
-                    </select>
+                        </select>
+                    {% endif %}
                 </th>
-                <th>Date: </th>
-                {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
-                    <th>Passager: </th>
-                {% endif %}
+                <th class="align-middle">Date: </th>
+                <th class="align-middle">Passager: </th>
             </tr>
         </thead>
         <tbody id="flight-table-body">
@@ -43,19 +44,26 @@
                 {% if flight %}
                     {% for fli in flight %}
                     <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
-                        <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
-                        <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
-                        <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.start.country}})</a></td>
-                        <td>{{fli.date}}</td>
+                        <td class="align-middle"><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+                        <td class="align-middle"><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
+                        <td class="align-middle"><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
+                        <td class="align-middle">{{fli.date}}</td>
                         {% if fli.passengers.all %}
                             {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
-                                <td>{% for passagers in fli.passengers.all %} 
-                                <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, {% endfor %}</td>
+                            <td style="width: 15%; max-height: 10%; overflow: hidden; line-height: 1em;">
+                                {% for passagers in fli.passengers.all %} 
+                                    {% if forloop.counter <= 5 %}
+                                        <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, 
+                                    {% elif forloop.counter == 6 %}
+                                        <a href='/airline/flight/{{fli.id}}'> and {{ fli.passengers.all|length|add:-5 }} more...</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
                             {% else %}
-                                <td>{{ fli.passengers.all }}</td>
+                                <td class="align-middle">{{ fli.passengers.all|length }}</td>
                             {% endif %}
                         {% else %}
-                            <td>No Passagers</td>
+                            <td class="align-middle">No Passagers</td>
                         {% endif %}
                     </tr>
                     {% endfor %}
@@ -64,7 +72,7 @@
                     <td>Sorry, currently no flight data are avaible</td>
                     <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
                         {% csrf_token %}
-                        <label for="vol">Enter quantity of flight to load: (1-100)</label>
+                        <label for="vol">Enter quantity of fake flight to load: (1-100)</label>
                         <input type="number" id="quan" name="quan" min="1" max="100">
                         <button class="btn btn-primary" type="submit">Upload flight Data</button>
                     </form>
@@ -73,28 +81,71 @@
             {% endif %}
         </tbody>
     </table>
-    <script>
+<script>
     var startSelect = document.getElementById('start');
     var destinationSelect = document.getElementById('destination');
     var tableRows = document.querySelectorAll('#flight-table-body tr');
     
     function filterRows() {
-      var selectedStart = startSelect.value;
-      var selectedDestination = destinationSelect.value;
-      for (var i = 0; i < tableRows.length; i++) {
+        var selectedStart = startSelect.value;
+        var selectedDestination = destinationSelect.value;
+        for (var i = 0; i < tableRows.length; i++) {
         var row = tableRows[i];
         var start = row.getAttribute('data-start');
         var destination = row.getAttribute('data-destination');
         if ((selectedStart === '' || start.includes(selectedStart)) &&
             (selectedDestination === '' || destination.includes(selectedDestination))) {
-          row.style.display = '';
+            row.style.display = '';
         } else {
-          row.style.display = 'none';
+            row.style.display = 'none';
         }
-      }
+        }
+        stripeRows();
+    }
+    
+    function stripeRows() {
+        var visibleRows = document.querySelectorAll('#flight-table-body tr:not([style*="display: none"])');
+        for (var i = 0; i < visibleRows.length; i++) {
+        if (i % 2 == 0) {
+            visibleRows[i].classList.remove('table-secondary');
+        } else {
+            visibleRows[i].classList.add('table-secondary');
+        }
+        }
     }
     
     startSelect.addEventListener('change', filterRows);
     destinationSelect.addEventListener('change', filterRows);
+    
+    window.addEventListener('load', function() {
+        stripeRows();
+    });
 </script>
+<script>
+    const searchInput = document.getElementById('search-input');
+    const countryList = document.getElementById('country-list');
+    const countries = countryList.querySelectorAll('li');
+
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        for (let i = 0; i < countries.length; i++) {
+            const country = countries[i];
+            const countryName = country.innerText.toLowerCase();
+
+            if (countryName.includes(searchTerm)) {
+                country.style.display = 'block';
+            } else {
+                country.style.display = 'none';
+            }
+        }
+    });
+
+    // Dodajemy obsługę zmiany wielkości liter w inpucie
+    searchInput.addEventListener('change', () => {
+        searchInput.value= searchInput.value.toLowerCase();
+    });
+    search
+</script>
+
 {% endblock %}
