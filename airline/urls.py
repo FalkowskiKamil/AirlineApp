@@ -11,4 +11,5 @@ urlpatterns=[
     path('upload_flight/', views.upload_flight, name='upload_flight'),
     path('add_data/', views.add_data, name='add_data'),
     path('upload_passager/', views.upload_passager, name="upload_passager"),
+    path('trace/<int:start_id>/<int:destination_id>', views.trace, name='trace'),
 ]

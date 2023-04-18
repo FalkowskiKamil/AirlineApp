@@ -27,7 +27,6 @@ def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
     start_airport = flight.start
     dest_airport = flight.destination
-    
     map = folium.Map(location=[start_airport.latitude, start_airport.longitude], zoom_start=6, height=250)
     folium.Marker(location=[start_airport.latitude, start_airport.longitude], popup=f'Start: {start_airport.name}', icon=folium.Icon(color='green')).add_to(map)
     folium.Marker(location=[dest_airport.latitude, dest_airport.longitude], popup=f'Destination: {dest_airport.name}', icon=folium.Icon(color='red')).add_to(map)
@@ -38,10 +37,21 @@ def flight(request, fli_id):
 
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
+    countries=set(Flight.objects.values_list('start', flat=True))
+    
     map = folium.Map(location=[airport.latitude, airport.longitude], zoom_start=10, height=250)
     folium.Marker(location=[airport.latitude, airport.longitude], popup=airport.name).add_to(map)
-    context = {'airport': airport, 'map': map._repr_html_()}
+    context = {'airport': airport, 'map': map._repr_html_(),'countries':countries}
     return render(request, template_name='airline/airport.html', context=context)
+
+def trace(request, start_id, destination_id):
+    start_airport=get_object_or_404(Airport, pk=start_id)
+    destination_airport=get_object_or_404(Airport, pk=destination_id)
+    flight=Flight.objects.filter(start=start_airport, destination=destination_airport)
+    context = {"start_airport":start_airport,
+               "destination_airport":destination_airport,
+               "flight":flight,}
+    return render(request, template_name='airline/trace.html', context=context)
 
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
