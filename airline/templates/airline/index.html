@@ -41,5 +41,69 @@
     <!-- Page content -->
 {% block content %}
 {% endblock %}
+
+<script>
+    var startSelect = document.getElementById('start');
+    var destinationSelect = document.getElementById('destination');
+    var tableRows = document.querySelectorAll('#flight-table-body tr');
+    
+    function filterRows() {
+        var selectedStart = startSelect.value.toLowerCase();
+        var selectedDestination = destinationSelect.value.toLowerCase();
+        for (var i = 0; i < tableRows.length; i++) {
+            var row = tableRows[i];
+            var start = row.getAttribute('data-start').toLowerCase();
+            var destination = row.getAttribute('data-destination').toLowerCase();
+            if ((selectedStart === '' || start.includes(selectedStart)) &&
+                (selectedDestination === '' || destination.includes(selectedDestination))) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+        stripeRows();
+    }
+    
+    function stripeRows() {
+        var visibleRows = document.querySelectorAll('#flight-table-body tr:not([style*="display: none"])');
+        for (var i = 0; i < visibleRows.length; i++) {
+            if (i % 2 === 0) {
+                visibleRows[i].classList.add('bg-light');
+            } else {
+                visibleRows[i].classList.remove('bg-light');
+            }
+        }
+    }
+    
+    startSelect.addEventListener('change', filterRows);
+    destinationSelect.addEventListener('change', filterRows);
+    document.addEventListener('DOMContentLoaded', function() {
+        filterRows();
+    });
+
+    const searchInput = document.getElementById('search-input');
+    const countryList = document.getElementById('country-list');
+    const countries = countryList.querySelectorAll('li');
+
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        for (let i = 0; i < countries.length; i++) {
+            const country = countries[i];
+            const countryName = country.innerText.toLowerCase();
+
+            if (countryName.includes(searchTerm)) {
+                country.style.display = 'block';
+            } else {
+                country.style.display = 'none';
+            }
+        }
+    });
+
+    // Dodajemy obsługę zmiany wielkości liter w inpucie
+    searchInput.addEventListener('change', () => {
+        searchInput.value= searchInput.value.toLowerCase();
+    });
+</script>
 </body>
 </html>

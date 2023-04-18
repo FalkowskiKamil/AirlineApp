@@ -1,14 +1,14 @@
 {% extends "airline/index.html" %}
 {% block content %}
-    <table class="table">
+    <table class="table" id="table1">
         <thead>
             <tr class="bg-info">
                 <th class="align-middle">Flight number: </th>
                 <th class="align-middle"><label for="start">Start: </label>
                     {% if countries|length > 5 %}
-                        <input class="align-middle type="text" id="start" placeholder="Search start country...">
+                        <input class="align-middle" type="text" id="start" placeholder="Search start country...">
                     {% else %}
-                        <select class="align-middle id="start">
+                        <select class="align-middle" id="start">
                         <option value="">All</option>
                             {% for country in countries %}
                                 <option value="{{country}}">{{country}}</option>
@@ -18,9 +18,9 @@
                 </th>
                 <th class="align-middle"><label for="destination">Destination: </label>
                     {% if countries|length > 5 %}
-                        <input class="align-middle type="text" id="destination" placeholder="Search destination country...">
+                        <input class="align-middle" type="text" id="destination" placeholder="Search destination country...">
                     {% else %}
-                        <select class="align-middle id="destination">
+                        <select class="align-middle" id="destination">
                         <option value="">All</option>
                         {% for country in countries %}
                             <option value="{{country}}">{{country}}</option>
@@ -81,71 +81,4 @@
             {% endif %}
         </tbody>
     </table>
-<script>
-    var startSelect = document.getElementById('start');
-    var destinationSelect = document.getElementById('destination');
-    var tableRows = document.querySelectorAll('#flight-table-body tr');
-    
-    function filterRows() {
-        var selectedStart = startSelect.value;
-        var selectedDestination = destinationSelect.value;
-        for (var i = 0; i < tableRows.length; i++) {
-        var row = tableRows[i];
-        var start = row.getAttribute('data-start');
-        var destination = row.getAttribute('data-destination');
-        if ((selectedStart === '' || start.includes(selectedStart)) &&
-            (selectedDestination === '' || destination.includes(selectedDestination))) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-        }
-        stripeRows();
-    }
-    
-    function stripeRows() {
-        var visibleRows = document.querySelectorAll('#flight-table-body tr:not([style*="display: none"])');
-        for (var i = 0; i < visibleRows.length; i++) {
-        if (i % 2 == 0) {
-            visibleRows[i].classList.remove('table-secondary');
-        } else {
-            visibleRows[i].classList.add('table-secondary');
-        }
-        }
-    }
-    
-    startSelect.addEventListener('change', filterRows);
-    destinationSelect.addEventListener('change', filterRows);
-    
-    window.addEventListener('load', function() {
-        stripeRows();
-    });
-</script>
-<script>
-    const searchInput = document.getElementById('search-input');
-    const countryList = document.getElementById('country-list');
-    const countries = countryList.querySelectorAll('li');
-
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-
-        for (let i = 0; i < countries.length; i++) {
-            const country = countries[i];
-            const countryName = country.innerText.toLowerCase();
-
-            if (countryName.includes(searchTerm)) {
-                country.style.display = 'block';
-            } else {
-                country.style.display = 'none';
-            }
-        }
-    });
-
-    // Dodajemy obsługę zmiany wielkości liter w inpucie
-    searchInput.addEventListener('change', () => {
-        searchInput.value= searchInput.value.toLowerCase();
-    });
-    search
-</script>
-
 {% endblock %}
