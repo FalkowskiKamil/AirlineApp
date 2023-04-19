@@ -39,7 +39,7 @@
                                                 {% endif %}
                                                 <td class="align-middle text-center"><a href=/airline/flight/{{flight.id}}>{{ flight.date|date:"d/m/Y" }}</a></td>
                                             {% elif forloop.counter == 6 %}
-                                                <td colspan="3" class="align-middle"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
+                                                <td colspan="3" class="align-middle text-center"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
                                             {% endif %}
                                         {% endfor %}
                                     </tr>

@@ -89,19 +89,22 @@
           }
         
           // Apply row striping to the visible rows
-          stripeRows();
-        }
+    stripeRows();
+}
         // Define a function to apply row striping to the visible rows
-        function stripeRows() {
-          let visibleRows = document.querySelectorAll('#route_table_body tr:not([style="display: none;"])');
-          for (let i = 0; i < visibleRows.length; i++) {
-            if (i % 2 === 0) {
-              visibleRows[i].classList.add('bg-light');
-            } else {
-              visibleRows[i].classList.remove('bg-light');
-            }
-          }
-        }
+function stripeRows() {
+  // Get all visible rows in the flight table
+  var visibleRows = document.querySelectorAll('#route-table-body > tr:not([style*="display: none"])');
+  
+  // Loop through each visible row and apply a background color class based on row index
+  for (var i = 0; i < visibleRows.length; i++) {
+    if (i % 2 === 0) {
+      visibleRows[i].classList.add('bg-light');
+    } else {
+      visibleRows[i].classList.remove('bg-light');
+    }
+  }
+}
         
         // Attach the filterRows() function to the change event of startSelect and destinationSelect
         startSelect.addEventListener('change', filterRows2);
