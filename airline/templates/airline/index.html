@@ -11,9 +11,9 @@
     <nav class="navbar navbar-light bg-light border">
         <div class="container-fluid">
             <div class="navbar-header">
-                    <a class="navbar-brand" href="/airline/index/">Airlines</a>
+                    <a class="navbar-brand" href="/airline/">Airlines</a>
                 {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
-                    <a class="navbar-brand" href="/airline/">Staff</a>
+                    <a class="navbar-brand" href="/airline/staff">Staff</a>
                 {% endif %}
 
             </div>
@@ -45,7 +45,6 @@
     <!-- Page content -->
 {% block content %}
 {% endblock %}
-
 <script>
     var startSelect = document.getElementById('start');
     var destinationSelect = document.getElementById('destination');
@@ -108,6 +107,43 @@
     searchInput.addEventListener('change', () => {
         searchInput.value= searchInput.value.toLowerCase();
     });
-</script>
-</body>
+</script>  
+<script>
+    function filterTable(startCountry, destinationCountry) {
+      var table = document.getElementById("route_table");
+      var tbody = table.getElementsByTagName("tbody")[0];
+      var rows = tbody.getElementsByTagName("tr");
+    
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var start = row.getAttribute("data-start");
+        var destination = row.getAttribute("data-destination");
+    
+        if ((startCountry == "" || start == startCountry) &&
+            (destinationCountry == "" || destination == destinationCountry)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+    
+        if (i % 2 == 0) {
+          row.classList.add("table-striped");
+        } else {
+          row.classList.remove("table-striped");
+        }
+      }
+    }
+    
+    var startInput = document.getElementById("start");
+    var destinationInput = document.getElementById("destination");
+    
+    startInput.addEventListener("input", updateTable);
+    destinationInput.addEventListener("input", updateTable);
+    
+    function updateTable() {
+      filterTable(startInput.value, destinationInput.value);
+    }
+    </script>
+    
+    
 </html>

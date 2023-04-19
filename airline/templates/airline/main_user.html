@@ -1,0 +1,63 @@
+{% extends "airline/index.html" %}
+{% block content %}
+    <table class="table" id="route_table">
+        <thead>
+            <tr class="bg-info">
+                <th class="align-middle">Route number: </th>
+                <th class="align-middle"><label for="start">Start: </label>
+                    {% if countries|length > 5 %}
+                    <input class="align-middle" type="text" id="start" placeholder="Search start country...">
+                {% else %}
+                    <select class="align-middle" id="start">
+                    <option value="">All</option>
+                        {% for country in countries %}
+                            <option value="{{country}}">{{country}}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+                </th>
+                <th class="align-middle"><label for="destination">Destination: </label>
+                    {% if countries|length > 5 %}
+                    <input class="align-middle" type="text" id="destination" placeholder="Search destination country...">
+                {% else %}
+                    <select class="align-middle" id="destination">
+                    <option value="">All</option>
+                    {% for country in countries %}
+                        <option value="{{country}}">{{country}}</option>
+                    {% endfor %}
+                    </select>
+                {% endif %}</th>
+                <th class="align-middle text-center">Closest Date: </th>
+            </tr>
+        </thead>
+        <tbody id="route_table_body">
+                {% if routes %}
+                    {% for route in routes %}
+                        <tr data-start="{{route.start.country}}" data-destination="{{route.destination.country}}">
+                        <td class="align-middle"><a href=/airline/routes/{{route.id}}>{{route}}</a></td>
+                        <td class="align-middle"><a href=/airline/airport/{{route.start.airport_id}}>{{route.start}} ({{route.start.city}} in {{route.start.country}})</a></td>
+                        <td class="align-middle"><a href=/airline/airport/{{route.destination.airport_id}}>{{route.destination}} ({{route.destination.city}} in {{route.destination.country}})</a></td>
+                        <td class="align-middle">
+                            <table id="flight_date" class="table table-bordered align-middle text-center">
+                                <tr>
+                                    {% for flight in route.flights.all|dictsort:"date" %}
+                                        {% if forloop.counter <= 5 %}
+                                            {% if forloop.counter0|divisibleby:3 %}
+                                                </tr><tr>
+                                            {% endif %}
+                                            <td class="align-middle"><a href=/airline/flight/{{flight.id}}>{{ flight.date|date:"d/m/Y" }}</a></td>
+                                        {% elif forloop.counter == 6 %}
+                                            <td colspan="3" class="align-middle"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                <tr><td>Sorry, currently no flight data are avaible</td></tr>
+                {% endif %}
+        </tbody>
+    </table>      
+{% endblock %}

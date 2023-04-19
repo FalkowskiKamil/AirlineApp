@@ -4,7 +4,7 @@ from . import views
 app_name = 'airline'
 urlpatterns=[
     path('', views.main, name='main'),
-    path('index/', views.index, name='index'),
+    path('staff/', views.staff, name='staff'),
     path('passager/<int:passager_id>', views.passager, name='passager'),
     path('flight/<int:fli_id>', views.flight, name='flight'),
     path('airport/<int:airport_id>', views.airport, name='airport'),

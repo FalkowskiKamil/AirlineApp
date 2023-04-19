@@ -12,24 +12,20 @@ fake=Faker()
 def main(request):
     countries=set(Airport.objects.values_list('country', flat=True))
     context = {
-        "airport": Airport.objects.all(),
-        "passager":Passager.objects.all(),
-        "flight":Flight.objects.all().order_by('date'),
         "countries": countries,
+        'routes':Route.objects.all()
         }
-    return render(request, template_name="airline/main.html", context=context)
+    return render(request, template_name="airline/main_user.html", context=context)
 
-def index(request):
+def staff(request):
     countries=set(Airport.objects.values_list('country', flat=True))
     context = {
         "airport": Airport.objects.all(),
         "passager":Passager.objects.all(),
         "flight":Flight.objects.all().order_by('date'),
         "countries": countries,
-        'routes':Route.objects.all()
         }
-    return render(request, template_name="airline/main2.html", context=context)
-
+    return render(request, template_name="airline/main_staff.html", context=context)
 def passager(request, passager_id):
     passager = get_object_or_404(Passager, pk=passager_id)
     context={'passager':passager,
