@@ -4,60 +4,136 @@
         <thead>
             <tr class="bg-info">
                 <th class="align-middle">Route number: </th>
-                <th class="align-middle"><label for="start">Start: </label>
+                <th class="align-middle"><label for="start2">Start: </label>
                     {% if countries|length > 5 %}
-                    <input class="align-middle" type="text" id="start" placeholder="Search start country...">
-                {% else %}
-                    <select class="align-middle" id="start">
+                        <input class="align-middle" type="text" id="start2" placeholder="Search start country...">
+                    {% else %}
+                    <select class="align-middle" id="start2">
                     <option value="">All</option>
                         {% for country in countries %}
                             <option value="{{country}}">{{country}}</option>
                         {% endfor %}
                     </select>
-                {% endif %}
+                    {% endif %}
                 </th>
-                <th class="align-middle"><label for="destination">Destination: </label>
+                <th class="align-middle"><label for="destination2">Destination: </label>
                     {% if countries|length > 5 %}
-                    <input class="align-middle" type="text" id="destination" placeholder="Search destination country...">
-                {% else %}
-                    <select class="align-middle" id="destination">
-                    <option value="">All</option>
-                    {% for country in countries %}
-                        <option value="{{country}}">{{country}}</option>
-                    {% endfor %}
-                    </select>
-                {% endif %}</th>
+                        <input class="align-middle" type="text" id="destination2" placeholder="Search destination country...">
+                    {% else %}
+                        <select class="align-middle" id="destination2">
+                        <option value="">All</option>
+                        {% for country in countries %}
+                            <option value="{{country}}">{{country}}</option>
+                        {% endfor %}
+                        </select>
+                    {% endif %}
+                </th>
                 <th class="align-middle text-center">Closest Date: </th>
             </tr>
         </thead>
-        <tbody id="route_table_body">
+        <tbody id="route-table-body">
                 {% if routes %}
                     {% for route in routes %}
-                        <tr data-start="{{route.start.country}}" data-destination="{{route.destination.country}}">
-                        <td class="align-middle"><a href=/airline/routes/{{route.id}}>{{route}}</a></td>
-                        <td class="align-middle"><a href=/airline/airport/{{route.start.airport_id}}>{{route.start}} ({{route.start.city}} in {{route.start.country}})</a></td>
-                        <td class="align-middle"><a href=/airline/airport/{{route.destination.airport_id}}>{{route.destination}} ({{route.destination.city}} in {{route.destination.country}})</a></td>
-                        <td class="align-middle">
-                            <table id="flight_date" class="table table-bordered align-middle text-center">
-                                <tr>
-                                    {% for flight in route.flights.all|dictsort:"date" %}
-                                        {% if forloop.counter <= 5 %}
-                                            {% if forloop.counter0|divisibleby:3 %}
-                                                </tr><tr>
+                        <tr data-start2="{{route.start.country}}" data-destination2="{{route.destination.country}}" data-date="#">
+                            <td class="align-middle"><a href=/airline/routes/{{route.id}}>{{route}}</a></td>
+                            <td class="align-middle" id = {{route.start}}><a href=/airline/airport/{{route.start.airport_id}}>{{route.start}} ({{route.start.city}} in {{route.start.country}})</a></td>
+                            <td class="align-middle" id = {{route.destination}}><a href=/airline/airport/{{route.destination.airport_id}}>{{route.destination}} ({{route.destination.city}} in {{route.destination.country}})</a></td>
+                            <td class="align-middle">
+                                <table id="flight_date" class="table table-bordered align-middle text-center">
+                                    <tr>
+                                        {% for flight in route.flights.all|dictsort:"date" %}
+                                            {% if forloop.counter <= 5 %}
+                                                {% if forloop.counter0|divisibleby:3 %}
+                                                    </tr><tr>
+                                                {% endif %}
+                                                <td class="align-middle"><a href=/airline/flight/{{flight.id}}>{{ flight.date|date:"d/m/Y" }}</a></td>
+                                            {% elif forloop.counter == 6 %}
+                                                <td colspan="3" class="align-middle"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
                                             {% endif %}
-                                            <td class="align-middle"><a href=/airline/flight/{{flight.id}}>{{ flight.date|date:"d/m/Y" }}</a></td>
-                                        {% elif forloop.counter == 6 %}
-                                            <td colspan="3" class="align-middle"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
-                                        {% endif %}
-                                    {% endfor %}
-                                </tr>
-                            </table>
-                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                     {% endfor %}
                 {% else %}
                 <tr><td>Sorry, currently no flight data are avaible</td></tr>
                 {% endif %}
         </tbody>
-    </table>      
+    </table>
+
+<script>
+        // Get references to the start and destination dropdown menus and table rows
+        var startSelect = document.getElementById('start2');
+        var destinationSelect = document.getElementById('destination2');
+        var tableRows = document.querySelectorAll('#route-table-body > tr');
+        
+        // Define a function to filter the table rows based on the start and destination values
+        function filterRows2() {
+          // Convert the selected values to lowercase
+          var selectedStart = startSelect.value.toLowerCase();
+          var selectedDestination = destinationSelect.value.toLowerCase();
+        
+          // Loop through all table rows and check if they match the selected values
+          for (var i = 0; i < tableRows.length; i++) {
+            var row = tableRows[i];
+            var start = row.getAttribute('data-start2').toLowerCase();
+            var destination = row.getAttribute('data-destination2').toLowerCase();
+            row.style.display = 'none'
+            if ((selectedStart == '' || start.includes(selectedStart)) &&
+                (selectedDestination == '' || destination.includes(selectedDestination))) {
+              row.style.display = 'table-row';
+            } else {
+              row.style.display = 'none';
+            }
+          }
+        
+          // Apply row striping to the visible rows
+          stripeRows();
+        }
+        // Define a function to apply row striping to the visible rows
+        function stripeRows() {
+          let visibleRows = document.querySelectorAll('#route_table_body tr:not([style="display: none;"])');
+          for (let i = 0; i < visibleRows.length; i++) {
+            if (i % 2 === 0) {
+              visibleRows[i].classList.add('bg-light');
+            } else {
+              visibleRows[i].classList.remove('bg-light');
+            }
+          }
+        }
+        
+        // Attach the filterRows() function to the change event of startSelect and destinationSelect
+        startSelect.addEventListener('change', filterRows2);
+        destinationSelect.addEventListener('change', filterRows2);
+        
+        // Attach the filterRows() function to the DOMContentLoaded event of the document
+        document.addEventListener('DOMContentLoaded', function() {
+          filterRows2();
+        });
+        
+        
+        // Get references to the search input field, country list, and country items
+        const searchInput = document.getElementById('search-input');
+        const countryList = document.getElementById('country-list');
+        const countries = countryList.querySelectorAll('li');
+        
+        // Define an event listener for the input event of the searchInput field
+        searchInput.addEventListener('input', function() {
+          // Convert the search term to lowercase
+          const searchTerm = searchInput.value.toLowerCase();
+        
+          // Loop through all country items and hide those that don't match the search term
+          for (let i = 0; i < countries.length; i++) {
+            const country = countries[i];
+            const name = country.textContent.toLowerCase();
+        
+            if (name.includes(searchTerm)) {
+              country.style.display = 'block';
+            } else {
+              country.style.display = 'none';
+            }
+          }
+        });
+</script>
 {% endblock %}
