@@ -11,7 +11,11 @@
     <nav class="navbar navbar-light bg-light border">
         <div class="container-fluid">
             <div class="navbar-header">
-                  <a class="navbar-brand" href="/airline/">Airlines</a>
+                    <a class="navbar-brand" href="/airline/index/">Airlines</a>
+                {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+                    <a class="navbar-brand" href="/airline/">Staff</a>
+                {% endif %}
+
             </div>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated%}

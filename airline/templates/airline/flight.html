@@ -5,7 +5,8 @@
     <h1 class="text-shadow" style="text-shadow: 0.15rem 0.15rem 0.5rem rgba(0, 0, 0, 0.5)">
         Flight "{{flight.id}}"
         from: <a style="color: black;" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
-        to: <a style="color:black;" class="link-danger" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
+        to: <a style="color:black;" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
+        (route {% for route in flight.routes.all %} <a href=/airline/routes/{{route}} style="color:black;">{{route}}</a>{% endfor %})
         on {{flight.date}}
     </h1>
     {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}

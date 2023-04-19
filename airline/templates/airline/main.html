@@ -1,9 +1,11 @@
 {% extends "airline/index.html" %}
 {% block content %}
+{% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
     <table class="table" id="table1">
         <thead>
             <tr class="bg-info">
                 <th class="align-middle">Flight number: </th>
+                <th class="align-middle">Route number: </th>
                 <th class="align-middle"><label for="start">Start: </label>
                     {% if countries|length > 5 %}
                         <input class="align-middle" type="text" id="start" placeholder="Search start country...">
@@ -44,12 +46,14 @@
                 {% if flight %}
                     {% for fli in flight %}
                     <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
-                        <td class="align-middle"><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+                        <td class="align-middle"><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
+                        {% for route in fli.routes.all %}
+                            <td class="align-middle"><a href="/airline/routes/{{route}}">{{route}}</a></td>
+                        {% endfor %}
                         <td class="align-middle"><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
                         <td class="align-middle"><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
                         <td class="align-middle">{{fli.date}}</td>
                         {% if fli.passengers.all %}
-                            {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
                             <td style="width: 15%; max-height: 10%; overflow: hidden; line-height: 1em;">
                                 {% for passagers in fli.passengers.all %} 
                                     {% if forloop.counter <= 5 %}
@@ -59,9 +63,6 @@
                                     {% endif %}
                                 {% endfor %}
                             </td>
-                            {% else %}
-                                <td class="align-middle">{{ fli.passengers.all|length }}</td>
-                            {% endif %}
                         {% else %}
                             <td class="align-middle">No Passagers</td>
                         {% endif %}
@@ -81,4 +82,7 @@
             {% endif %}
         </tbody>
     </table>
+{% else %}
+<h1 class="align-middle text-center"><a href="/airline/index/"> Sory,you have no permission for this page</a></h1>
+{% endif %}
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Airport, Passager, Flight
+from .models import Airport, Passager, Flight, Route
 import folium
 from folium.vector_layers import PolyLine
 import pandas as pd
@@ -9,7 +9,7 @@ from faker import Faker
 fake=Faker()
 
 # Create your views here.
-def index(request):
+def main(request):
     countries=set(Airport.objects.values_list('country', flat=True))
     context = {
         "airport": Airport.objects.all(),
@@ -19,9 +19,23 @@ def index(request):
         }
     return render(request, template_name="airline/main.html", context=context)
 
+def index(request):
+    countries=set(Airport.objects.values_list('country', flat=True))
+    context = {
+        "airport": Airport.objects.all(),
+        "passager":Passager.objects.all(),
+        "flight":Flight.objects.all().order_by('date'),
+        "countries": countries,
+        'routes':Route.objects.all()
+        }
+    return render(request, template_name="airline/main2.html", context=context)
+
 def passager(request, passager_id):
-    passager ={"passager": get_object_or_404(Passager, pk=passager_id)}
-    return render(request, template_name="airline/passager.html", context=passager)
+    passager = get_object_or_404(Passager, pk=passager_id)
+    context={'passager':passager,
+             'countries': set(Airport.objects.values_list('country', flat=True))
+             }
+    return render(request, template_name="airline/passager.html", context=context)
 
 def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
@@ -37,21 +51,22 @@ def flight(request, fli_id):
 
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
-    countries=set(Flight.objects.values_list('start', flat=True))
-    
     map = folium.Map(location=[airport.latitude, airport.longitude], zoom_start=10, height=250)
     folium.Marker(location=[airport.latitude, airport.longitude], popup=airport.name).add_to(map)
-    context = {'airport': airport, 'map': map._repr_html_(),'countries':countries}
+    context = {'airport': airport, 'map': map._repr_html_(),}
     return render(request, template_name='airline/airport.html', context=context)
 
-def trace(request, start_id, destination_id):
-    start_airport=get_object_or_404(Airport, pk=start_id)
-    destination_airport=get_object_or_404(Airport, pk=destination_id)
-    flight=Flight.objects.filter(start=start_airport, destination=destination_airport)
-    context = {"start_airport":start_airport,
-               "destination_airport":destination_airport,
-               "flight":flight,}
-    return render(request, template_name='airline/trace.html', context=context)
+def routes(request, route_id):
+    route = get_object_or_404(Route, pk=route_id)
+    start_airport = route.start
+    dest_airport = route.destination
+    map = folium.Map(location=[start_airport.latitude, start_airport.longitude], zoom_start=6, height=250)
+    folium.Marker(location=[start_airport.latitude, start_airport.longitude], popup=f'Start: {start_airport.name}', icon=folium.Icon(color='green')).add_to(map)
+    folium.Marker(location=[dest_airport.latitude, dest_airport.longitude], popup=f'Destination: {dest_airport.name}', icon=folium.Icon(color='red')).add_to(map)
+    line = PolyLine(locations=[[start_airport.latitude, start_airport.longitude], [dest_airport.latitude, dest_airport.longitude]], color='blue', weight=2, opacity=10)
+    line.add_to(map)
+    context={"route":route, 'map': map._repr_html_()}
+    return render(request, template_name='airline/route.html', context=context)
 
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
@@ -74,11 +89,31 @@ def upload_airport(request):
                 airports.append(airport)
                 existing_airport_ids.append(row[0]) 
         Airport.objects.bulk_create(airports)
-        return redirect('airline:index')
-    return redirect('airline:index')
+        return redirect('airline:main')
+    return redirect('airline:main')
 
+def update_routes():
+    # Get all unique start-destination pairs from flights
+    routes = Flight.objects.values('start', 'destination').distinct()
+    for route in routes:
+        # Try to get an existing route with this start-destination pair
+        existing_route = Route.objects.filter(start=route['start'], destination=route['destination']).first()
+        
+        # If the route already exists, add the new flights to it
+        if existing_route:
+            flights = Flight.objects.filter(start=route['start'], destination=route['destination'])
+            existing_route.flights.add(*flights)
+        
+        # Otherwise, create a new route and assign all flights with this start-destination pair to it
+        else:
+            start_airport = get_object_or_404(Airport, pk=route['start'])
+            dest_airport = get_object_or_404(Airport, pk=route['destination'])
+            flights = Flight.objects.filter(start=start_airport, destination=dest_airport)
+            new_route = Route(start=start_airport, destination=dest_airport)
+            new_route.save()
+            new_route.flights.set(flights)
+            
 def upload_flight(request):
-    flights = []
     if request.method == "POST":
         airports = Airport.objects.all()
         num_flights = int(request.POST['quan'])
@@ -86,11 +121,22 @@ def upload_flight(request):
             start = random.choice(airports)
             destination = random.choice(airports.exclude(airport_id=start.airport_id))
             date = datetime.datetime(random.randint(2022, 2030), random.randint(1, 12), random.randint(1, 28), random.randint(0, 23), random.choice([0, 30]))
-            flight = Flight(start=start, destination=destination, date=date)
-            flights.append(flight)
-        Flight.objects.bulk_create(flights)
-        return redirect('airline:index')
-    return redirect('airline:index')
+            
+            # Try to get an existing route with this start-destination pair
+            existing_route = Route.objects.filter(start=start, destination=destination).first()
+            
+            # If the route already exists, add the new flight to it
+            if existing_route:
+                flight = Flight.objects.create(start=start, destination=destination, date=date)
+                existing_route.flights.add(flight)
+            # Otherwise, create a new route and assign the flight to it
+            else:
+                new_route = Route.objects.create(start=start, destination=destination)
+                flight = Flight.objects.create(start=start, destination=destination, date=date)
+                new_route.flights.add(flight)
+
+        return redirect('airline:main')
+    return redirect('airline:main')
 
 def upload_passager(request):
     passagers = []
@@ -99,17 +145,18 @@ def upload_passager(request):
         num_passager = int(request.POST['quan'])
         for i in range(num_passager):
             fullname = fake.name()
-            if len(fullname.split(" "))==3:
-                _,first_name, surname = fullname.split(" ", 1)
+            name_parts = fullname.split(" ")
+            if len(name_parts) == 2:
+                first_name, surname = name_parts
             else:
-                first_name, surname = fullname.split(" ", 1)
+                continue
             passager = Passager(first_name=first_name, surname=surname)
             passagers.append(passager)
         Passager.objects.bulk_create(passagers)
         passager_flight_ids = [(passager.id, random.choice(flights).id) for passager in passagers]
         Passager.flights.through.objects.bulk_create(
             [Passager.flights.through(passager_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids])
-    return redirect('airline:index')
+    return redirect('airline:main')
 
 def add_data(request):
     return render(request, template_name='airline/add_data.html')

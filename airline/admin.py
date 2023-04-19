@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Airport, Flight, Passager
+from .models import Airport, Flight, Passager, Route
 
 # Register your models here.
 class AirportAdmin(admin.ModelAdmin):
@@ -36,8 +36,13 @@ class PassagerAdmin(admin.ModelAdmin):
     filter_horizontal = ['flights']
     search_fields = ['id', 'first_name', 'surname']
 
+class RouteAdmin(admin.ModelAdmin):
+    list_display=['id', 'start', 'destination']
+    exclude =['date']
+
 
 
 admin.site.register(Airport, AirportAdmin)
 admin.site.register(Flight, FlightAdmin)
 admin.site.register(Passager, PassagerAdmin)
+admin.site.register(Route, RouteAdmin)

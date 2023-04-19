@@ -25,11 +25,22 @@ class Flight(models.Model):
         
     def __str__(self):
         return f'{self.id}'
+    
+    def formatted_date(self):
+        return self.date.strftime('%d-%m-%Y')
         
 class Passager(models.Model):
     first_name = models.CharField(max_length=20)
     surname = models.CharField(max_length=30)
-    flights = models.ManyToManyField(Flight, related_name='passengers')
+    flights = models.ManyToManyField(Flight, related_name='passengers', blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.surname}"
+    
+class Route(models.Model):
+    start = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='departure_routes')
+    destination = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='arrival_routes')
+    flights = models.ManyToManyField(Flight, related_name='routes')
+    
+    def __str__(self):
+        return f"{self.id}"
