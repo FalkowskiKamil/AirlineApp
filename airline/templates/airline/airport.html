@@ -8,29 +8,46 @@
         All flight registered for {{airport}} 
     </h1>
     <div style="border-width: 2px; border-style: solid; border-color: black; overflow-x: auto;" class="shadow-lg p-3 mb-5 bg-white rounded">   
-        <table id="table_1" style="overflow-x: auto;" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded">
+        <table id = "route_table1" style="overflow-x: auto;" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded">
             <thead>
                 <div class="p-3 mt-0 bg-light text-dark text-center border border-dark ">
                     <h2>Flight to {{airport}}:</h2>
                     <tr class="text-left">
                         <th class="align-middle text-center">Routes id: </th>
-                        <th class="align-middle text-center">Flight start:</th>
+                        <th class="align-middle text-center"><label for="start2">Flight start: </label>
+                            {% if countries|length > 5 %}
+                                <input class="align-middle" type="text" id="start2" placeholder="Search start country...">
+                            {% else %}
+                            <select class="align-middle" id="start2">
+                            <option value="">All</option>
+                                {% for country in countries %}
+                                    <option value="{{country}}">{{country}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </th>
+                        <div style="visibility: hidden">
+                            <select type="hidden" class="align-middle" id="destination2">
+                                <option value="{{airport.country}}">{{airport.country}}</option>
+                            </select>
+                        
+                        </div>
                         <th class="align-middle text-center">Flight date: </th>
                     </tr>
                 </div>
             </thead>
-            <tbody id="flight-table-body" class="text-left">
+            <tbody id="route-table-body" class="text-left">
                 {% if airport.arrival_routes.all %}
                     {% for route in airport.arrival_routes.all|dictsort:"id" %}
-                        <tr>
+                        <tr data-start2="{{route.start.country}}" data-destination2="{{route.destination.country}}" data-date="#">
                             <td class="align-middle"><a href="/airline/routes/{{route}}">{{ route }}</a></td>
                             <td class="align-middle">
                                 {% with start=route.flights.first %}
-                                    <a href="{{start.start.airport_id}}">{{ start.start}}</a>
+                                    <a href="{{start.start.airport_id}}">{{ start.start}} ({{start.start.city}} in {{start.start.country}})</a>
                                 {% endwith %}
                             </td>
                             <td class="align-middle">
-                                <table class="table table-bordered align-middle">
+                                <table id="flight_date" class="table table-bordered align-middle">
                                     <tr>
                                         {% for flight in route.flights.all|dictsort:"date" %}
                                             {% if forloop.counter <= 5 %}
@@ -56,21 +73,38 @@
     </div>
 
     <div style="border-width: 2px; border-style: solid; border-color: black; overflow-x: auto;" class="shadow-lg p-3 mb-5 bg-white rounded"> 
-        <table id="table" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded">
+        <table id ="route-table2" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded">
             <thead>
                 <div class="p-3 mt-2 bg-light text-dark border border-dark ">
                     <h2>Flight from {{airport}}:</h2>
                     <tr class="align-middle text-center">
                         <th >Routes id: </th>
-                        <th>Flight destination: </th>
+                        <div style="visibility: hidden">
+                            <select class="align-middle" id="start1">
+                                <option value="{{airport.country}}">{{airport.country}}</option>
+                            </select>
+                        </div>
+                    
+                        <th class="align-middle text-center"><label for="destination1">Flight destination: </label>
+                            {% if countries|length > 5 %}
+                                <input class="align-middle" type="text" id="destination1" placeholder="Search start country...">
+                            {% else %}
+                            <select class="align-middle" id="destination1">
+                            <option value="">All</option>
+                                {% for country in countries %}
+                                    <option value="{{country}}">{{country}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </th>
                         <th>Flight date: </th>
                     </tr>
                 </div>
             </thead>
-            <tbody class="text-left">
+            <tbody id="route-table-body1" class="text-left">
                 {% if airport.departure_routes.all %}
                         {% for route in airport.departure_routes.all|dictsort:"id" %}
-                        <tr>
+                        <tr data-start1="{{route.start.country}}" data-destination1="{{route.destination.country}}" data-date1="#">
                             <td class="align-middle"><a href="/airline/routes/{{route}}">{{ route }}</a></td>
                             <td class="align-middle">
                                 {% with destination=route.flights.first %}
@@ -78,14 +112,14 @@
                                 {% endwith %}
                             </td>
                             <td class="align-middle">
-                                <table class="table table-bordered align-middle">
+                                <table id="flight_date1" class="table table-bordered align-middle">
                                     <tr>
                                         {% for flight in route.flights.all|dictsort:"date" %}
                                             {% if forloop.counter <= 5 %}
                                                 {% if forloop.counter0|divisibleby:3 %}</tr><tr>{% endif %}
                                                 <td class="align-middle text-center"><a href=/airline/flight/{{flight.id}}>{{ flight.date|date:"d/m/Y" }}</a></td>
                                             {% elif forloop.counter == 6 %}
-                                                <td colspan="3" class="align-middle"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
+                                                <td colspan="3" class="align-middle text-center"><a href=/airline/routes/{{route.id}}>and {{ route.flights.all|length|add:-5 }} more...</a></td>
                                             {% endif %}
                                         {% endfor %}
                                     </tr>
@@ -98,7 +132,6 @@
                 {% endif %}
             </tbody>
         </table>
-    </div>
+    
 </div>
-
 {% endblock %}

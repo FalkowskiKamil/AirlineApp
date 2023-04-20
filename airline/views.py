@@ -49,7 +49,7 @@ def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
     map = folium.Map(location=[airport.latitude, airport.longitude], zoom_start=10, height=250)
     folium.Marker(location=[airport.latitude, airport.longitude], popup=airport.name).add_to(map)
-    context = {'airport': airport, 'map': map._repr_html_(),}
+    context = {'airport': airport, 'map': map._repr_html_(), 'countries':set(Airport.objects.values_list('country', flat=True)),}
     return render(request, template_name='airline/airport.html', context=context)
 
 def routes(request, route_id):
