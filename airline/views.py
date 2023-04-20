@@ -79,7 +79,6 @@ def flight_record(request, passager_id, flight_id):
     else:
         return HttpResponseBadRequest("Invalid request method.")
 
-
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
     airports = []

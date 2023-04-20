@@ -25,7 +25,7 @@ class UserTest(TestCase):
     def test_logout_url(self):
         self.client.login(username='testuser', password='testpass')
         response = self.client.get(reverse('user:logout'))
-        self.assertRedirects(response, reverse('onlinecourse:index'))
+        self.assertRedirects(response, reverse('airline:main'))
         self.assertFalse('_auth_user_id' in self.client.session)
 
 if __name__=='__main__':
