@@ -1,52 +1,30 @@
 {% extends "airline/index.html" %}
 {% block content %}
 <h1 class="align-middle text-center">Flights registered for: {{passager}}</h1>
-    <table class="table" id="table1">
-        <thead>
-            <tr class="bg-info">
-                <th class="align-middle">Flight number: </th>
-                <th class="align-middle"><label for="start">Start: </label>
-                    {% if countries|length > 5 %}
-                        <input class="align-middle" type="text" id="start" placeholder="Search start country...">
-                    {% else %}
-                        <select class="align-middle" id="start">
-                        <option value="">All</option>
-                            {% for country in countries %}
-                                <option value="{{country}}">{{country}}</option>
-                            {% endfor %}
-                        </select>
-                    {% endif %}
-                </th>
-                <th class="align-middle"><label for="destination">Destination: </label>
-                    {% if countries|length > 5 %}
-                        <input class="align-middle" type="text" id="destination" placeholder="Search destination country...">
-                    {% else %}
-                        <select class="align-middle" id="destination">
-                        <option value="">All</option>
-                        {% for country in countries %}
-                            <option value="{{country}}">{{country}}</option>
-                        {% endfor %}
-                        </select>
-                    {% endif %}
-                </th>
-                <th class="align-middle">Date: </th>
-            </tr>
-        </thead>
-        <tbody id="flight-table-body">
-                {% if passager.flights %}
-                    {% for fli in passager.flights.all %}
-                    <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
-                        <td class="align-middle"><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
-                        <td class="align-middle"><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
-                        <td class="align-middle"><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
-                        <td class="align-middle">{{fli.date}}</td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                <tr>
-                    <td>Sorry, currently no flight data are avaible</td>
+<table class="table table-striped table-bordered align-middle text-center ">
+    <thead>
+        <tr class="bg-info align-middle">
+            <th>Flight number: </th>
+            <th class="align-middle">Start:</th>
+            <th class="align-middle">Destination: </th>
+            <th class="align-middle">Date: </th>
+        </tr>
+    </thead>
+    <tbody>
+            {% if passager.flights %}
+                {% for fli in passager.flights.all|dictsort:"date" %}
+                <tr >
+                    <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
+                    <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
+                    <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
+                    <td>{{fli.date}}</td>
                 </tr>
-                {% endif %}
-        </tbody>
-    </table>
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td>Sorry, currently no flight data are avaible</td>
+            </tr>
+            {% endif %}
+    </tbody>
+</table>
 {% endblock %}
