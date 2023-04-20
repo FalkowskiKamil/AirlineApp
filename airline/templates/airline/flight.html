@@ -41,8 +41,24 @@
             </tbody>
         </table>
     </div>
+</div>
     {% else %}
     
+    {% if user.is_authenticated %}
+<div class=" p-2 m-4 display-4 bg-danger align-middle" style="position: fixed, width=100% ">
+    {% for passager in user.passager_user.all %}   
+        {% if passager in flight.passengers.all %} 
+            <h1>You are signed up for this flight</h1>
+        {% else %}
+            <h1>You are not signed for this flight</h1>
+            <form id="record" method="POST" action="{% url 'airline:flight_record' passager_id=passager.id flight_id=flight.id %}">{% csrf_token %}</form>
+            <button type="submit" form="record" value="Submit">Sign up</button>
+        {% endif %}
+    {% endfor %}
     {% endif %}
+
 </div>
+    
+    {% endif %}
+
 {% endblock %}

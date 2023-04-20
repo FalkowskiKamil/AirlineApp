@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Airport, PassagerFake, Flight, Route, Passager
+from django.http import HttpResponseBadRequest
+from django.db import IntegrityError
+from django.urls import reverse
+from .models import Airport, Flight, Route, Passager
 import folium
 from folium.vector_layers import PolyLine
 import pandas as pd
@@ -21,7 +24,7 @@ def staff(request):
     countries=set(Airport.objects.values_list('country', flat=True))
     context = {
         "airport": Airport.objects.all(),
-        "passager":PassagerFake.objects.all(),
+        "passager":Passager.objects.all(),
         "flight":Flight.objects.all().order_by('date'),
         "countries": countries,
         }
@@ -64,6 +67,18 @@ def routes(request, route_id):
     line.add_to(map)
     context={"route":route, 'map': map._repr_html_()}
     return render(request, template_name='airline/route.html', context=context)
+
+def flight_record(request, passager_id, flight_id):
+    if request.method == 'POST':
+        passager = get_object_or_404(Passager, pk=passager_id)
+        flight = get_object_or_404(Flight, pk=flight_id)
+        if flight.passengers.filter(id=passager.id).exists():
+            return HttpResponseBadRequest("The passenger is already booked on this flight.")
+        flight.passengers.add(passager)
+        return redirect(reverse('airline:flight', args=[flight.id]))
+    else:
+        return HttpResponseBadRequest("Invalid request method.")
+
 
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
@@ -147,12 +162,12 @@ def upload_passager(request):
                 first_name, surname = name_parts
             else:
                 continue
-            passager = PassagerFake(first_name=first_name, surname=surname)
+            passager = Passager(first_name=first_name, surname=surname)
             passagers.append(passager)
-        PassagerFake.objects.bulk_create(passagers)
+        Passager.objects.bulk_create(passagers)
         passager_flight_ids = [(passager.id, random.choice(flights).id) for passager in passagers]
-        PassagerFake.flights.through.objects.bulk_create(
-    [PassagerFake.flights.through(passagerfake_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids])
+        Passager.flights.through.objects.bulk_create(
+    [Passager.flights.through(passager_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids])
 
 
     return redirect('airline:main')

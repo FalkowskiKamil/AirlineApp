@@ -11,8 +11,8 @@
         </tr>
     </thead>
     <tbody>
-            {% if passager.flights %}
-                {% for fli in passager.flights.all|dictsort:"date" %}
+            {% if passager.flight_passager.all %}
+                {% for fli in passager.flight_passager.all|dictsort:"date" %}
                 <tr >
                     <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
                     <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>

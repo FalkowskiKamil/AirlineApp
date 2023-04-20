@@ -28,6 +28,7 @@ class AirportAdmin(admin.ModelAdmin):
     
 class FlightAdmin(admin.ModelAdmin):
     list_display = ['id', 'start', 'destination', 'date']
+    filter_horizontal = ['passengers', 'passenger_set']
     list_filter = ['start', 'destination' ]
     search_fields = ['start__name', 'start__city', 'start__country', 'destination__name', 'destination__city', 'destination__country', 'id']
 
@@ -39,7 +40,6 @@ class PassagerAdmin(admin.ModelAdmin):
 class RouteAdmin(admin.ModelAdmin):
     list_display=['id', 'start', 'destination']
     exclude =['date']
-
 
 
 admin.site.register(Airport, AirportAdmin)
