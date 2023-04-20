@@ -22,9 +22,11 @@
 
             </div>
             <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated%}
+                {% if user.is_authenticated %}
                 <li>
-                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                  {% for passager in user.passager_user.all %}
+                    <a class="btn btn-link" href="/airline/passager/{{passager.id}}">{{ user.first_name }} {{ user.last_name }}</a>
+                  {% endfor %}
                     <a class="btn btn-link" href="{% url 'user:logout' %}">Logout</a>
                     {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
                     <a class="btn btn-link" href="/airline/add_data">Add data</a>

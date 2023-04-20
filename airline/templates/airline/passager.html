@@ -1,6 +1,6 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<h1 class="align-middle text-center">Flights registered for: {{passager}}</h1>
+<h1 class="align-middle text-center">Flights registered for: {{passager.first_name}} {{passager.surname}}</h1>
 <table class="table table-striped table-bordered align-middle text-center ">
     <thead>
         <tr class="bg-info align-middle">

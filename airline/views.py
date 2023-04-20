@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Airport, Passager, Flight, Route
+from .models import Airport, PassagerFake, Flight, Route, Passager
 import folium
 from folium.vector_layers import PolyLine
 import pandas as pd
@@ -21,11 +21,12 @@ def staff(request):
     countries=set(Airport.objects.values_list('country', flat=True))
     context = {
         "airport": Airport.objects.all(),
-        "passager":Passager.objects.all(),
+        "passager":PassagerFake.objects.all(),
         "flight":Flight.objects.all().order_by('date'),
         "countries": countries,
         }
     return render(request, template_name="airline/main_staff.html", context=context)
+
 def passager(request, passager_id):
     passager = get_object_or_404(Passager, pk=passager_id)
     context={'passager':passager,
@@ -146,12 +147,14 @@ def upload_passager(request):
                 first_name, surname = name_parts
             else:
                 continue
-            passager = Passager(first_name=first_name, surname=surname)
+            passager = PassagerFake(first_name=first_name, surname=surname)
             passagers.append(passager)
-        Passager.objects.bulk_create(passagers)
+        PassagerFake.objects.bulk_create(passagers)
         passager_flight_ids = [(passager.id, random.choice(flights).id) for passager in passagers]
-        Passager.flights.through.objects.bulk_create(
-            [Passager.flights.through(passager_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids])
+        PassagerFake.flights.through.objects.bulk_create(
+    [PassagerFake.flights.through(passagerfake_id=passager_id, flight_id=flight_id) for passager_id, flight_id in passager_flight_ids])
+
+
     return redirect('airline:main')
 
 def add_data(request):

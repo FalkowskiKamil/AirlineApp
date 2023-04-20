@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from airline.models import Passager
 import logging
 logger = logging.getLogger(__name__)
 
@@ -27,6 +28,7 @@ def registration_request(request):
         if not user_exist:
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password)
+            Passager.objects.create(user=user, first_name = first_name, surname = last_name)
             login(request, user)
             return redirect("airline:main")
         else:
