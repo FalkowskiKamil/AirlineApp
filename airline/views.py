@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseBadRequest
-from django.db import IntegrityError
 from django.urls import reverse
 from .models import Airport, Flight, Route, Passager
 import folium
