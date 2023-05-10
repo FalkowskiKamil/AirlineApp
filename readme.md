@@ -14,4 +14,4 @@ This is an airline application built with the Django web framework, consisting o
 
     flight_record(passager_id, flight_id): This allows passengers to book a specific flight by adding the passager_id to the passengers attribute of the corresponding Flight object.
 
-    upload_airport(): This is a view that allows staff to upload airport information from a CSV file to the database using pandas. The view generates a specified number of airports from the CSV file randomly and adds them to the database.
+    upload_airport(): This is a view that allows staff to upload airport information from a CSV file to the database using pandas. The view generates a specified number of airports from the CSV file randomly and adds them to the database
