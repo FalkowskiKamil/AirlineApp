@@ -12,7 +12,7 @@
                 <h2 class="p-3 mt-0 bg-light text-dark text-center border border-dark">Flight to {{airport}}:</h2>
                 <tr class="text-left">
                     <th>Routes id: </th>
-                    <th><label for="start2">Flight start: </label>
+                    <th><label for="start2">Start Country: </label>
                         {% if countries|length > 5 %}
                             <input type="text" id="start2" placeholder="Search start country...">
                         {% else %}
@@ -79,7 +79,7 @@
                             <option value="{{airport.country}}">{{airport.country}}</option>
                         </select>
                     </div>
-                    <th><label for="destination1">Flight destination: </label>
+                    <th><label for="destination1">Destination country: </label>
                         {% if countries|length > 5 %}
                             <input type="text" id="destination1" placeholder="Search start country...">
                         {% else %}
@@ -101,7 +101,7 @@
                         <td><a href="/airline/routes/{{route}}">{{ route }}</a></td>
                         <td>
                             {% with destination=route.flights.first %}
-                            <a href="{{destination.destination.airport_id}}">{{ destination.destination}}</a>
+                            <a href="{{destination.destination.airport_id}}">{{ destination.destination}} ({{destination.destination.city}} in {{destination.destination.country}})</a>
                             {% endwith %}
                         </td>
                         <td>
