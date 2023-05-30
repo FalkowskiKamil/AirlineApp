@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                     <a class="navbar-brand" href="/airline/">Airlines</a>
-                {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+                {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
                     <a class="navbar-brand" href="/airline/staff">Staff</a>
                 {% endif %}
             </div>
@@ -26,7 +26,7 @@
                   {% for passager in user.passager_user.all %}
                     <a class="btn btn-link" href="/airline/passager/{{passager.id}}">{{ user.first_name }} {{ user.last_name }}</a>
                   {% endfor %}
-                  {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+                  {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
                     <a class="btn btn-link" href="/admin">{{user}}</a>
                     <a class="btn btn-link" href="/airline/add_data">Add data</a>
                   {% endif %}
@@ -50,80 +50,79 @@
     </nav>
     <!-- Page content -->
 {% block content %}
-{% endblock %}
-<script>
+{% endblock %}<script>
   // Get references to the start and destination dropdown menus and table rows
-  var startSelect = document.getElementById('start2');
-  var destinationSelect = document.getElementById('destination2');
-  var tableRows = document.querySelectorAll('#route_table1 > tbody > tr');
-  
+  var startSelect = document.getElementById("start2");
+  var destinationSelect = document.getElementById("destination2");
+  var tableRows = document.querySelectorAll("#route_table1 > tbody > tr");
+
   // Define a function to filter the table rows based on the start and destination values
   function filterRows2() {
     // Convert the selected values to lowercase
     var selectedStart = startSelect.value.toLowerCase();
     var selectedDestination = destinationSelect.value.toLowerCase();
-  
+
     // Loop through all table rows and check if they match the selected values
     for (var i = 0; i < tableRows.length; i++) {
       var row = tableRows[i];
-      var start = row.getAttribute('data-start2').toLowerCase();
-      var destination = row.getAttribute('data-destination2').toLowerCase();
-      row.style.display = 'none'
-      if ((selectedStart == '' || start.includes(selectedStart)) &&
-          (selectedDestination == '' || destination.includes(selectedDestination))) {
-        row.style.display = 'table-row';
+      var start = row.getAttribute("data-start2").toLowerCase();
+      var destination = row.getAttribute("data-destination2").toLowerCase();
+      row.style.display = "none"
+      if ((selectedStart == "" || start.includes(selectedStart)) &&
+        (selectedDestination == "" || destination.includes(selectedDestination))) {
+        row.style.display = "table-row";
       } else {
-        row.style.display = 'none';
+        row.style.display = "none";
       }
     }
-  
-    // Apply row striping to the visible rows
-stripeRows();
-}
-  // Define a function to apply row striping to the visible rows
-function stripeRows() {
-// Get all visible rows in the flight table
-var visibleRows = document.querySelectorAll('#route-table-body > tr:not([style*="display: none"])');
 
-// Loop through each visible row and apply a background color class based on row index
-for (var i = 0; i < visibleRows.length; i++) {
-if (i % 2 === 0) {
-visibleRows[i].classList.add('bg-light');
-} else {
-visibleRows[i].classList.remove('bg-light');
-}
-}
-}
-  
+    // Apply row striping to the visible rows
+    stripeRows();
+  }
+  // Define a function to apply row striping to the visible rows
+  function stripeRows() {
+    // Get all visible rows in the flight table
+    var visibleRows = document.querySelectorAll("#route-table-body > tr:not([style*='display: none'])");
+
+    // Loop through each visible row and apply a background color class based on row index
+    for (var i = 0; i < visibleRows.length; i++) {
+      if (i % 2 === 0) {
+        visibleRows[i].classList.add("bg-light");
+      } else {
+        visibleRows[i].classList.remove("bg-light");
+      }
+    }
+  }
+
   // Attach the filterRows() function to the change event of startSelect and destinationSelect
-  startSelect.addEventListener('change', filterRows2);
-  destinationSelect.addEventListener('change', filterRows2);
-  
+  startSelect.addEventListener("change", filterRows2);
+  destinationSelect.addEventListener("change", filterRows2);
+
   // Attach the filterRows() function to the DOMContentLoaded event of the document
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener("DOMContentLoaded", function () {
     filterRows2();
   });
-  
-  
+
+
   // Get references to the search input field, country list, and country items
-  const searchInput = document.getElementById('search-input');
-  const countryList = document.getElementById('country-list');
-  const countries = countryList.querySelectorAll('li');
-  
+  const searchInput = document.getElementById("search-input");
+  const countryList = document.getElementById("country-list");
+  const countries = countryList.querySelectorAll("li");
+
   // Define an event listener for the input event of the searchInput field
-  searchInput.addEventListener('input', function() {
+  searchInput.addEventListener("input", function () {
     // Convert the search term to lowercase
     const searchTerm = searchInput.value.toLowerCase();
-  
-    // Loop through all country items and hide those that don't match the search term
+
+    // Loop through all country items and hide those that don"t match the search term
     for (let i = 0; i < countries.length; i++) {
       const country = countries[i];
       const name = country.textContent.toLowerCase();
-  
+
       if (name.includes(searchTerm)) {
-        country.style.display = 'block';
+        country.style.display = "block";
       } else {
-        country.style.display = 'none';
+        country.style.display = "none";
       }
     }
   });
@@ -134,9 +133,9 @@ visibleRows[i].classList.remove('bg-light');
 
 <script>
   // Get references to the start and destination dropdown menus and table rows
-  var startSelect1 = document.getElementById('start1');
-  var destinationSelect1 = document.getElementById('destination1');
-  var tableRows1 = document.querySelectorAll('#route-table2 > tbody > tr');
+  var startSelect1 = document.getElementById("start1");
+  var destinationSelect1 = document.getElementById("destination1");
+  var tableRows1 = document.querySelectorAll("#route-table2 > tbody > tr");
 
   // Define a function to filter the table rows based on the start and destination values
   function filterRows1() {
@@ -147,66 +146,67 @@ visibleRows[i].classList.remove('bg-light');
     // Loop through all table rows and check if they match the selected values
     for (var i = 0; i < tableRows1.length; i++) {
       var row1 = tableRows1[i];
-      var start1 = row1.getAttribute('data-start1').toLowerCase();
-      var destination1 = row1.getAttribute('data-destination1').toLowerCase();
-      row1.style.display = 'none'
-      if ((selectedStart1 == '' || start1.includes(selectedStart1)) &&
-          (selectedDestination1 == '' || destination1.includes(selectedDestination1))) {
-        row1.style.display = 'table-row';
+      var start1 = row1.getAttribute("data-start1").toLowerCase();
+      var destination1 = row1.getAttribute("data-destination1").toLowerCase();
+      row1.style.display = "none"
+      if ((selectedStart1 == "" || start1.includes(selectedStart1)) &&
+        (selectedDestination1 == "" || destination1.includes(selectedDestination1))) {
+        row1.style.display = "table-row";
       } else {
-        row1.style.display = 'none';
+        row1.style.display = "none";
       }
     }
 
     // Apply row striping to the visible rows
     stripeRows1();
   }
-  
+
   // Define a function to apply row striping to the visible rows
   function stripeRows1() {
     // Get all visible rows in the flight table
-    var visibleRows1 = document.querySelectorAll('#route-table-body1 > tr:not([style*="display: none"])');
-    
+    var visibleRows1 = document.querySelectorAll("#route-table-body1 > tr:not([style*='display: none'])");
+
     // Loop through each visible row and apply a background color class based on row index
     for (var i = 0; i < visibleRows1.length; i++) {
       if (i % 2 === 0) {
-        visibleRows1[i].classList.add('bg-light');
+        visibleRows1[i].classList.add("bg-light");
       } else {
-        visibleRows1[i].classList.remove('bg-light');
+        visibleRows1[i].classList.remove("bg-light");
       }
     }
   }
-  
+
   // Attach the filterRows() function to the change event of startSelect and destinationSelect
-  startSelect1.addEventListener('change', filterRows1);
-  destinationSelect1.addEventListener('change', filterRows1);
-  
+  startSelect1.addEventListener("change", filterRows1);
+  destinationSelect1.addEventListener("change", filterRows1);
+
   // Attach the filterRows() function to the DOMContentLoaded event of the document
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener("DOMContentLoaded", function () {
     filterRows1();
   });
-  
+
   // Get references to the search input field, country list, and country items
-  const searchInput1 = document.getElementById('search-input-2');
-  const countryList1 = document.getElementById('country-list-2');
-  const countries1 = countryList1.querySelectorAll('li');
-  
+  const searchInput1 = document.getElementById("search-input-2");
+  const countryList1 = document.getElementById("country-list-2");
+  const countries1 = countryList1.querySelectorAll("li");
+
   // Define an event listener for the input event of the searchInput field
-  searchInput1.addEventListener('input', function() {
+  searchInput1.addEventListener("input", function () {
     // Convert the search term to lowercase
     const searchTerm1 = searchInput1.value.toLowerCase();
-  
-    // Loop through all country items and hide those that don't match the search term
+
+    // Loop through all country items and hide those that don"t match the search term
     for (let i = 0; i < countries.length; i++) {
       const country1 = countries1[i];
       const name1 = country1.textContent.toLowerCase();
-  
+
       if (name.includes(searchTerm)) {
-        country1.style.display = 'block';
+        country1.style.display = "block";
       } else {
-        country1.style.display = 'none';
+        country1.style.display = "none";
       }
     }
   });
 </script>
+
 </html>

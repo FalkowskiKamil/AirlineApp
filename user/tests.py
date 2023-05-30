@@ -10,23 +10,23 @@ class UserTest(TestCase):
     def setup(self):
         self.client = Client()
         self.user = User.objects.create_user(
-                username = 'testuser',
-                password = 'testpass'
+                username = "testuser",
+                password = "testpass"
             )
         
     def test_login_url(self):
-        response = self.client.get('/user/login/')
+        response = self.client.get("/user/login/")
         self.failUnlessEqual(response.status_code, 200)
     
     def test_registration_url(self):
-        response = self.client.get('/user/registration/')
+        response = self.client.get("/user/registration/")
         self.failUnlessEqual(response.status_code, 200)
         
     def test_logout_url(self):
-        self.client.login(username='testuser', password='testpass')
-        response = self.client.get(reverse('user:logout'))
-        self.assertRedirects(response, reverse('airline:main'))
-        self.assertFalse('_auth_user_id' in self.client.session)
+        self.client.login(username="testuser", password="testpass")
+        response = self.client.get(reverse("user:logout"))
+        self.assertRedirects(response, reverse("airline:main"))
+        self.assertFalse("_auth_user_id" in self.client.session)
 
-if __name__=='__main__':
+if __name__=="__main__":
 	unittest.main()

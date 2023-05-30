@@ -1,6 +1,6 @@
 {% extends "airline/index.html" %}
 {% block content %}
-{% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+{% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
 <table class="table">
     <tbody>
         <tr>
@@ -8,7 +8,7 @@
                 <form class="form-inline mt-2" action="{% url 'airline:upload_airport' %}" method="post">
                     {% csrf_token %}
                     <label for="vol">Quantity of random airport to load: (2-250)</label>
-                    <input class='m-2' type="number" id="vol" name="vol" min="2" max="250">
+                    <input class="m-2" type="number" id="vol" name="vol" min="2" max="250">
                     <button class="btn btn-primary m-2" type="submit">Upload airport Data</button>
                 </form>
             </td>
@@ -18,7 +18,7 @@
                 <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
                     {% csrf_token %}
                     <label for="vol">Quantity of fake flight to load: (1-100)</label>
-                    <input class='m-2' type="number" id="quan" name="quan" min="1" max="100">
+                    <input class="m-2" type="number" id="quan" name="quan" min="1" max="100">
                     <button class="btn btn-primary m-2" type="submit">Upload flight Data</button>
                 </form>
             </td>
@@ -28,7 +28,7 @@
             <form class="form-inline" action="{% url 'airline:upload_passager' %}" method="post">
                 {% csrf_token %}
                 <label for="vol">Quantity of fake passager to create: (1-100)</label>
-                <input class = 'm-2' type="number" id="quan" name="quan" min="1" max="100">
+                <input class = "m-2" type="number" id="quan" name="quan" min="1" max="100">
                 <button class="btn btn-primary m-2" type="submit">Upload passager Data</button>
             </form>
             </td>

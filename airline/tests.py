@@ -23,7 +23,7 @@ class FlightModelTests(TestCase):
         
     def test_flight_formatted_date(self):
         formatted_date = self.flight.formatted_date()
-        self.assertEqual(formatted_date, self.flight.date.strftime('%d-%m-%Y'))
+        self.assertEqual(formatted_date, self.flight.date.strftime("%d-%m-%Y"))
 
     def test_flight_clean_method(self):
         with self.assertRaises(ValueError):
@@ -52,8 +52,9 @@ class PassagerModelTests(TestCase):
         self.flight = Flight.objects.create(start=self.start_airport, destination=self.dest_airport, date=timezone.now())
         
     def test_passenger_str(self):
-        self.passenger = Passager.objects.create(first_name='John', surname='Doe')
+        self.passenger = Passager.objects.create(first_name="John", surname="Doe")
         self.assertEqual(str(self.passenger), "('John', 'Doe')")
+                         
 
 
     def test_passenger_has_flight(self):
@@ -74,57 +75,57 @@ class TestViews(TestCase):
 
 
     def test_main_view(self):
-        url = reverse('airline:main')
+        url = reverse("airline:main")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'airline/main_user.html')
-        self.assertIn('countries', response.context)
-        self.assertIn('routes', response.context)
+        self.assertTemplateUsed(response, "airline/main_user.html")
+        self.assertIn("countries", response.context)
+        self.assertIn("routes", response.context)
 
     def test_staff_view(self):
-        url = reverse('airline:staff')
+        url = reverse("airline:staff")
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'airline/main_staff.html')
-        self.assertIn('airport', response.context)
-        self.assertIn('passager', response.context)
-        self.assertIn('flight', response.context)
-        self.assertIn('countries', response.context)
+        self.assertTemplateUsed(response, "airline/main_staff.html")
+        self.assertIn("airport", response.context)
+        self.assertIn("passager", response.context)
+        self.assertIn("flight", response.context)
+        self.assertIn("countries", response.context)
 
     def test_passager_view(self):
-        url = reverse('airline:passager', args=[self.passenger.id])
+        url = reverse("airline:passager", args=[self.passenger.id])
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'airline/passager.html')
-        self.assertIn('passager', response.context)
-        self.assertIn('countries', response.context)
+        self.assertTemplateUsed(response, "airline/passager.html")
+        self.assertIn("passager", response.context)
+        self.assertIn("countries", response.context)
 
     def test_flight_view(self):
-        url = reverse('airline:flight', args=[self.flight.id])
+        url = reverse("airline:flight", args=[self.flight.id])
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'airline/flight.html')
-        self.assertIn('flight', response.context)
-        self.assertIn('map', response.context)
+        self.assertTemplateUsed(response, "airline/flight.html")
+        self.assertIn("flight", response.context)
+        self.assertIn("map", response.context)
 
     def test_airport_view(self):
-        url = reverse('airline:airport', args=[self.airport.airport_id])
+        url = reverse("airline:airport", args=[self.airport.airport_id])
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'airline/airport.html')
-        self.assertIn('airport', response.context)
-        self.assertIn('map', response.context)
-        self.assertIn('countries', response.context)
+        self.assertTemplateUsed(response, "airline/airport.html")
+        self.assertIn("airport", response.context)
+        self.assertIn("map", response.context)
+        self.assertIn("countries", response.context)
 
     def test_routes_view(self):
-        url = reverse('airline:routes', args=[self.route.id])
+        url = reverse("airline:routes", args=[self.route.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'airline/route.html')
-        self.assertIn('route', response.context)
-        self.assertIn('map', response.context)
+        self.assertTemplateUsed(response, "airline/route.html")
+        self.assertIn("route", response.context)
+        self.assertIn("map", response.context)

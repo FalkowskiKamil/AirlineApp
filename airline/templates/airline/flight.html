@@ -9,7 +9,7 @@
         (route {% for route in flight.routes.all %} <a href=/airline/routes/{{route}} style="color:black;">{{route}}</a>{% endfor %})
         on {{flight.date}}
     </h1>
-    {% if user.groups.all.0.name == 'Staff' or request.user.is_superuser  %}
+    {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
     <div style="border-width: 2px; border-style: solid; border-color: black;" class="shadow-lg p-3 mb-5 bg-white rounded">  
         <table class="table table-striped table-secondary table-bordered shadow-lg p-3 mb-5 bg-white rounded">
             <thead>
