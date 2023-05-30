@@ -6,16 +6,21 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('airline', '0001_initial'),
+        ("airline", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='passager',
-            name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='passager_user', to=settings.AUTH_USER_MODEL),
+            model_name="passager",
+            name="user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="passager_user",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

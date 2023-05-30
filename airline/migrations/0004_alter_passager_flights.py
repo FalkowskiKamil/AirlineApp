@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('airline', '0003_flight_passengers'),
+        ("airline", "0003_flight_passengers"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='passager',
-            name='flights',
-            field=models.ManyToManyField(blank=True, related_name='passenger_set', to='airline.flight'),
+            model_name="passager",
+            name="flights",
+            field=models.ManyToManyField(
+                blank=True, related_name="passenger_set", to="airline.flight"
+            ),
         ),
     ]

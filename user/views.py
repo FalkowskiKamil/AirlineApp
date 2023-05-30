@@ -4,10 +4,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from airline.models import Passager
 import logging
+
 logger = logging.getLogger(__name__)
 
 
 # Create your views here.
+
 
 def registration_request(request):
     context = {}
@@ -26,14 +28,19 @@ def registration_request(request):
         except:
             logger.error("New user")
         if not user_exist:
-            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
-                                            password=password)
-            Passager.objects.create(user=user, first_name = first_name, surname = last_name)
+            user = User.objects.create_user(
+                username=username,
+                first_name=first_name,
+                last_name=last_name,
+                password=password,
+            )
+            Passager.objects.create(user=user, first_name=first_name, surname=last_name)
             login(request, user)
             return redirect("airline:main")
         else:
             context["message"] = "User already exists."
             return render(request, "user/user_registration_bootstrap.html", context)
+
 
 def login_request(request):
     context = {}
@@ -50,7 +57,7 @@ def login_request(request):
     else:
         return render(request, "user/user_login_bootstrap.html", context)
 
+
 def logout_request(request):
     logout(request)
     return redirect("airline:main")
-

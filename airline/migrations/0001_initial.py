@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,52 +14,124 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Airport',
+            name="Airport",
             fields=[
-                ('airport_id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100)),
-                ('city', models.CharField(max_length=100)),
-                ('country', models.CharField(max_length=100)),
-                ('latitude', models.FloatField()),
-                ('longitude', models.FloatField()),
+                ("airport_id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=100)),
+                ("city", models.CharField(max_length=100)),
+                ("country", models.CharField(max_length=100)),
+                ("latitude", models.FloatField()),
+                ("longitude", models.FloatField()),
             ],
         ),
         migrations.CreateModel(
-            name='Flight',
+            name="Flight",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateTimeField()),
-                ('destination', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='arrival_flights', to='airline.airport')),
-                ('start', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='departure_flights', to='airline.airport')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateTimeField()),
+                (
+                    "destination",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="arrival_flights",
+                        to="airline.airport",
+                    ),
+                ),
+                (
+                    "start",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="departure_flights",
+                        to="airline.airport",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Route',
+            name="Route",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('destination', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='arrival_routes', to='airline.airport')),
-                ('flights', models.ManyToManyField(related_name='routes', to='airline.flight')),
-                ('start', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='departure_routes', to='airline.airport')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "destination",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="arrival_routes",
+                        to="airline.airport",
+                    ),
+                ),
+                (
+                    "flights",
+                    models.ManyToManyField(related_name="routes", to="airline.flight"),
+                ),
+                (
+                    "start",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="departure_routes",
+                        to="airline.airport",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Passager',
+            name="Passager",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=20)),
-                ('surname', models.CharField(max_length=30)),
-                ('flights', models.ManyToManyField(blank=True, related_name='passager', to='airline.flight')),
-                ('user', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='passager_user', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=20)),
+                ("surname", models.CharField(max_length=30)),
+                (
+                    "flights",
+                    models.ManyToManyField(
+                        blank=True, related_name="passager", to="airline.flight"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="passager_user",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='airport',
-            name='arrivals',
-            field=models.ManyToManyField(blank=True, related_name='arrival_airports', to='airline.flight'),
+            model_name="airport",
+            name="arrivals",
+            field=models.ManyToManyField(
+                blank=True, related_name="arrival_airports", to="airline.flight"
+            ),
         ),
         migrations.AddField(
-            model_name='airport',
-            name='departures',
-            field=models.ManyToManyField(blank=True, related_name='departure_airports', to='airline.flight'),
+            model_name="airport",
+            name="departures",
+            field=models.ManyToManyField(
+                blank=True, related_name="departure_airports", to="airline.flight"
+            ),
         ),
     ]
