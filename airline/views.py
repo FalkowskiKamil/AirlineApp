@@ -129,16 +129,15 @@ def flight_record(request, passager_id, flight_id):
         return HttpResponseBadRequest("Invalid request method.")
 
 def add_data(request):
-    context={}
     if request.method == "POST":
-        if "airport" in request.POST:
-            context={'message': 'Updated!'}
-            data_manager.upload_airport(request.POST)
-            context['message'] = "Succesfuly loaded airport"
-        elif "flight" in request.POST:
-            data_manager.upload_flight(request.POST)
-            context['message'] = "Succesfuly loaded flight"
-        elif "passager" in request.POST:
-            data_manager.upload_passager(request.POST)
-            context['message'] = "Succesfuly loaded passager"
+        match list(request.POST.keys())[1]:
+            case "airport":
+                data_manager.upload_airport(request.POST)
+                context={"message": "Succesfuly loaded airport!"}
+            case "flight":
+                data_manager.upload_flight(request.POST)
+                context={"message": "Succesfuly loaded flight!"}
+            case "passager":
+                data_manager.upload_passager(request.POST)
+                context={"message": "Succesfuly loaded passager"}
     return render(request, template_name="airline/add_data.html", context=context)
