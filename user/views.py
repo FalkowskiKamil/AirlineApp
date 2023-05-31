@@ -51,9 +51,7 @@ def login_request(request):
             return redirect("airline:main")
         else:
             context["message"] = "Invalid username or password."
-            return render(request, "user/user_login_bootstrap.html", context)
-    else:
-        return render(request, "user/user_login_bootstrap.html", context)
+    return render(request, "user/user_login_bootstrap.html", context)
 
 
 def logout_request(request):

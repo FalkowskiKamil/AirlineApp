@@ -9,7 +9,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'airline:main' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'airline:main' %}">Airlines</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
@@ -33,6 +33,11 @@
             </ul>
         </div>
     </nav>
+{% if message %}
+<div class="alert alert-primary" role="alert">
+    <strong>{{ message}}</strong> 
+</div>
+{% endif %}
 {% block content %}
 {% endblock %}
 
