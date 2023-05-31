@@ -1,62 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <meta charset="UTF-8">
-    <title>Airline</title>
-    <link rel="stylesheet" type="text/css" href="/static/airline/styles.css">
 
-</head>
-<body>
-    <!-- Navigation bar -->
-    <nav class="navbar navbar-light bg-light border">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                    <a class="navbar-brand" href="/airline/">Airlines</a>
-                {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-                    <a class="navbar-brand" href="/airline/staff">Staff</a>
-                {% endif %}
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                <li>
-                  {% for passager in user.passager_user.all %}
-                    <a class="btn btn-link" href="/airline/passager/{{passager.id}}">{{ user.first_name }} {{ user.last_name }}</a>
-                  {% endfor %}
-                  {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-                    <a class="btn btn-link" href="/admin">{{user}}</a>
-                    <a class="btn btn-link" href="/airline/add_data">Add data</a>
-                  {% endif %}
-                  <a class="btn btn-link" href="{% url 'user:logout' %}">Logout</a>
-                </li>
-                {% else %}
-                <li>
-                    <form class="form-inline" action="{% url 'user:login' %}" method="post">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Username" name="username" >
-                            <input type="password" class="form-control" placeholder="Password" name="psw" >
-                            <button class="btn btn-primary" type="submit">Login</button>
-                            <a class="btn btn-link" href="{% url 'user:registration' %}">Sign Up</a>
-                        </div>
-                    </form>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    <!-- Page content -->
-{% if message %}
-<div class="alert alert-primary" role="alert">
-  <strong>{{message}}</strong>
-</div>
-
-{% endif %}
-{% block content %}
-{% endblock %}
-
-<script>
   // Get references to the start and destination dropdown menus and table rows
   var startSelect = document.getElementById("start2");
   var destinationSelect = document.getElementById("destination2");
@@ -132,12 +74,12 @@
       }
     }
   });
-</script>
 
 
 
 
-<script>
+
+
   // Get references to the start and destination dropdown menus and table rows
   var startSelect1 = document.getElementById("start1");
   var destinationSelect1 = document.getElementById("destination1");
@@ -213,7 +155,3 @@
       }
     }
   });
-</script>
-
-<script src="/static/airline/script.js"></script>
-</html>
