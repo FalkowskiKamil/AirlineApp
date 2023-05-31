@@ -10,9 +10,4 @@ urlpatterns = [
     path("airport/<int:airport_id>", views.airport, name="airport"),
     path("add_data/", views.add_data, name="add_data"),
     path("routes/<int:route_id>", views.routes, name="routes"),
-    path(
-        "flight_record/<int:passager_id>/<int:flight_id>/",
-        views.flight_record,
-        name="flight_record",
-    ),
 ]

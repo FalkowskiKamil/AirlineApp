@@ -64,7 +64,6 @@ def upload_flight(request):
             )
             new_route.flights.add(flight)
 
-
 def update_routes():
     # Get all unique start-destination pairs from flights
     routes = Flight.objects.values("start", "destination").distinct()
@@ -112,3 +111,8 @@ def upload_airport(request):
             airports.append(airport)
             existing_airport_ids.append(row[0])
     Airport.objects.bulk_create(airports)
+
+def sign_for_flight(passager_id, flight_id):
+    passager = get_object_or_404(Passager, pk=passager_id)
+    flight = get_object_or_404(Flight, pk=flight_id)
+    flight.passengers.add(passager)

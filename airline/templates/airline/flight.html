@@ -51,8 +51,8 @@
             <h1>You are signed up for this flight</h1>
         {% else %}
             <h1>You are not signed for this flight</h1>
-            <form id="record" method="POST" action="{% url 'airline:flight_record' passager_id=passager.id flight_id=flight.id %}">{% csrf_token %}</form>
-            <button type="submit" form="record" value="Submit">Sign up</button>
+            <form id="record" method="POST" >{% csrf_token %}</form>
+            <button type="submit" form="record" value="Submit">Sign up </button>
         {% endif %}
     {% endfor %}
     {% endif %}

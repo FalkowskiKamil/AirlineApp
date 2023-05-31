@@ -35,22 +35,10 @@ def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
     map = map_creator.create_map(flight.start, flight.destination)
     context = {"flight": flight, "map": map._repr_html_()}
-    return render(request, template_name="airline/flight.html", context=context)
-
-
-def flight_record(request, passager_id, flight_id):
     if request.method == "POST":
-        passager = get_object_or_404(Passager, pk=passager_id)
-        flight = get_object_or_404(Flight, pk=flight_id)
-        if flight.passengers.filter(id=passager.id).exists():
-            return HttpResponseBadRequest(
-                "The passenger is already booked on this flight."
-            )
-        flight.passengers.add(passager)
-        return redirect(reverse("airline:flight", args=[flight.id]))
-    else:
-        return HttpResponseBadRequest("Invalid request method.")
-
+        data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
+        context['message']='Signed up for flight!'
+    return render(request, template_name="airline/flight.html", context=context)
 
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)

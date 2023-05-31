@@ -13,9 +13,7 @@ logger = logging.getLogger(__name__)
 
 def registration_request(request):
     context = {}
-    if request.method == "GET":
-        return render(request, "user/user_registration_bootstrap.html", context)
-    elif request.method == "POST":
+    if request.method == "POST":
         # Check if user exists
         username = request.POST["username"]
         password = request.POST["psw"]
@@ -39,7 +37,7 @@ def registration_request(request):
             return redirect("airline:main")
         else:
             context["message"] = "User already exists."
-            return render(request, "user/user_registration_bootstrap.html", context)
+    return render(request, "user/user_registration_bootstrap.html", context)
 
 
 def login_request(request):
