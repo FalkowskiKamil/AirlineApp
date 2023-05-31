@@ -24,4 +24,3 @@ def create_map(airport_start, airport_dest=None):
         )
         line.add_to(map)
     return map
-

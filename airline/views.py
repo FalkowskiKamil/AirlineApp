@@ -3,8 +3,6 @@ from django.http import HttpResponseBadRequest
 from django.urls import reverse
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
-import folium
-from folium.vector_layers import PolyLine
 
 # Create your views here.
 def main(request):
@@ -40,6 +38,20 @@ def flight(request, fli_id):
     return render(request, template_name="airline/flight.html", context=context)
 
 
+def flight_record(request, passager_id, flight_id):
+    if request.method == "POST":
+        passager = get_object_or_404(Passager, pk=passager_id)
+        flight = get_object_or_404(Flight, pk=flight_id)
+        if flight.passengers.filter(id=passager.id).exists():
+            return HttpResponseBadRequest(
+                "The passenger is already booked on this flight."
+            )
+        flight.passengers.add(passager)
+        return redirect(reverse("airline:flight", args=[flight.id]))
+    else:
+        return HttpResponseBadRequest("Invalid request method.")
+
+
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
     map = map_creator.create_map(airport)
@@ -58,20 +70,8 @@ def routes(request, route_id):
     return render(request, template_name="airline/route.html", context=context)
 
 
-def flight_record(request, passager_id, flight_id):
-    if request.method == "POST":
-        passager = get_object_or_404(Passager, pk=passager_id)
-        flight = get_object_or_404(Flight, pk=flight_id)
-        if flight.passengers.filter(id=passager.id).exists():
-            return HttpResponseBadRequest(
-                "The passenger is already booked on this flight."
-            )
-        flight.passengers.add(passager)
-        return redirect(reverse("airline:flight", args=[flight.id]))
-    else:
-        return HttpResponseBadRequest("Invalid request method.")
-
 def add_data(request):
+    context={}
     if request.method == "POST":
         match list(request.POST.keys())[1]:
             case "airport":

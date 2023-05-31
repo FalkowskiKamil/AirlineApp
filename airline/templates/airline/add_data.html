@@ -5,30 +5,30 @@
     <tbody>
         <tr>
             <td>
-                <form class="form-inline mt-2" id="airport" method="post" value="airport">
+                <form class="form-inline mt-2" method="post">
                     {% csrf_token %}
                     <label for="airport">Quantity of random airport to load: (2-250)</label>
-                    <input class="m-2" type="number" id="airport" value="airport" name="airport" min="2" max="250">
+                    <input class="m-2" type="number" name="airport" min="2" max="250">
                     <button class="btn btn-primary m-2" type="submit">Upload airport Data</button>
                 </form>
             </td>
         </tr>
         <tr>
             <td>
-                <form class="form-inline" id="flight" method="post">
+                <form class="form-inline"method="post">
                     {% csrf_token %}
                     <label for="flight">Quantity of fake flight to load: (1-100)</label>
-                    <input class="m-2" type="number" id="flight" name="flight" min="1" max="100">
+                    <input class="m-2" type="number" name="flight" min="1" max="100">
                     <button class="btn btn-primary m-2" type="submit">Upload flight Data</button>
                 </form>
             </td>
         </tr>
         <tr>
             <td class="border-bottom">
-            <form class="form-inline" id="passager"  method="post">
+            <form class="form-inline" method="post">
                 {% csrf_token %}
                 <label for="passager">Quantity of fake passager to create: (1-100)</label>
-                <input class = "m-2" type="number" id="passager" name="passager" min="1" max="100">
+                <input class = "m-2" type="number" name="passager" min="1" max="100">
                 <button class="btn btn-primary m-2" type="submit">Upload passager Data</button>
             </form>
             </td>
