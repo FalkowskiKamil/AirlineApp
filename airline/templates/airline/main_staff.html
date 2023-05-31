@@ -54,7 +54,7 @@
                         <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
                         <td>{{fli.date}}</td>
                         {% if fli.passengers.all %}
-                            <td style="width: 15%; max-height: 10%; overflow: hidden; line-height: 1em;">
+                            <td class="passager-td">
                                 {% for passagers in fli.passengers.all %} 
                                     {% if forloop.counter <= 5 %}
                                         <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, 

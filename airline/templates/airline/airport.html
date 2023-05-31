@@ -1,13 +1,13 @@
 {% extends "airline/index.html" %}
 
 {% block content %}
-<div style="max-height: 250px; overflow: auto;">{{ map|safe }}</div>
-<div class="p-3 bg-info text-white text-center" style="position: absolute;  width: 100%;">
-    <h1 class="text-shadow" style="text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.5)">      
+<div class="map">{{ map|safe }}</div>
+<div class="p-3 bg-info text-white text-center airport-main">
+    <h1 class="text-shadow airport-title">      
         All flight registered for {{airport}} 
     </h1>
-    <div style="border-width: 2px; border-style: solid; border-color: black; overflow-x: auto;" class="shadow-lg p-3 mb-5 bg-white rounded">   
-        <table id="route_table1" style="overflow-x: auto;" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded airport-border">   
+        <table id="route_table1" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded airport-container-title" >
             <thead>
                 <h2 class="p-3 mt-0 bg-light text-dark text-center border border-dark">Flight to {{airport}}:</h2>
                 <tr class="text-left">
@@ -24,11 +24,9 @@
                         </select>
                         {% endif %}
                     </th>
-                    <div style="visibility: hidden">
-                        <select type="hidden" id="destination2">
-                            <option value="{{airport.country}}">{{airport.country}}</option>
-                        </select>
-                    </div>
+                    <select type="hidden" id="destination2" class="hidden-element">
+                        <option value="{{airport.country}}">{{airport.country}}</option>
+                    </select>
                     <th class="text-center">Flight date: </th>
                 </tr>
             </thead>
@@ -68,13 +66,13 @@
         </table>
     </div>
 
-    <div style="border-width: 2px; border-style: solid; border-color: black; overflow-x: auto;" class="shadow-lg p-3 mb-5 bg-white rounded"> 
+    <div class="shadow-lg p-3 mb-5 bg-white rounded airport-border"> 
         <table id ="route-table2" class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded">
             <thead>
                 <h2 class="p-3 mt-2 bg-light text-dark border border-dark ">Flight from {{airport}}:</h2>
                 <tr class="text-left">
                     <th>Routes id: </th>
-                    <div style="visibility: hidden">
+                    <div class="hidden-element"">
                         <select id="start1">
                             <option value="{{airport.country}}">{{airport.country}}</option>
                         </select>
