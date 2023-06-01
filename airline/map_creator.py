@@ -1,11 +1,18 @@
 import folium
 from folium.vector_layers import PolyLine
 
+
 def create_map(airport_start, airport_dest=None):
     map = folium.Map(
-        location=[airport_start.latitude, airport_start.longitude], zoom_start=10, height=250)
+        location=[airport_start.latitude, airport_start.longitude],
+        zoom_start=10,
+        height=250,
+    )
     folium.Marker(
-        location=[airport_start.latitude, airport_start.longitude], popup=airport_start.name, icon=folium.Icon(color="green")).add_to(map)
+        location=[airport_start.latitude, airport_start.longitude],
+        popup=airport_start.name,
+        icon=folium.Icon(color="green"),
+    ).add_to(map)
 
     if airport_dest:
         folium.Marker(

@@ -4,6 +4,7 @@ from django.urls import reverse
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
 
+
 # Create your views here.
 def main(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
@@ -37,8 +38,9 @@ def flight(request, fli_id):
     context = {"flight": flight, "map": map._repr_html_()}
     if request.method == "POST":
         data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
-        context['message']='Signed up for flight!'
+        context["message"] = "Signed up for flight!"
     return render(request, template_name="airline/flight.html", context=context)
+
 
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
@@ -61,17 +63,18 @@ def routes(request, route_id):
 def idk(request):
     return render(request, template_name="airline/main.html")
 
+
 def add_data(request):
-    context={}
+    context = {}
     if request.method == "POST":
         match list(request.POST.keys())[1]:
             case "airport":
                 data_manager.upload_airport(request.POST)
-                context={"message": "Succesfuly loaded airport!"}
+                context = {"message": "Succesfuly loaded airport!"}
             case "flight":
                 data_manager.upload_flight(request.POST)
-                context={"message": "Succesfuly loaded flight!"}
+                context = {"message": "Succesfuly loaded flight!"}
             case "passager":
                 data_manager.upload_passager(request.POST)
-                context={"message": "Succesfuly loaded passager"}
+                context = {"message": "Succesfuly loaded passager"}
     return render(request, template_name="airline/add_data.html", context=context)

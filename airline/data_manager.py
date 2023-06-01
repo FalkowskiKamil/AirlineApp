@@ -7,6 +7,7 @@ from faker import Faker
 
 fake = Faker()
 
+
 def upload_passager(request):
     passagers = []
     flights = Flight.objects.all()
@@ -31,9 +32,10 @@ def upload_passager(request):
         ]
     )
 
+
 def upload_flight(request):
     airports = Airport.objects.all()
-    num_flights = int(request.get('flight'))
+    num_flights = int(request.get("flight"))
     for i in range(num_flights):
         start = random.choice(airports)
         destination = random.choice(airports.exclude(airport_id=start.airport_id))
@@ -53,7 +55,7 @@ def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
     airports = []
     existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()]
-    max_vol = int(request.get('airport'))
+    max_vol = int(request.get("airport"))
     for i in range(max_vol):
         random_index = random.randint(0, len(csv_file) - 1)
         row = csv_file.iloc[random_index]
@@ -69,6 +71,7 @@ def upload_airport(request):
             airports.append(airport)
             existing_airport_ids.append(row[0])
     Airport.objects.bulk_create(airports)
+
 
 def sign_for_flight(passager_id, flight_id):
     passager = get_object_or_404(Passager, pk=passager_id)
