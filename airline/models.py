@@ -43,6 +43,18 @@ class Flight(models.Model):
     def formatted_date(self):
         return self.date.strftime("%d-%m-%Y")
 
+    def save(self, *args, **kwargs):
+        super(Flight, self).save(*args, **kwargs)
+
+        # Check if there is an existing route with the same start and destination
+        existing_route = Route.objects.filter(start=self.start, destination=self.destination).first()
+
+        if existing_route:
+            existing_route.flights.add(self)  # Add the flight to the existing route
+        else:
+            new_route = Route.objects.create(start=self.start, destination=self.destination)
+            new_route.flights.add(self) 
+
 
 class Route(models.Model):
     start = models.ForeignKey(

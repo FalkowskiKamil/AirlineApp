@@ -45,52 +45,9 @@ def upload_flight(request):
             random.choice([0, 30]),
         )
 
-        # Try to get an existing route with this start-destination pair
-        existing_route = Route.objects.filter(
-            start=start, destination=destination
-        ).first()
+        flight = Flight.objects.create(start=start, destination=destination, date=date)
+        flight.save()
 
-        # If the route already exists, add the new flight to it
-        if existing_route:
-            flight = Flight.objects.create(
-                start=start, destination=destination, date=date
-            )
-            existing_route.flights.add(flight)
-        # Otherwise, create a new route and assign the flight to it
-        else:
-            new_route = Route.objects.create(start=start, destination=destination)
-            flight = Flight.objects.create(
-                start=start, destination=destination, date=date
-            )
-            new_route.flights.add(flight)
-
-def update_routes():
-    # Get all unique start-destination pairs from flights
-    routes = Flight.objects.values("start", "destination").distinct()
-    for route in routes:
-        # Try to get an existing route with this start-destination pair
-        existing_route = Route.objects.filter(
-            start=route["start"], destination=route["destination"]
-        ).first()
-
-        # If the route already exists, add the new flights to it
-        if existing_route:
-            flights = Flight.objects.filter(
-                start=route["start"], destination=route["destination"]
-            )
-            existing_route.flights.add(*flights)
-
-        # Otherwise, create a new route and assign all flights with this start-destination pair to it
-        else:
-            start_airport = get_object_or_404(Airport, pk=route["start"])
-            dest_airport = get_object_or_404(Airport, pk=route["destination"])
-            flights = Flight.objects.filter(
-                start=start_airport, destination=dest_airport
-            )
-            route, created = Route.objects.get_or_create(
-            start=start_airport, destination=dest_airport
-            )
-            route.flights.set(flights)
 
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
