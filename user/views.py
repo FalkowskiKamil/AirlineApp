@@ -20,12 +20,8 @@ def registration_request(request):
         first_name = request.POST["firstname"]
         last_name = request.POST["lastname"]
         user_exist = False
-        try:
-            User.objects.get(username=username)
-            user_exist = True
-        except:
-            logger.error("New user")
-        if not user_exist:
+        current_user= User.objects.filter(username=username).first()
+        if current_user is not None:
             user = User.objects.create_user(
                 username=username,
                 first_name=first_name,

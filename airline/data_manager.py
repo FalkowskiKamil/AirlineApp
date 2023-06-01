@@ -87,9 +87,10 @@ def update_routes():
             flights = Flight.objects.filter(
                 start=start_airport, destination=dest_airport
             )
-            new_route = Route(start=start_airport, destination=dest_airport)
-            new_route.save()
-            new_route.flights.set(flights)
+            route, created = Route.objects.get_or_create(
+            start=start_airport, destination=dest_airport
+            )
+            route.flights.set(flights)
 
 def upload_airport(request):
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")

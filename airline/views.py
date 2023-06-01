@@ -58,6 +58,9 @@ def routes(request, route_id):
     return render(request, template_name="airline/route.html", context=context)
 
 
+def idk(request):
+    return render(request, template_name="airline/main.html")
+
 def add_data(request):
     context={}
     if request.method == "POST":

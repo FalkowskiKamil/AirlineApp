@@ -19,6 +19,9 @@
                 {% endif %}
             </div>
             <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="{% url 'airline:idk' %}">IDK</a>
+              </li>
                 {% if user.is_authenticated %}
                 <li>
                   {% for passager in user.passager_user.all %}
