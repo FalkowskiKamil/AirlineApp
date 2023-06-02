@@ -1,10 +1,12 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<div class="mb-3">
-  <label for="" class="form-label">Sized Input</label>
-  <input type="text"
-      class="form-control form-control-sm" name="" id="" aria-describedby="helpId" placeholder="">
-  <small id="helpId" class="form-text text-muted">Help text</small>
+
+<div class="row h-50 justify-content-center align-items-center">
+    <div class="m-3 text-center">
+      <label for="" class="form-label display-4 text-light banner-text">Where do we fly?</label>
+      <input type="text" class="form-control form-control-sm m-2" name="" id="" aria-describedby="helpId" placeholder="write a country">
+      <a name="" id="" class="btn btn-primary" href="#" role="button">Check flights</a>
+    </div>
 </div>
 
 {% endblock %}

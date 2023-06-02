@@ -1,5 +1,20 @@
+.background {
+    background-image: url('/static/airline/background.jpg');
+    background-size: cover;
+}
+
+.banner-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    padding: 1rem;
+    color: white;
+}
+
 th, td {
     vertical-align: middle !important;
+}
+.custom-height {
+    height: calc(100vh - 80px); /* Adjust the value '56px' to match the actual height of your navbar */
+   overflow: hidden;
 }
 
 .map {
