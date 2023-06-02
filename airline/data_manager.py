@@ -1,5 +1,5 @@
-from .models import Flight, Passager, Airport, Route
-from django.shortcuts import get_object_or_404, redirect
+from .models import Flight, Passager, Airport
+from django.shortcuts import get_object_or_404
 import pandas as pd
 import datetime
 import random
