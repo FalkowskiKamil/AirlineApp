@@ -1,7 +1,7 @@
 from .models import Flight, Passager, Airport
 from django.shortcuts import get_object_or_404
 import pandas as pd
-import datetime
+from django.utils import timezone
 import random
 from faker import Faker
 
@@ -42,7 +42,7 @@ def upload_flight(request):
     for i in range(num_flights):
         start = random.choice(airports)
         destination = random.choice(airports.exclude(airport_id=start.airport_id))
-        date = fake.date_time_between(start_date=datetime.now(), end_date="+1y")
+        date = fake.date_time_between(start_date=timezone.now(), end_date="+1y")
         flight = Flight.objects.create(start=start, destination=destination, date=date)
         flight.save()
 
