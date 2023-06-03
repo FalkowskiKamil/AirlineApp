@@ -15,16 +15,16 @@ def upload_passager(request):
     for i in range(num_passager):
         fullname = fake.name()
         name_parts = fullname.split(" ")
-        #Rejection wrong value
+        # Rejection wrong value
         if len(name_parts) == 2:
             first_name, surname = name_parts
         else:
             continue
         passager = Passager(first_name=first_name, surname=surname)
         passagers.append(passager)
-    #Creating Passagers
+    # Creating Passagers
     Passager.objects.bulk_create(passagers)
-    #Connecting Passagers with flight
+    # Connecting Passagers with flight
     passager_flight_ids = [
         (passager.id, random.choice(flights).id) for passager in passagers
     ]
@@ -42,7 +42,7 @@ def upload_flight(request):
     for i in range(num_flights):
         start = random.choice(airports)
         destination = random.choice(airports.exclude(airport_id=start.airport_id))
-        date = fake.date_time_between(start_date=datetime.now(), end_date='+1y')
+        date = fake.date_time_between(start_date=datetime.now(), end_date="+1y")
         flight = Flight.objects.create(start=start, destination=destination, date=date)
         flight.save()
 
@@ -55,6 +55,7 @@ def upload_airport(request):
     for i in range(max_vol):
         random_index = random.randint(0, len(csv_file) - 1)
         row = csv_file.iloc[random_index]
+        # Checking duplication
         if row[0] not in existing_airport_ids:
             airport = Airport(
                 airport_id=row[0],

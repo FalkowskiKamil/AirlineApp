@@ -6,19 +6,25 @@ from . import data_manager, map_creator
 # Create your views here.
 def main(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
-    context={"countries": countries,}
+    context = {
+        "countries": countries,
+    }
     return render(request, template_name="airline/main.html", context=context)
 
+
 def country(request):
-    context={}
-    if not request.POST['destination_country']:
-        route = Route.objects.filter(start__country=request.POST['start_country'].capitalize())
-        context['countries']=route
+    context = {}
+    if not request.POST["destination_country"]:
+        route = Route.objects.filter(
+            start__country=request.POST["start_country"].capitalize()
+        )
+        context["countries"] = route
     else:
         route = Route.objects.filter(
-        start__country=request.POST['start_country'].capitalize(),
-        destination__country=request.POST['destination_country'].capitalize())
-        context['countries']=route
+            start__country=request.POST["start_country"].capitalize(),
+            destination__country=request.POST["destination_country"].capitalize(),
+        )
+        context["countries"] = route
     return render(request, template_name="airline/country.html", context=context)
 
 

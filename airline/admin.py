@@ -29,7 +29,7 @@ class AirportAdmin(admin.ModelAdmin):
 
 
 class FlightAdmin(admin.ModelAdmin):
-    list_display = ["id", "start", "destination", "date"]
+    list_display = ["id", "start", "destination", "date", "number_routes"]
     filter_horizontal = ["passengers", "passenger_set"]
     list_filter = ["start", "destination"]
     search_fields = [
@@ -42,7 +42,9 @@ class FlightAdmin(admin.ModelAdmin):
         "id",
     ]
 
-
+    def number_routes(self, obj):
+        return ", ".join(str(route) for route in obj.routes.all())
+    
 class PassagerAdmin(admin.ModelAdmin):
     list_display = ["id", "first_name", "surname"]
     filter_horizontal = ["flights"]
