@@ -1,15 +1,18 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<div class="background custom-height text-center text-white">
+<div class="background custom-height text-center text-white banner-text">
     <h1>All Possible Flights on This Track:</h1>
+    <div class="h-50 d-flex flex-column justify-content-center">
     {% if countries|length %}
-        {% for x in countries %}
-            <div class="flight-details">
-                <p>{{ x }}</p>
+        {% for country in countries %}
+            <div class="flight-details p-3 ">
+                <h2>Every track from: {{ country.start.country }} to {{ country.destination.country }}:</h2>
+                <a class="btn btn-primary btn-lg mt-3" href="{% url 'airline:routes' route_id=country.id %}">
+                    {{ country.flights.first.start}} to {{country.flights.first.destination}}
+                </a>
             </div>
         {% endfor %}
     {% else %}
-        <div class="h-50 d-flex flex-column justify-content-center">
             <h2>Sorry, Currently No Flights on This Track</h2>
             <div class="button-container">
                 <a class="btn btn-primary" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
@@ -18,7 +21,9 @@
                 <span>or</span>
             </div>
             <div class="button-container">
-                <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button">Check Every Possible Flight on Our Airline</a>
+                <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button">
+                    Check Every Possible Flight on Our Airline
+                </a>
             </div>
         </div>
     {% endif %}
