@@ -1,8 +1,8 @@
 {% extends "airline/index.html" %}
 {% block content %}
 <div class="map">{{ map|safe }}</div>
-<div class="p-3 bg-info text-white text-center airport-main" >
-    <h1 class="text-shadow airport-title" >
+<div class="p-3 bg-info text-white text-center airport-main background " >
+    <h1 class="text-shadow airport-title banner-text" >
         Flight "{{flight.id}}"
         from: <a class="airport-link" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
         to: <a class="airport-link" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
