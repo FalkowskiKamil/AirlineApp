@@ -9,6 +9,18 @@ def main(request):
     context={"countries": countries,}
     return render(request, template_name="airline/main.html", context=context)
 
+def country(request):
+    context={}
+    if not request.POST['destination_country']:
+        route = Route.objects.filter(start__country=request.POST['start_country'].capitalize())
+        context['countries']=route
+    else:
+        route = Route.objects.filter(
+        start__country=request.POST['start_country'].capitalize(),
+        destination__country=request.POST['destination_country'].capitalize())
+        context['countries']=route
+    return render(request, template_name="airline/country.html", context=context)
+
 
 def all(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
@@ -62,8 +74,6 @@ def routes(request, route_id):
     map = map_creator.create_map(route.start, route.destination)
     context = {"route": route, "map": map._repr_html_()}
     return render(request, template_name="airline/route.html", context=context)
-
-
 
 
 def add_data(request):

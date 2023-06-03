@@ -15,7 +15,7 @@ th, td {
 
 
 .custom-height {
-    height: calc(100vh - 58px); /* Adjust the value '56px' to match the actual height of your navbar */
+    height: 100vh;
    overflow: hidden;
 }
 

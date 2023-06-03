@@ -1,0 +1,27 @@
+{% extends "airline/index.html" %}
+{% block content %}
+<div class="background custom-height text-center text-white">
+    <h1>All Possible Flights on This Track:</h1>
+    {% if countries|length %}
+        {% for x in countries %}
+            <div class="flight-details">
+                <p>{{ x }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="h-50 d-flex flex-column justify-content-center">
+            <h2>Sorry, Currently No Flights on This Track</h2>
+            <div class="button-container">
+                <a class="btn btn-primary" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
+            </div>
+            <div class="or-divider">
+                <span>or</span>
+            </div>
+            <div class="button-container">
+                <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button">Check Every Possible Flight on Our Airline</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
