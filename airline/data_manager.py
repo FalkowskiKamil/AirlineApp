@@ -15,13 +15,16 @@ def upload_passager(request):
     for i in range(num_passager):
         fullname = fake.name()
         name_parts = fullname.split(" ")
+        #Rejection wrong value
         if len(name_parts) == 2:
             first_name, surname = name_parts
         else:
             continue
         passager = Passager(first_name=first_name, surname=surname)
         passagers.append(passager)
+    #Creating Passagers
     Passager.objects.bulk_create(passagers)
+    #Connecting Passagers with flight
     passager_flight_ids = [
         (passager.id, random.choice(flights).id) for passager in passagers
     ]
@@ -39,14 +42,7 @@ def upload_flight(request):
     for i in range(num_flights):
         start = random.choice(airports)
         destination = random.choice(airports.exclude(airport_id=start.airport_id))
-        date = datetime.datetime(
-            random.randint(2022, 2030),
-            random.randint(1, 12),
-            random.randint(1, 28),
-            random.randint(0, 23),
-            random.choice([0, 30]),
-        )
-
+        date = fake.date_time_between(start_date=datetime.now(), end_date='+1y')
         flight = Flight.objects.create(start=start, destination=destination, date=date)
         flight.save()
 

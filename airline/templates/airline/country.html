@@ -6,7 +6,7 @@
         {% if countries|length %}
             {% for country in countries %}
                 <div class="p-3">
-                    <h2>Every track from: {{ country.start.country }} to {{ country.destination.country }}:</h2>
+                    <h2>Every flight from: {{ country.start.country }} to {{ country.destination.country }}:</h2>
                     <a class="btn btn-primary btn-lg mt-3" href="{% url 'airline:routes' route_id=country.id %}">
                         {{ country.flights.first.start}} to {{country.flights.first.destination}}
                     </a>
