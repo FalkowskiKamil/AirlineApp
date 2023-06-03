@@ -6,8 +6,14 @@ from . import data_manager, map_creator
 # Create your views here.
 def main(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
+    context={"countries": countries,}
+    return render(request, template_name="airline/main.html", context=context)
+
+
+def all(request):
+    countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {"countries": countries, "routes": Route.objects.all()}
-    return render(request, template_name="airline/main_user.html", context=context)
+    return render(request, template_name="airline/all.html", context=context)
 
 
 def staff(request):
@@ -58,8 +64,6 @@ def routes(request, route_id):
     return render(request, template_name="airline/route.html", context=context)
 
 
-def idk(request):
-    return render(request, template_name="airline/main.html")
 
 
 def add_data(request):
