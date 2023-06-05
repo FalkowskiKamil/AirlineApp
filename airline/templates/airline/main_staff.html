@@ -1,90 +1,91 @@
 {% extends "airline/index.html" %}
 {% block content %}
 {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-    <table class="table" id="table1">
-        <thead>
-            <tr class="bg-info">
-                <th>Flight number: </th>
-                <th>Route number: </th>
-                <th><label for="start">Start: </label>
-                    {% if countries|length > 5 %}
-                        <input type="text" id="start" placeholder="Search start country...">
-                    {% else %}
-                        <select id="start">
-                        <option value="">All</option>
-                            {% for country in countries %}
-                                <option value="{{country}}">{{country}}</option>
-                            {% endfor %}
-                        </select>
-                    {% endif %}
-                </th>
-                <th><label for="destination">Destination: </label>
-                    {% if countries|length > 5 %}
-                        <input type="text" id="destination" placeholder="Search destination country...">
-                    {% else %}
-                        <select id="destination">
-                        <option value="">All</option>
-                        {% for country in countries %}
-                            <option value="{{country}}">{{country}}</option>
-                        {% endfor %}
-                        </select>
-                    {% endif %}
-                </th>
-                <th>Date: </th>
-                <th>Passager: </th>
-            </tr>
-        </thead>
-        <tbody id="flight-table-body">
-            {% if not airport %}
-                <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
-                    {% csrf_token %}
-                    <label for="vol">Enter quantity of Airport to load: (2-250)</label>
-                    <input type="number" id="vol" name="vol" min="2" max="250">
-                    <button class="btn btn-primary" type="submit">Upload Airport Data</button>
-                </form>
+<table class="table" id="table1">
+   <thead>
+      <tr class="bg-info">
+         <th>Flight number: </th>
+         <th>Route number: </th>
+         <th>
+            <label for="start">Start: </label>
+            {% if countries|length > 5 %}
+            <input type="text" id="start" placeholder="Search start country...">
             {% else %}
-                {% if flight %}
-                    {% for fli in flight %}
-                    <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
-                        <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
-                        {% for route in fli.routes.all %}
-                            <td><a href="/airline/routes/{{route}}">{{route}}</a></td>
-                        {% endfor %}
-                        <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
-                        <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
-                        <td>{{fli.date}}</td>
-                        {% if fli.passengers.all %}
-                            <td class="passager-td">
-                                {% for passagers in fli.passengers.all %} 
-                                    {% if forloop.counter <= 5 %}
-                                        <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, 
-                                    {% elif forloop.counter == 6 %}
-                                        <a href='/airline/flight/{{fli.id}}'> and {{ fli.passengers.all|length|add:-5 }} more...</a>
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                        {% else %}
-                            <td>No Passagers</td>
-                        {% endif %}
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                <tr>
-                    <td>Sorry, currently no flight data are avaible</td>
-                    <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
-                        {% csrf_token %}
-                        <label for="vol">Enter quantity of fake flight to load: (1-100)</label>
-                        <input type="number" id="quan" name="quan" min="1" max="100">
-                        <button class="btn btn-primary" type="submit">Upload flight Data</button>
-                    </form>
-                </tr>
-                {% endif %}
+            <select id="start">
+               <option value="">All</option>
+               {% for country in countries %}
+               <option value="{{country}}">{{country}}</option>
+               {% endfor %}
+            </select>
             {% endif %}
-        </tbody>
-    </table>
+         </th>
+         <th>
+            <label for="destination">Destination: </label>
+            {% if countries|length > 5 %}
+            <input type="text" id="destination" placeholder="Search destination country...">
+            {% else %}
+            <select id="destination">
+               <option value="">All</option>
+               {% for country in countries %}
+               <option value="{{country}}">{{country}}</option>
+               {% endfor %}
+            </select>
+            {% endif %}
+         </th>
+         <th>Date: </th>
+         <th>Passager: </th>
+      </tr>
+   </thead>
+   <tbody id="flight-table-body">
+      {% if not airport %}
+      <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
+         {% csrf_token %}
+         <label for="vol">Enter quantity of Airport to load: (2-250)</label>
+         <input type="number" id="vol" name="vol" min="2" max="250">
+         <button class="btn btn-primary" type="submit">Upload Airport Data</button>
+      </form>
+      {% else %}
+      {% if flight %}
+      {% for fli in flight %}
+      <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
+         <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
+         {% for route in fli.routes.all %}
+         <td><a href="/airline/routes/{{route}}">{{route}}</a></td>
+         {% endfor %}
+         <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
+         <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
+         <td>{{fli.date}}</td>
+         {% if fli.passengers.all %}
+         <td class="passager-td">
+            {% for passagers in fli.passengers.all %} 
+            {% if forloop.counter <= 5 %}
+            <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, 
+            {% elif forloop.counter == 6 %}
+            <a href='/airline/flight/{{fli.id}}'> and {{ fli.passengers.all|length|add:-5 }} more...</a>
+            {% endif %}
+            {% endfor %}
+         </td>
+         {% else %}
+         <td>No Passagers</td>
+         {% endif %}
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+         <td>Sorry, currently no flight data are avaible</td>
+         <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
+            {% csrf_token %}
+            <label for="vol">Enter quantity of fake flight to load: (1-100)</label>
+            <input type="number" id="quan" name="quan" min="1" max="100">
+            <button class="btn btn-primary" type="submit">Upload flight Data</button>
+         </form>
+      </tr>
+      {% endif %}
+      {% endif %}
+   </tbody>
+</table>
 {% else %}
 <h1 class="align-middle text-center"><a href="/airline/"> Sory,you have no permission for this page</a></h1>
 {% endif %}
-
 <script src="/static/airline/script_main_staff.js"></script>
 {% endblock %}

@@ -1,39 +1,37 @@
 {% extends "airline/index.html" %}
 {% block content %}
 <div class="background text-center text-white banner-text  custom-height">
-    <div class=" d-flex flex-column justify-content-center">
-        <h1>All Possible Flights on This Track:</h1>
-        {% if countries|length %}
-        {% for country in countries %}
-            {% if forloop.counter <= 5 %}
-            <div class="p-3">
-                <h2>Every flight from: {{ country.start.country }} to {{ country.destination.country }}:</h2>
-                <a class="btn btn-primary btn-lg mt-3" href="{% url 'airline:routes' route_id=country.id %}">
-                    {{ country.flights.first.start}} to {{country.flights.first.destination}}
-                </a>
-            </div>
-            {% elif forloop.counter == 6 %}
-            <div>
-                <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button"> and {{ countries.all|length|add:-5 }} more...</a>
-            </div>
-            {% endif %}
-               
-            {% endfor %}
-        {% else %}
-            <h2>Sorry, Currently No Flights on This Track</h2>
-            <div>
-                <a class="btn btn-primary" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
-            </div>
-            <div >
-                <span>or</span>
-            </div>
-            <div>
-                <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button">
-                    Check Every Possible Flight on Our Airline
-                </a>
-            </div>
-        </div>
-    {% endif %}
+   <div class=" d-flex flex-column justify-content-center">
+      <h1>All Possible Flights on This Track:</h1>
+      {% if countries|length %}
+      {% for country in countries %}
+      {% if forloop.counter <= 5 %}
+      <div class="p-3">
+         <h2>Every flight from: {{ country.start.country }} to {{ country.destination.country }}:</h2>
+         <a class="btn btn-primary btn-lg mt-3" href="{% url 'airline:routes' route_id=country.id %}">
+         {{ country.flights.first.start}} to {{country.flights.first.destination}}
+         </a>
+      </div>
+      {% elif forloop.counter == 6 %}
+      <div>
+         <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button"> and {{ countries.all|length|add:-5 }} more...</a>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% else %}
+      <h2>Sorry, Currently No Flights on This Track</h2>
+      <div>
+         <a class="btn btn-primary" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
+      </div>
+      <div >
+         <span>or</span>
+      </div>
+      <div>
+         <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button">
+         Check Every Possible Flight on Our Airline
+         </a>
+      </div>
+   </div>
+   {% endif %}
 </div>
-
 {% endblock %}

@@ -2,61 +2,59 @@
 {% block content %}
 <div class="map">{{ map|safe }}</div>
 <div class="p-3 bg-info text-white text-center airport-main background " >
-    <h1 class="text-shadow airport-title banner-text" >
-        Flight "{{flight.id}}"
-        from: <a class="airport-link" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
-        to: <a class="airport-link" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
-        (route {% for route in flight.routes.all %} <a href=/airline/routes/{{route}} class="airport-link">{{route}}</a>{% endfor %})
-        on {{flight.date}}
-    </h1>
-    {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-    <div class="shadow-lg p-3 mb-5 bg-white rounded airport-border">  
-        <table class="table table-striped table-secondary table-bordered shadow-lg p-3 mb-5 bg-white rounded">
-            <thead>
-                <div class="p-3 mt-0 bg-light text-dark text-center border border-dark">
-                    <h2 >All of the passagers {% if flight.passengers.all %}({{ flight.passengers.all|length }}):{% endif %}</h2>
-                </div>
-                <tr> 
-                    <th>Passager id: </th>
-                    <th>Passager first name: </th>
-                    <th>Passager surname: </th>
-                </tr>
-            </thead>
-            <tbody class="text-left">
-                {% if flight.passengers.all %}
-                    {% for passager in flight.passengers.all %}
-                        <tr>
-                            <td><a href="/airline/passager/{{passager.id}}">{{passager.id}}</a></td>
-                            <td>{{passager.first_name}}</td>
-                            <td>{{passager.surname}}</td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
-                    <tr>
-                        <td>No passager</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                {% endif %}  
-            </tbody>
-        </table>
-    </div>
+   <h1 class="text-shadow airport-title banner-text" >
+      Flight "{{flight.id}}"
+      from: <a class="airport-link" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
+      to: <a class="airport-link" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
+      (route {% for route in flight.routes.all %} <a href=/airline/routes/{{route}} class="airport-link">{{route}}</a>{% endfor %})
+      on {{flight.date}}
+   </h1>
+   {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
+   <div class="shadow-lg p-3 mb-5 bg-white rounded airport-border">
+      <table class="table table-striped table-secondary table-bordered shadow-lg p-3 mb-5 bg-white rounded">
+         <thead>
+            <div class="p-3 mt-0 bg-light text-dark text-center border border-dark">
+               <h2 >All of the passagers {% if flight.passengers.all %}({{ flight.passengers.all|length }}):{% endif %}</h2>
+            </div>
+            <tr>
+               <th>Passager id: </th>
+               <th>Passager first name: </th>
+               <th>Passager surname: </th>
+            </tr>
+         </thead>
+         <tbody class="text-left">
+            {% if flight.passengers.all %}
+            {% for passager in flight.passengers.all %}
+            <tr>
+               <td><a href="/airline/passager/{{passager.id}}">{{passager.id}}</a></td>
+               <td>{{passager.first_name}}</td>
+               <td>{{passager.surname}}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+               <td>No passager</td>
+               <td></td>
+               <td></td>
+            </tr>
+            {% endif %}  
+         </tbody>
+      </table>
+   </div>
 </div>
-    {% else %}
-    
-    {% if user.is_authenticated %}
+{% else %}
+{% if user.is_authenticated %}
 <div class=" p-2 m-4 display-4 bg-danger align-middle sign-container">
-    {% for passager in user.passager_user.all %}   
-        {% if passager in flight.passengers.all %} 
-            <h1>You are signed up for this flight</h1>
-        {% else %}
-            <h1>You are not signed for this flight</h1>
-            <form id="record" method="POST" >{% csrf_token %}</form>
-            <button type="submit" form="record" value="Submit">Sign up </button>
-        {% endif %}
-    {% endfor %}
-    {% endif %}
+   {% for passager in user.passager_user.all %}   
+   {% if passager in flight.passengers.all %} 
+   <h1>You are signed up for this flight</h1>
+   {% else %}
+   <h1>You are not signed for this flight</h1>
+   <form id="record" method="POST" >{% csrf_token %}</form>
+   <button type="submit" form="record" value="Submit">Sign up </button>
+   {% endif %}
+   {% endfor %}
+   {% endif %}
 </div>
-    {% endif %}
-
+{% endif %}
 {% endblock %}
