@@ -46,16 +46,16 @@
 {% if user.is_authenticated %}
 <div class="p-4 m-4 text-center">
    {% for passager in user.passager_user.all %}
-    {% if user.passager_user.first in flight.passagers.all %}
-    <h1 class="display-4 text-danger text-shadow airport-title banner-text">You are signed up for this flight</h1>
-    <form>
-    <small>If you want to check out, <a href="">contact with us</a> and we will try to help you:</small>
-    </form>
-    {% else %}
-    <h1 class="display-4">You are not signed up for this flight</h1>
-    <form id="record" method="POST" class="mt-4">{% csrf_token %}</form>
-    <button type="submit" form="record" class="btn btn-primary">Sign up</button>
-    {% endif %}
+   {% if user.passager_user.first in flight.passagers.all %}
+   <h1 class="display-4 text-danger text-shadow airport-title banner-text">You are signed up for this flight</h1>
+   <form>
+      <small>If you want to check out, <a href="">contact with us</a> and we will try to help you:</small>
+   </form>
+   {% else %}
+   <h1 class="display-4">You are not signed up for this flight</h1>
+   <form id="record" method="POST" class="mt-4">{% csrf_token %}</form>
+   <button type="submit" form="record" class="btn btn-primary">Sign up</button>
+   {% endif %}
    {% endfor %}
 </div>
 {% endif %}
