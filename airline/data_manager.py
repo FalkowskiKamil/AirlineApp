@@ -1,4 +1,4 @@
-from .models import Flight, Passager, Airport
+from .models import Flight, Passager, Airport, FlightPassager
 from django.shortcuts import get_object_or_404
 import pandas as pd
 from django.utils import timezone
@@ -73,4 +73,4 @@ def upload_airport(request):
 def sign_for_flight(passager_id, flight_id):
     passager = get_object_or_404(Passager, pk=passager_id)
     flight = get_object_or_404(Flight, pk=flight_id)
-    flight.passengers.add(passager)
+    flight_passager = FlightPassager.objects.create(passager=passager, flight=flight)

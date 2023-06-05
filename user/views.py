@@ -19,9 +19,8 @@ def registration_request(request):
         password = request.POST["psw"]
         first_name = request.POST["firstname"]
         last_name = request.POST["lastname"]
-        user_exist = False
         current_user= User.objects.filter(username=username).first()
-        if current_user is not None:
+        if current_user is None:
             user = User.objects.create_user(
                 username=username,
                 first_name=first_name,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Airport, Flight, Passager, Route
+from .models import Airport, Flight, Passager, Route, FlightPassager
 
 
 # Register your models here.
@@ -29,8 +29,7 @@ class AirportAdmin(admin.ModelAdmin):
 
 
 class FlightAdmin(admin.ModelAdmin):
-    list_display = ["id", "start", "destination", "date", "number_routes"]
-    filter_horizontal = ["passengers", "passenger_set"]
+    list_display = ["id", "start", "destination", "date", "number_routes", "get_passager_flight"]
     list_filter = ["start", "destination"]
     search_fields = [
         "start__name",
@@ -45,10 +44,37 @@ class FlightAdmin(admin.ModelAdmin):
     def number_routes(self, obj):
         return ", ".join(str(route) for route in obj.routes.all())
     
+    def get_passager_flight(self, obj):
+        if obj.passengers_flights.exists():
+            return ", ".join([f"{passager.id}" for passager in obj.passengers_flights.all()])
+        else:
+            return "None"
+    
+    get_passager_flight.short_description = "Id of Passagers"
+        
+    class PassengerInline(admin.TabularInline):
+        model = Flight.passengers_flights.through
+        extra = 1
+
+    inlines = [PassengerInline]
+
 class PassagerAdmin(admin.ModelAdmin):
-    list_display = ["id", "first_name", "surname"]
-    filter_horizontal = ["flights"]
+    list_display = ["id", "first_name", "surname", "get_flight_passager"]
     search_fields = ["id", "first_name", "surname"]
+
+    def get_flight_passager(self, obj):
+        if obj.flights.exists():
+            return ", ".join([f"{flight.id}" for flight in obj.flights.all()])
+        else:
+            return "None"
+
+    get_flight_passager.short_description = "Registered Flight"
+
+    class FlightInline(admin.TabularInline):
+        model = Passager.flights.through
+        extra = 1
+
+    inlines = [FlightInline]
 
 
 class RouteAdmin(admin.ModelAdmin):
@@ -60,3 +86,4 @@ admin.site.register(Airport, AirportAdmin)
 admin.site.register(Flight, FlightAdmin)
 admin.site.register(Passager, PassagerAdmin)
 admin.site.register(Route, RouteAdmin)
+admin.site.register(FlightPassager)

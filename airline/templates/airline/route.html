@@ -1,7 +1,7 @@
 {% extends "airline/index.html" %}
 {% block content %}
 <div class="map">{{ map|safe }}</div>
-<div class="p-3 bg-info text-white text-center airport-main background " >
+<div class="p-3 bg-info text-white text-center airport-main background custom-height" >
    <h1 class="airport-title banner-text">
       Flights from: <a class="airport-link" href="/airline/airport/{{route.start.airport_id}}">{{route.start}}</a>
       to: <a class="airport-link" href="/airline/airport/{{route.destination.airport_id}}">{{route.destination}}</a>
@@ -23,7 +23,7 @@
             <tr>
                <td ><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
                <td >{{fli.date}}</td>
-               <td >{{ fli.passengers.all|length }}</td>
+               <td >{{ fli.passagers.all|length }}</td>
             </tr>
             {% endfor %}
          </tbody>

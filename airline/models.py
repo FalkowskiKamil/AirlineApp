@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.constraints import UniqueConstraint
 
 
 # Create your models here.
@@ -29,10 +30,9 @@ class Flight(models.Model):
         Airport, on_delete=models.CASCADE, related_name="arrival_flights"
     )
     date = models.DateTimeField()
-    passengers = models.ManyToManyField(
-        "Passager", related_name="flight_passager", blank=True
+    passengers_flights = models.ManyToManyField(
+        "Passager", through='FlightPassager', related_name="flights_passengers", blank=True
     )
-
     def clean(self):
         if self.start == self.destination:
             raise ValueError("Start and destination cannot be the same.")
@@ -83,7 +83,16 @@ class Passager(models.Model):
     )
     first_name = models.CharField(max_length=20)
     surname = models.CharField(max_length=30)
-    flights = models.ManyToManyField(Flight, related_name="passenger_set", blank=True)
-
+    flights = models.ManyToManyField(Flight, through='FlightPassager', related_name='passagers')
     def __str__(self):
         return f"{self.first_name, self.surname}"
+
+class FlightPassager(models.Model):
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name="flight_passagers")
+    passager = models.ForeignKey(Passager, on_delete=models.CASCADE, related_name="flight_passagers")
+
+    class Meta:
+        db_table = 'airline_flight_passagers'
+        constraints = [
+            UniqueConstraint(fields=['flight', 'passager'], name='unique_flight_passager')
+        ]

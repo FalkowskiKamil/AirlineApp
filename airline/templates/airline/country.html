@@ -12,13 +12,15 @@
          {{ country.flights.first.start}} to {{country.flights.first.destination}}
          </a>
       </div>
-      {% elif forloop.counter == 6 %}
-      <div>
-         <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button"> and {{ countries.all|length|add:-5 }} more...</a>
-      </div>
       {% endif %}
       {% endfor %}
+      {% if countries|length > 5 %}
+      <div>
+         <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button"> and {{ countries|length|add:-5 }} more...</a>
+      </div>
+      {% endif %}
       {% else %}
+      {{countries}}
       <h2>Sorry, Currently No Flights on This Track</h2>
       <div>
          <a class="btn btn-primary" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
