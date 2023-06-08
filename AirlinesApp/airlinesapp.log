@@ -1,0 +1,10 @@
+2023-06-08 12:02:12,322 - __main__ - INFO - Server is starting...
+2023-06-08 12:02:12,946 - __main__ - INFO - Server is starting...
+2023-06-08 12:02:23,467 - manage - DEBUG - Logout user: asd
+2023-06-08 12:02:26,518 - manage - DEBUG - Login user: asd 
+2023-06-08 12:02:36,210 - manage - DEBUG - User: asd asd register for flight 39
+2023-06-08 12:02:36,754 - manage - DEBUG - Logout user: asd
+2023-06-08 12:02:41,649 - manage - DEBUG - Login user: admin 
+2023-06-08 12:02:44,468 - manage - INFO - Added 2 airport
+2023-06-08 12:02:47,604 - manage - INFO - Added 2 flight
+2023-06-08 12:02:48,623 - manage - INFO - Added 1 passager

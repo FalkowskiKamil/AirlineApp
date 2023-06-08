@@ -3,9 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from airline.models import Passager
-import logging
+from manage import configure_logger
 
-logger = logging.getLogger(__name__)
+logger = configure_logger()
 
 
 # Create your views here.
@@ -28,6 +28,8 @@ def registration_request(request):
                 password=password,
             )
             Passager.objects.create(user=user, first_name=first_name, surname=last_name)
+            
+            logger.debug(f"Register user: {username}")
             login(request, user)
             return redirect("airline:main")
         else:
@@ -42,6 +44,7 @@ def login_request(request):
         password = request.POST["psw"]
         user = authenticate(username=username, password=password)
         if user is not None:
+            logger.debug(f"Login user: {username} ")
             login(request, user)
             return redirect("airline:main")
         else:
@@ -50,5 +53,6 @@ def login_request(request):
 
 
 def logout_request(request):
+    logger.debug(f"Logout user: {request.user.username}")
     logout(request)
     return redirect("airline:main")

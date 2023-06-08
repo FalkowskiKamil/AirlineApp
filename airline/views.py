@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
+from manage import configure_logger
+logger=configure_logger()
 
 
 # Create your views here.
@@ -88,11 +90,14 @@ def add_data(request):
         match list(request.POST.keys())[1]:
             case "airport":
                 data_manager.upload_airport(request.POST)
+                logger.info(f"Added {request.POST.get('airport')} airport")
                 context = {"message": "Succesfuly loaded airport!"}
             case "flight":
                 data_manager.upload_flight(request.POST)
+                logger.info(f"Added {request.POST.get('flight')} flight")
                 context = {"message": "Succesfuly loaded flight!"}
             case "passager":
                 data_manager.upload_passager(request.POST)
+                logger.info(f"Added {request.POST.get('passager')} passager")
                 context = {"message": "Succesfuly loaded passager"}
     return render(request, template_name="airline/add_data.html", context=context)
