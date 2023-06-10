@@ -31,7 +31,7 @@ Option 1:
 Option 2:
    1. Clone the Docker image using the command: 'docker pull falkowskikamil/airlinesapp:air' Make sure Docker is installed.
    2. Run container, using host Ports "8000"
-   3. Open your browser and go to "http:/localhost:8000/".
+   3. Open your browser and go to "http://localhost:8000/".
 
 ## Usage
 
