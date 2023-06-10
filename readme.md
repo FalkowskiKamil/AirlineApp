@@ -48,3 +48,7 @@ Option 2:
 - Airport Page: Users can view details about a specific airport and see it on a map.
 - Route Page: Users can view details about a specific route and see it on a map.
 -  Add Data Page (Admin Only): Admin users can upload data about airports, flights, and passengers.
+
+## Contribution
+
+Contributions to AirlinesApp are welcome! If you have any ideas or improvements, feel free to submit a pull request.
