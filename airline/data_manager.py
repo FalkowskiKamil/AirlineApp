@@ -27,7 +27,7 @@ def upload_passager(request):
         if len(name_parts) == 2:
             first_name, surname = name_parts
         else:
-            continue
+            first_name, surname = name_parts[1], name_parts[2]
         passager = Passager(first_name=first_name, surname=surname)
         passagers.append(passager)
     # Creating Passagers

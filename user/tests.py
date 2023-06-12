@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse
 import unittest
 
@@ -25,7 +24,3 @@ class UserTest(TestCase):
         response = self.client.get(reverse("user:logout"))
         self.assertRedirects(response, reverse("airline:main"))
         self.assertFalse("_auth_user_id" in self.client.session)
-
-
-if __name__ == "__main__":
-    unittest.main()

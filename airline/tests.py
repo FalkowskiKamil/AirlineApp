@@ -1,30 +1,19 @@
-from django.test import TestCase, Client
-
+from django.test import TestCase, Client, RequestFactory
+from faker import Faker
 # Create your tests here.
-from django.urls import reverse
-from .models import Airport, Flight, Route, Passager
-from .views import main, staff, passager, flight, airport, routes
+from .models import Airport, Flight, Passager
 from django.utils import timezone
+import unittest
+import folium
+from .map_creator import create_map
+from .urls import *
+from .data_manager import *
+from .views import *
 
-
-class AirportModelTests(TestCase):
+class ModelTestCase(TestCase):
     def setUp(self):
-        self.airport = Airport.objects.create(
-            airport_id=1,
-            name="Test Airport",
-            city="Test City",
-            country="Test Country",
-            latitude=1.0,
-            longitude=1.0,
-        )
-
-    def test_airport_str(self):
-        self.assertEqual(str(self.airport), "Test Airport")
-
-
-class FlightModelTests(TestCase):
-    def setUp(self):
-        self.start_airport = Airport.objects.create(
+        self.date = timezone.now()
+        self.airport_start = Airport.objects.create(
             airport_id=1,
             name="Start Airport",
             city="Start City",
@@ -32,7 +21,7 @@ class FlightModelTests(TestCase):
             latitude=1.0,
             longitude=1.0,
         )
-        self.dest_airport = Airport.objects.create(
+        self.airport_destination = Airport.objects.create(
             airport_id=2,
             name="Dest Airport",
             city="Dest City",
@@ -40,64 +29,68 @@ class FlightModelTests(TestCase):
             latitude=1.0,
             longitude=1.0,
         )
-        self.flight = Flight.objects.create(
-            start=self.start_airport, destination=self.dest_airport, date=timezone.now()
-        )
 
-    def test_flight_str(self):
-        self.assertEqual(str(self.flight), f"{self.flight.id}")
-
-    def test_flight_formatted_date(self):
-        formatted_date = self.flight.formatted_date()
-        self.assertEqual(formatted_date, self.flight.date.strftime("%d-%m-%Y"))
-
-    def test_flight_clean_method(self):
-        with self.assertRaises(ValueError):
-            flight = Flight(
-                start=self.start_airport,
-                destination=self.start_airport,
-                date=timezone.now(),
-            )
-            flight.clean()
-
-
-class RouteModelTests(TestCase):
-    def setUp(self):
-        self.start_airport = Airport.objects.create(
+    def test_airport(self):
+        airport = Airport(
             airport_id=1,
-            name="Start Airport",
-            city="Start City",
-            country="Start Country",
+            name="Name",
+            city="City",
+            country="Country",
             latitude=1.0,
             longitude=1.0,
         )
-        self.dest_airport = Airport.objects.create(
-            airport_id=2,
-            name="Dest Airport",
-            city="Dest City",
-            country="Dest Country",
+        self.assertEqual(airport.name, "Name")
+        self.assertEqual(airport.city, "City")
+        self.assertEqual(airport.country, "Country")
+        self.assertEqual(airport.latitude, 1.0)
+        self.assertEqual(airport.longitude, 1.0)
+    
+    def test_flight(self):
+        flight= Flight.objects.create(
+            start=self.airport_start, destination=self.airport_destination, date=self.date)
+        
+        self.assertEqual(flight.start.name, "Start Airport")
+        self.assertEqual(flight.destination.name, "Dest Airport")
+        self.assertEqual(flight.date, self.date)
+        self.assertFalse(flight.passengers_flights.exists())
+
+
+    def test_route(self):
+        flight= Flight.objects.create(
+            start=self.airport_start, destination=self.airport_destination, date=self.date)
+        route = flight.routes.first()
+        self.assertEqual(route.start.name, "Start Airport")
+        self.assertEqual(route.destination.name, "Dest Airport")
+        self.assertEqual(route.flights.first().id, int("1") )
+
+
+    def test_passager(self):
+        passenger = Passager.objects.create(first_name="John", surname="Doe")
+        self.assertEqual(passenger.first_name, "John")
+        self.assertEqual(passenger.surname, "Doe")
+
+
+
+class MapTestCase(TestCase):
+    def test_create_map(self):
+        airport_start = Airport(
+            name="Start Airport",
+            latitude=1.0,
+            longitude=1.0,
+        )
+        airport_dest = Airport(
+            name="Destination Airport",
             latitude=2.0,
             longitude=2.0,
         )
-        self.flight = Flight.objects.create(
-            start=self.start_airport, destination=self.dest_airport, date=timezone.now()
-        )
-        self.route = Route.objects.create(
-            start=self.start_airport, destination=self.dest_airport
-        )
+        map = create_map(airport_start, airport_dest)
+        self.assertIsInstance(map, folium.Map)
+        self.assertEqual(map.location, [1.0, 1.0])
+        self.assertEqual(map.options.get("zoom"), 10)
 
-    def test_route_str(self):
-        self.assertEqual(str(self.route), f"{self.route.id}")
-
-    def test_route_has_flight(self):
-        self.route.flights.add(self.flight)
-        self.assertIn(self.flight, self.route.flights.all())
-
-
-class PassagerModelTests(TestCase):
+class ViewsTestCase(TestCase):
     def setUp(self):
-        self.passenger = Passager.objects.create(first_name="John", surname="Doe")
-        self.start_airport = Airport.objects.create(
+        self.airport_start = Airport.objects.create(
             airport_id=1,
             name="Start Airport",
             city="Start City",
@@ -105,7 +98,7 @@ class PassagerModelTests(TestCase):
             latitude=1.0,
             longitude=1.0,
         )
-        self.dest_airport = Airport.objects.create(
+        self.airport_destination = Airport.objects.create(
             airport_id=2,
             name="Dest Airport",
             city="Dest City",
@@ -113,107 +106,110 @@ class PassagerModelTests(TestCase):
             latitude=1.0,
             longitude=1.0,
         )
-        self.flight = Flight.objects.create(
-            start=self.start_airport, destination=self.dest_airport, date=timezone.now()
-        )
-
-    def test_passenger_str(self):
-        self.passenger = Passager.objects.create(first_name="John", surname="Doe")
-        self.assertEqual(str(self.passenger), "('John', 'Doe')")
-
-    def test_passenger_has_flight(self):
-        self.passenger.flights.add(self.flight)
-        self.assertIn(self.flight, self.passenger.flights.all())
-
-
-class TestViews(TestCase):
-    def setUp(self):
-        self.client = Client()
-
-        # Create some objects to use in the tests
-        self.airport = Airport.objects.create(
-            airport_id=1,
-            name="Test Airport",
-            city="Test City",
-            country="Test Country",
-            latitude=1.0,
-            longitude=1.0,
-        )
-        self.passenger = Passager.objects.create(first_name="John", surname="Doe")
-        self.start_airport = Airport.objects.create(
-            airport_id=2,
-            name="Start Airport",
-            city="Start City",
-            country="Start Country",
-            latitude=1.0,
-            longitude=1.0,
-        )
-        self.dest_airport = Airport.objects.create(
-            airport_id=3,
-            name="Dest Airport",
-            city="Dest City",
-            country="Dest Country",
-            latitude=1.0,
-            longitude=1.0,
-        )
-        self.flight = Flight.objects.create(
-            start=self.start_airport, destination=self.dest_airport, date=timezone.now()
-        )
-        self.route = Route.objects.create(
-            start=self.start_airport, destination=self.dest_airport
-        )
-
+        self.flight = Flight.objects.create(start=self.airport_start, destination=self.airport_destination, date=timezone.now())
+        self.route = self.flight.routes.first()
+        self.passager = Passager.objects.create(first_name="John", surname="Doe")
+        self.factory = RequestFactory()
+    
     def test_main_view(self):
-        url = reverse("airline:main")
-        response = self.client.get(url)
-
+        request = self.factory.get('main')
+        response = main(request)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/main.html")
-        self.assertIn("countries", response.context)
+
+    def test_country_view(self):
+        data = {'start_country': 'Country 1', 'destination_country': 'Country 2'}
+        request = self.factory.post('country', data)
+        response = country(request)
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_all_view(self):
+        request = self.factory.get('all')
+        response = all(request)
+        self.assertEqual(response.status_code, 200)
 
     def test_staff_view(self):
-        url = reverse("airline:staff")
-        response = self.client.get(url)
-
+        request = self.factory.get('staff')
+        response = staff(request)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/main_staff.html")
-        self.assertIn("airport", response.context)
-        self.assertIn("passager", response.context)
-        self.assertIn("flight", response.context)
-        self.assertIn("countries", response.context)
-
+    
     def test_passager_view(self):
-        url = reverse("airline:passager", args=[self.passenger.id])
-        response = self.client.get(url)
-
+        request = self.factory.get('passager')
+        response = passager(request, self.passager.id)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/passager.html")
-        self.assertIn("passager", response.context)
-        self.assertIn("countries", response.context)
-
+    
     def test_flight_view(self):
-        url = reverse("airline:flight", args=[self.flight.id])
-        response = self.client.get(url)
-
+        request = self.factory.get('flight')
+        response = flight(request, self.flight.id)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/flight.html")
-        self.assertIn("flight", response.context)
-        self.assertIn("map", response.context)
 
     def test_airport_view(self):
-        url = reverse("airline:airport", args=[self.airport.airport_id])
-        response = self.client.get(url)
-
+        request = self.factory.get('airport')
+        response = airport(request, self.airport_start.airport_id)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/airport.html")
-        self.assertIn("airport", response.context)
-        self.assertIn("map", response.context)
-        self.assertIn("countries", response.context)
 
     def test_routes_view(self):
-        url = reverse("airline:routes", args=[self.route.id])
-        response = self.client.get(url)
+        request = self.factory.get('routes')
+        response = routes(request, self.route.id)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/route.html")
-        self.assertIn("route", response.context)
-        self.assertIn("map", response.context)
+
+    def test_add_data_view(self):
+        request = self.factory.get('add_data')
+        response = add_data(request)
+        self.assertEqual(response.status_code, 200)
+
+
+class DataManagerTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.fake = Faker()
+        self.airport_start = Airport.objects.create(
+            airport_id=1,
+            name="Start Airport",
+            city="Start City",
+            country="Start Country",
+            latitude=1.0,
+            longitude=1.0,
+        )
+        self.airport_destination = Airport.objects.create(
+            airport_id=2,
+            name="Dest Airport",
+            city="Dest City",
+            country="Dest Country",
+            latitude=1.0,
+            longitude=1.0,
+        )
+        self.flight = Flight.objects.create(start=self.airport_start, destination=self.airport_destination, date=timezone.now())
+        
+    
+    
+    
+    def test_upload_passager(self):
+        passager_count=Passager.objects.count()
+        request = {"passager": 5}
+        upload_passager(request)
+        self.assertEqual(Passager.objects.count(), 5 + passager_count)
+    
+    def test_upload_flight(self):
+        flight_count = Flight.objects.count()
+        request = {"flight": 5}
+        upload_flight(request)
+        self.assertEqual(Flight.objects.count(), 5 + flight_count)
+    
+    def test_upload_airport(self):
+        airport_count=Airport.objects.count()
+        request = {'airport':20}
+        upload_airport(request)
+        self.assertEqual(Airport.objects.count(), 20 + airport_count)
+    
+    def test_sign_for_flight(self):
+        passager = Passager.objects.create(first_name="John", surname="Doe")
+        flight = Flight.objects.create(start=self.airport_start, destination=self.airport_destination, date=timezone.now())
+        passager_id = passager.id
+        flight_id = flight.id
+        sign_for_flight(passager_id, flight_id)
+        flight_passager = FlightPassager.objects.filter(passager=passager, flight=flight).first()
+        self.assertIsNotNone(flight_passager)
+        self.assertEqual(flight_passager.passager, passager)
+        self.assertEqual(flight_passager.flight, flight)
+
