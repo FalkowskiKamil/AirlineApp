@@ -7,6 +7,7 @@ from manage import configure_logger
 
 logger = configure_logger()
 
+
 # Create your views here.
 def registration_request(request):
     """
@@ -25,7 +26,7 @@ def registration_request(request):
         password = request.POST["psw"]
         first_name = request.POST["firstname"]
         last_name = request.POST["lastname"]
-        current_user= User.objects.filter(username=username).first()
+        current_user = User.objects.filter(username=username).first()
         if current_user is None:
             user = User.objects.create_user(
                 username=username,
@@ -34,7 +35,7 @@ def registration_request(request):
                 password=password,
             )
             Passager.objects.create(user=user, first_name=first_name, surname=last_name)
-            
+
             logger.debug(f"Register user: {username}")
             login(request, user)
             return redirect("airline:main")

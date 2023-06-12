@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
 from manage import configure_logger
-logger=configure_logger()
+
+logger = configure_logger()
 
 
 # Create your views here.

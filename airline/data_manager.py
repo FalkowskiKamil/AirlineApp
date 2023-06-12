@@ -5,6 +5,7 @@ from django.utils import timezone
 import random
 from manage import configure_logger
 from faker import Faker
+
 logger = configure_logger()
 fake = Faker()
 
@@ -99,9 +100,11 @@ def sign_for_flight(passager_id, flight_id):
     Args:
         passager_id (int): number of passager id
         flight_id (int): number of flight id
-    
+
     """
     passager = get_object_or_404(Passager, pk=passager_id)
     flight = get_object_or_404(Flight, pk=flight_id)
     FlightPassager.objects.create(passager=passager, flight=flight)
-    logger.debug(f'User: {passager.first_name} {passager.surname} register for flight {flight.id}')
+    logger.debug(
+        f"User: {passager.first_name} {passager.surname} register for flight {flight.id}"
+    )
