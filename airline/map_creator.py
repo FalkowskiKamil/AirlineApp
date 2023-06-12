@@ -3,6 +3,17 @@ from folium.vector_layers import PolyLine
 
 
 def create_map(airport_start, airport_dest=None):
+    """
+    Creates a map using Folium library with markers for the starting airport and destination airport (optional).
+
+    Args:
+        airport_start (Airport): The starting airport object.
+        airport_dest (Airport, optional): The destination airport object. Defaults to None.
+
+    Returns:
+        folium.Map: The generated map with markers.
+
+    """
     map = folium.Map(
         location=[airport_start.latitude, airport_start.longitude],
         zoom_start=10,

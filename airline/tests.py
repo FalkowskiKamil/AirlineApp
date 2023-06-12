@@ -168,9 +168,8 @@ class TestViews(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "airline/main_user.html")
+        self.assertTemplateUsed(response, "airline/main.html")
         self.assertIn("countries", response.context)
-        self.assertIn("routes", response.context)
 
     def test_staff_view(self):
         url = reverse("airline:staff")

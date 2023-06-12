@@ -5,6 +5,19 @@ from django.db.models.constraints import UniqueConstraint
 
 # Create your models here.
 class Airport(models.Model):
+    """
+    Model representing an airport.
+
+    Attributes:
+        airport_id (int): The ID of the airport (primary key).
+        name (str): The name of the airport.
+        city (str): The city where the airport is located.
+        country (str): The country where the airport is located.
+        latitude (float): The latitude coordinate of the airport.
+        longitude (float): The longitude coordinate of the airport.
+        departures (ManyToManyField): The flights departing from the airport.
+        arrivals (ManyToManyField): The flights arriving at the airport.
+    """
     airport_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
@@ -23,6 +36,15 @@ class Airport(models.Model):
 
 
 class Flight(models.Model):
+    """
+    Model representing a flight.
+
+    Attributes:
+        start (ForeignKey): The airport where the flight departs from.
+        destination (ForeignKey): The airport where the flight arrives.
+        date (DateTimeField): The date and time of the flight.
+        passengers_flights (ManyToManyField): The passengers associated with the flight.
+    """
     start = models.ForeignKey(
         Airport, on_delete=models.CASCADE, related_name="departure_flights"
     )
@@ -65,6 +87,14 @@ class Flight(models.Model):
 
 
 class Route(models.Model):
+    """
+    Model representing a flight route.
+
+    Attributes:
+        start (ForeignKey): The airport where the route starts.
+        destination (ForeignKey): The airport where the route ends.
+        flights (ManyToManyField): The flights associated with the route.
+    """
     start = models.ForeignKey(
         Airport, on_delete=models.CASCADE, related_name="departure_routes"
     )
@@ -78,6 +108,15 @@ class Route(models.Model):
 
 
 class Passager(models.Model):
+    """
+    Model representing a passenger.
+
+    Attributes:
+        user (ForeignKey): The user associated with the passenger.
+        first_name (str): The first name of the passenger.
+        surname (str): The surname of the passenger.
+        flights (ManyToManyField): The flights associated with the passenger.
+    """
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -96,6 +135,14 @@ class Passager(models.Model):
 
 
 class FlightPassager(models.Model):
+    """
+    Model representing the relationship between flights and passengers.
+
+    Attributes:
+        flight (ForeignKey): The flight associated with the relationship.
+        passager (ForeignKey): The passenger associated with the relationship.
+        Meta (class): Class made to avoid non unique value
+    """
     flight = models.ForeignKey(
         Flight, on_delete=models.CASCADE, related_name="flight_passagers"
     )

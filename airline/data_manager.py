@@ -10,6 +10,13 @@ fake = Faker()
 
 
 def upload_passager(request):
+    """
+    Create passagers to the database.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    """
     passagers = []
     flights = Flight.objects.all()
     num_passager = int(request.get("passager"))
@@ -38,6 +45,13 @@ def upload_passager(request):
 
 
 def upload_flight(request):
+    """
+    Create flight to the database.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    """
     airports = Airport.objects.all()
     num_flights = int(request.get("flight"))
     for i in range(num_flights):
@@ -49,6 +63,13 @@ def upload_flight(request):
 
 
 def upload_airport(request):
+    """
+    Upload airport from database
+
+    Args:
+        request (HttpRequest): the HTTP request object.
+
+    """
     csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
     airports = []
     existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()]
@@ -72,7 +93,15 @@ def upload_airport(request):
 
 
 def sign_for_flight(passager_id, flight_id):
+    """
+    Create connection flight-passager
+
+    Args:
+        passager_id (int): number of passager id
+        flight_id (int): number of flight id
+    
+    """
     passager = get_object_or_404(Passager, pk=passager_id)
     flight = get_object_or_404(Flight, pk=flight_id)
-    flight_passager = FlightPassager.objects.create(passager=passager, flight=flight)
+    FlightPassager.objects.create(passager=passager, flight=flight)
     logger.debug(f'User: {passager.first_name} {passager.surname} register for flight {flight.id}')

@@ -7,6 +7,16 @@ logger=configure_logger()
 
 # Create your views here.
 def main(request):
+    """
+    Renders the main page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {
         "countries": countries,
@@ -15,6 +25,16 @@ def main(request):
 
 
 def country(request):
+    """
+    Renders the page for a searched country.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     context = {}
     if not request.POST["destination_country"]:
         route = Route.objects.filter(
@@ -31,12 +51,32 @@ def country(request):
 
 
 def all(request):
+    """
+    Renders the page with all routes.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {"countries": countries, "routes": Route.objects.all()}
     return render(request, template_name="airline/all.html", context=context)
 
 
 def staff(request):
+    """
+    Renders the staff page with all of the data.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {
         "airport": Airport.objects.all(),
@@ -48,6 +88,17 @@ def staff(request):
 
 
 def passager(request, passager_id):
+    """
+    Renders the page for a specific passenger.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        passager_id (int): The ID of the passenger.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     passager = get_object_or_404(Passager, pk=passager_id)
     context = {
         "passager": passager,
@@ -57,6 +108,17 @@ def passager(request, passager_id):
 
 
 def flight(request, fli_id):
+    """
+    Renders the page for a specific flight.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        fli_id (int): The ID of the flight.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     flight = get_object_or_404(Flight, pk=fli_id)
     map = map_creator.create_map(flight.start, flight.destination)
     context = {"flight": flight, "map": map._repr_html_()}
@@ -67,6 +129,17 @@ def flight(request, fli_id):
 
 
 def airport(request, airport_id):
+    """
+    Renders the page for a specific airport.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        airport_id (int): The ID of the airport.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     airport = get_object_or_404(Airport, pk=airport_id)
     map = map_creator.create_map(airport)
     context = {
@@ -78,6 +151,17 @@ def airport(request, airport_id):
 
 
 def routes(request, route_id):
+    """
+    Renders the page for a specific route.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        route_id (int): The ID of the route.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     route = get_object_or_404(Route, pk=route_id)
     map = map_creator.create_map(route.start, route.destination)
     context = {"route": route, "map": map._repr_html_()}
@@ -85,6 +169,16 @@ def routes(request, route_id):
 
 
 def add_data(request):
+    """
+    Renders the page for adding data to the database.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response containing the rendered page.
+
+    """
     context = {}
     if request.method == "POST":
         match list(request.POST.keys())[1]:

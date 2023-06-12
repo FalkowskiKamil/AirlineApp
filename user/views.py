@@ -7,11 +7,17 @@ from manage import configure_logger
 
 logger = configure_logger()
 
-
 # Create your views here.
-
-
 def registration_request(request):
+    """
+    Handles the user registration request.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered template or a redirect response.
+    """
     context = {}
     if request.method == "POST":
         # Check if user exists
@@ -34,10 +40,19 @@ def registration_request(request):
             return redirect("airline:main")
         else:
             context["message"] = "User already exists."
-    return render(request, "user/user_registration_bootstrap.html", context)
+    return render(request, "user/user_registration.html", context)
 
 
 def login_request(request):
+    """
+    Handles the user login request.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered template or a redirect response.
+    """
     context = {}
     if request.method == "POST":
         username = request.POST["username"]
@@ -49,10 +64,19 @@ def login_request(request):
             return redirect("airline:main")
         else:
             context["message"] = "Invalid username or password."
-    return render(request, "user/user_login_bootstrap.html", context)
+    return render(request, "user/user_login.html", context)
 
 
 def logout_request(request):
+    """
+    Handles the user logout request.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: A redirect response.
+    """
     logger.debug(f"Logout user: {request.user.username}")
     logout(request)
     return redirect("airline:main")

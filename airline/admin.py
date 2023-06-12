@@ -4,6 +4,17 @@ from .models import Airport, Flight, Passager, Route, FlightPassager
 
 # Register your models here.
 class AirportAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Airport model.
+
+    Attributes:
+        list_display (list): The fields to be displayed in the admin list view.
+        list_filter (list): The fields to be used for filtering in the admin list view.
+        exclude (tuple): The fields to be excluded from the admin form.
+        search_fields (list): The fields to be used for searching in the admin list view.
+        has_add_permission/has_change_permission (def): Function to lock possibility to handly add data
+        flight_departures/flight_arrival (def): Function to improve readability of the output
+    """
     list_display = ["name", "city", "country"]
     list_filter = ["country"]
     exclude = ("longitude", "latitude", "departures", "arrivals")
@@ -29,6 +40,16 @@ class AirportAdmin(admin.ModelAdmin):
 
 
 class FlightAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Flight model.
+
+    Attributes:
+        list_display (list): The fields to be displayed in the admin list view.
+        list_filter (list): The fields to be used for filtering in the admin list view.
+        search_fields (list): The fields to be used for searching in the admin list view.
+        inlines (list): The inline models to be displayed in the admin edit view.
+        number_routes/get_passager_flight (def): Function to improve readability of the output 
+    """
     list_display = [
         "id",
         "start",
@@ -69,6 +90,15 @@ class FlightAdmin(admin.ModelAdmin):
 
 
 class PassagerAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Passager model.
+
+    Attributes:
+        list_display (list): The fields to be displayed in the admin list view.
+        search_fields (list): The fields to be used for searching in the admin list view.
+        inlines (list): The inline models to be displayed in the admin edit view.
+        get_flight_passager (def): Function to improve readability of the output
+    """
     list_display = ["id", "first_name", "surname", "get_flight_passager"]
     search_fields = ["id", "first_name", "surname"]
 
@@ -88,6 +118,13 @@ class PassagerAdmin(admin.ModelAdmin):
 
 
 class RouteAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Route model.
+
+    Attributes:
+        list_display (list): The fields to be displayed in the admin list view.
+        exclude (list): The fields to be excluded from the admin form.
+    """
     list_display = ["id", "start", "destination"]
     exclude = ["date"]
 
