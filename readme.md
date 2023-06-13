@@ -13,6 +13,15 @@ AirlinesApp is a Django-based application that allows users to import real data 
 - Logging of user actions including user creation, login, logout, data upload, and flight signing
 - Admin-only access to data upload functionality
 
+## Screenshots
+
+![Screenshot 2023-06-13 at 13-14-32 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/f2ad0e52-3e6e-41ce-8332-9824e620cf20)
+![Screenshot 2023-06-13 at 13-15-10 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/262d64a3-b4bc-412d-a10b-a9245c3d5d9f)
+![Screenshot 2023-06-13 at 13-15-29 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/9ee9827c-5708-4d74-943b-d7611e954b91)
+![Screenshot 2023-06-13 at 13-15-49 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/03c32e7f-5b32-48b1-ad3f-a941f7f36e85)
+![Screenshot 2023-06-13 at 13-16-54 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/3ff12c2b-5df5-420e-88cb-d3e1e023158d)
+
+
 ## Technologies Used
 
 - Django
