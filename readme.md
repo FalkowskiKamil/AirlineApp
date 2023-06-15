@@ -26,6 +26,7 @@ AirlinesApp is a Django-based application that allows users to import real data 
 - Docker
 - Folium
 - Faker (for generating fake data)
+- MongoDB
 
 ## Installation
 
@@ -42,6 +43,7 @@ Option 2:
 
 ## Usage
 
+- To access the full potential of the website, log in using the username "admin" and the password "admin."
 - Register a new user: Users can register by providing a unique username, password, first name, and last name.
 - Login: Registered users can log in using their username and password.
 - Logout: Users can log out of their accounts.
