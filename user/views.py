@@ -85,10 +85,10 @@ def logout_request(request):
 
 
 def message(request, user_id):
+    messages = Message.objects.filter(sender=user_id) | Message.objects.filter(recipient=user_id)
+    messages = messages.order_by('-date')[:10]
     context = {
-        "messages": sorted(
-            list(Message.objects.filter(sender=user_id)) + list(Message.objects.filter(recipient=user_id)),
-            key=lambda message: message.date
-        )
+        "messages": messages
     }
+    Message.objects.filter(recipient=user_id).update(is_read=True)
     return render(request, template_name="user/message.html", context=context)
