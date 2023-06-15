@@ -5,6 +5,7 @@ from django.utils import timezone
 import random
 from manage import configure_logger
 from faker import Faker
+from mongo_connection import client
 
 logger = configure_logger()
 fake = Faker()
@@ -71,7 +72,9 @@ def upload_airport(request):
         request (HttpRequest): the HTTP request object.
 
     """
-    csv_file = pd.read_csv("airline/static/airline/Airports.csv", encoding="ISO-8859-1")
+    db = client["AirlinesAppDB"]
+    collection = db['Airport']
+    csv_file = pd.DataFrame(list(collection.find()))
     airports = []
     existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()]
     max_vol = int(request.get("airport"))
@@ -81,12 +84,12 @@ def upload_airport(request):
         # Checking duplication
         if row[0] not in existing_airport_ids:
             airport = Airport(
-                airport_id=row[0],
-                name=row[1],
-                city=row[2],
-                country=row[3],
-                latitude=row[6],
-                longitude=row[7],
+                airport_id=row[1],
+                name=row[2],
+                city=row[3],
+                country=row[4],
+                latitude=row[5],
+                longitude=row[6],
             )
             airports.append(airport)
             existing_airport_ids.append(row[0])
