@@ -62,3 +62,11 @@ th, td {
 .hidden-element {
     display: none;
 }
+
+.media-chat-even {
+    border-bottom: 1px solid #ccc;
+}
+
+.media-chat-odd {
+    border-bottom: 1px solid #ddd;
+}

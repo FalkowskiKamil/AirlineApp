@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from airline.models import Passager
+from .models import Message
 from manage import configure_logger
 
 logger = configure_logger()
@@ -81,3 +82,13 @@ def logout_request(request):
     logger.debug(f"Logout user: {request.user.username}")
     logout(request)
     return redirect("airline:main")
+
+
+def message(request, user_id):
+    context = {
+        "messages": sorted(
+            list(Message.objects.filter(sender=user_id)) + list(Message.objects.filter(recipient=user_id)),
+            key=lambda message: message.date
+        )
+    }
+    return render(request, template_name="user/message.html", context=context)

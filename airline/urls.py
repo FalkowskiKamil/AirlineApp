@@ -12,4 +12,5 @@ urlpatterns = [
     path("routes/<int:route_id>", views.routes, name="routes"),
     path("country/", views.country, name="country"),
     path("all", views.all, name="all"),
+    path("create_message", views.create_message, name="create_message")
 ]

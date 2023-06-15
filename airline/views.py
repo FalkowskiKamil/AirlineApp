@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
+from user.forms import MessageForm
+from django.contrib.auth.models import User
 from manage import configure_logger
 
 logger = configure_logger()
@@ -24,6 +26,16 @@ def main(request):
     }
     return render(request, template_name="airline/main.html", context=context)
 
+def create_message(request):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.recipient = User.objects.get(is_superuser=True)
+            message.save()
+
+            return redirect('user:message', user_id=request.user.id)
 
 def country(request):
     """
@@ -122,7 +134,8 @@ def flight(request, fli_id):
     """
     flight = get_object_or_404(Flight, pk=fli_id)
     map = map_creator.create_map(flight.start, flight.destination)
-    context = {"flight": flight, "map": map._repr_html_()}
+    form = MessageForm(initial={"context":f"I would like to check out from my upcoming flight nr: {fli_id}"})
+    context = {"flight": flight, "map": map._repr_html_(), "form": form}
     if request.method == "POST":
         data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
         context["message"] = "Signed up for flight!"
