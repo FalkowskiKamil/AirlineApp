@@ -1,13 +1,16 @@
 from django import forms
-from .models import Message
+from .models import Message, MessageAnswer
 
 class MessageForm(forms.ModelForm):
-    context = forms.CharField(widget=forms.Textarea(attrs={'rows': 1}))
+    context = forms.CharField(widget=forms.Textarea(attrs={'rows': 1}), label=False)
 
     class Meta:
         model = Message
         fields = ['context']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['context'].label = ''
+class MessageAnswerForm(forms.ModelForm):
+    context = forms.CharField(widget=forms.Textarea(attrs={'rows': 1}), label=False)
+
+    class Meta:
+        model = MessageAnswer
+        fields = ['context']

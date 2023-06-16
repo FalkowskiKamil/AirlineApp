@@ -49,9 +49,11 @@
    {% if user.passager_user.first in flight.passagers.all %}
    <h1 class="display-4 text-danger text-shadow airport-title banner-text">You are signed up for this flight</h1>
    <small class="m-2">If you want to check out, contact with us and we will try to help you:</small>
-   <form method="post" action="{% url 'airline:create_message' %}">
+   <form method="post" id="message" action="{% url 'airline:create_message' %}">
      {% csrf_token %}
      {{ form.as_p }}
+     
+     <input type="hidden" name="validator_field" value="message">
      <button type="submit" class="btn btn-primary">Send Message</button>
    </form>
    {% else %}

@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from airline.models import Passager
 from .models import Message
+from .forms import MessageAnswerForm
 from manage import configure_logger
 
 logger = configure_logger()
@@ -88,7 +89,8 @@ def message(request):
     messages = Message.objects.filter(sender=request.user) | Message.objects.filter(recipient=request.user)
     messages = messages.order_by('-date')[:10]
     context = {
-        "messages": messages
+        "messages": messages,
+        'form': MessageAnswerForm
     }
     Message.objects.filter(recipient=request.user).update(is_read=True)
     return render(request, template_name="user/message.html", context=context)

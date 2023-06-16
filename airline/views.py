@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
-from user.forms import MessageForm
+from user.forms import MessageForm, MessageAnswerForm
+from user.models import Message
 from django.contrib.auth.models import User
 from manage import configure_logger
 
@@ -28,14 +29,21 @@ def main(request):
 
 def create_message(request):
     if request.method == 'POST':
-        form = MessageForm(request.POST)
-        if form.is_valid():
-            message = form.save(commit=False)
-            message.sender = request.user
-            message.recipient = User.objects.get(is_superuser=True)
-            message.save()
+        if request.POST.get('validator_field') == "answer":
+            form = MessageAnswerForm(request.POST)
+            if form.is_valid():
+                message_answer = form.save(commit=False)
+                message_answer.message = Message.objects.get(id=request.POST.get('message_id'))
+                message_answer.save()
 
-            return redirect('user:message', user_id=request.user.id)
+        elif request.POST.get('validator_field') == "message":  
+            form = MessageForm(request.POST)
+            if form.is_valid():
+                message = form.save(commit=False)
+                message.sender = request.user
+                message.recipient = User.objects.get(is_superuser=True)
+                message.save()
+        return redirect('user:message')
 
 def country(request):
     """
