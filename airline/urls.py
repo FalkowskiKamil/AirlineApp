@@ -12,5 +12,6 @@ urlpatterns = [
     path("routes/<int:route_id>", views.routes, name="routes"),
     path("country/", views.country, name="country"),
     path("all", views.all, name="all"),
-    path("create_message", views.create_message, name="create_message")
+    path("create_message", views.create_message, name="create_message"),
+    path("new_message/<int:user_id>", views.new_message, name="new_message")
 ]

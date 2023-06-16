@@ -52,8 +52,8 @@
    <form method="post" id="message" action="{% url 'airline:create_message' %}">
      {% csrf_token %}
      {{ form.as_p }}
-     
      <input type="hidden" name="validator_field" value="message">
+     <input type="hidden" name="recipient" value="">
      <button type="submit" class="btn btn-primary">Send Message</button>
    </form>
    {% else %}

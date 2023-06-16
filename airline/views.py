@@ -41,9 +41,20 @@ def create_message(request):
             if form.is_valid():
                 message = form.save(commit=False)
                 message.sender = request.user
-                message.recipient = User.objects.get(is_superuser=True)
+                if request.POST.get('recipient') == "":
+                    message.recipient = User.objects.get(is_superuser=True)
+                else:
+                    message.recipient = User.objects.get(id=request.POST.get('recipient'))
                 message.save()
         return redirect('user:message')
+    
+def new_message(request, user_id):
+    context={
+        'form':MessageForm,
+        'user_id':user_id
+    }
+    return render(request, template_name='airline/new_message.html', context=context)
+
 
 def country(request):
     """
