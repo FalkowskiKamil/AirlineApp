@@ -84,11 +84,11 @@ def logout_request(request):
     return redirect("airline:main")
 
 
-def message(request, user_id):
-    messages = Message.objects.filter(sender=user_id) | Message.objects.filter(recipient=user_id)
+def message(request):
+    messages = Message.objects.filter(sender=request.user) | Message.objects.filter(recipient=request.user)
     messages = messages.order_by('-date')[:10]
     context = {
         "messages": messages
     }
-    Message.objects.filter(recipient=user_id).update(is_read=True)
+    Message.objects.filter(recipient=request.user).update(is_read=True)
     return render(request, template_name="user/message.html", context=context)

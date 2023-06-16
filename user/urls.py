@@ -7,5 +7,5 @@ urlpatterns = [
     path("registration/", views.registration_request, name="registration"),
     path("login/", views.login_request, name="login"),
     path("logout/", views.logout_request, name="logout"),
-    path('message/<int:user_id>', views.message, name='message')
+    path('message/', views.message, name='message')
 ]
