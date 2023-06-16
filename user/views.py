@@ -86,11 +86,10 @@ def logout_request(request):
 
 
 def message(request):
-    messages = Message.objects.filter(sender=request.user) | Message.objects.filter(recipient=request.user)
-    messages = messages.order_by('-date')[:10]
-    context = {
-        "messages": messages,
-        'form': MessageAnswerForm
-    }
+    messages = Message.objects.filter(sender=request.user) | Message.objects.filter(
+        recipient=request.user
+    )
+    messages = messages.order_by("-date")[:10]
+    context = {"messages": messages, "form": MessageAnswerForm}
     Message.objects.filter(recipient=request.user).update(is_read=True)
     return render(request, template_name="user/message.html", context=context)

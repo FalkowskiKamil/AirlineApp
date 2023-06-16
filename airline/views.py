@@ -27,33 +27,36 @@ def main(request):
     }
     return render(request, template_name="airline/main.html", context=context)
 
+
 def create_message(request):
-    if request.method == 'POST':
-        if request.POST.get('validator_field') == "answer":
+    if request.method == "POST":
+        if request.POST.get("validator_field") == "answer":
             form = MessageAnswerForm(request.POST)
             if form.is_valid():
                 message_answer = form.save(commit=False)
-                message_answer.message = Message.objects.get(id=request.POST.get('message_id'))
+                message_answer.message = Message.objects.get(
+                    id=request.POST.get("message_id")
+                )
                 message_answer.save()
 
-        elif request.POST.get('validator_field') == "message":  
+        elif request.POST.get("validator_field") == "message":
             form = MessageForm(request.POST)
             if form.is_valid():
                 message = form.save(commit=False)
                 message.sender = request.user
-                if request.POST.get('recipient') == "":
+                if request.POST.get("recipient") == "":
                     message.recipient = User.objects.get(is_superuser=True)
                 else:
-                    message.recipient = User.objects.get(id=request.POST.get('recipient'))
+                    message.recipient = User.objects.get(
+                        id=request.POST.get("recipient")
+                    )
                 message.save()
-        return redirect('user:message')
-    
+        return redirect("user:message")
+
+
 def new_message(request, user_id):
-    context={
-        'form':MessageForm,
-        'user_id':user_id
-    }
-    return render(request, template_name='airline/new_message.html', context=context)
+    context = {"form": MessageForm, "user_id": user_id}
+    return render(request, template_name="airline/new_message.html", context=context)
 
 
 def country(request):
@@ -153,7 +156,11 @@ def flight(request, fli_id):
     """
     flight = get_object_or_404(Flight, pk=fli_id)
     map = map_creator.create_map(flight.start, flight.destination)
-    form = MessageForm(initial={"context":f"I would like to check out from my upcoming flight nr: {fli_id}"})
+    form = MessageForm(
+        initial={
+            "context": f"I would like to check out from my upcoming flight nr: {fli_id}"
+        }
+    )
     context = {"flight": flight, "map": map._repr_html_(), "form": form}
     if request.method == "POST":
         data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)

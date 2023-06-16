@@ -73,7 +73,7 @@ def upload_airport(request):
 
     """
     db = client["AirlinesAppDB"]
-    collection = db['Airport']
+    collection = db["Airport"]
     csv_file = pd.DataFrame(list(collection.find()))
     airports = []
     existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()]
