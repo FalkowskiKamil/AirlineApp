@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: air
+spec:
+  minReadySeconds: 1
+  selector:
+    matchLabels:
+      mylabelname: air
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        mylabelname: air
+    spec:
+      containers:
+      - name: air
+        image: falkowskikamil/airlinesapp:air
