@@ -988,3 +988,106 @@
 2023-06-29 13:49:52,201 - __main__ - INFO - Server is starting...
 2023-06-29 13:56:43,872 - __main__ - INFO - Server is starting...
 2023-06-29 13:56:44,610 - __main__ - INFO - Server is starting...
+2023-06-29 14:05:30,840 - __main__ - INFO - Server is starting...
+2023-06-29 14:05:43,654 - __main__ - INFO - Server is starting...
+2023-06-29 14:05:44,394 - __main__ - ERROR - An error occurred: The file '&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000001A904132CE0>.
+
+The CSS file 'styles.css' references a file which could not be found:
+  &quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Y510p\Documents\Felo\PRG\Backup\Public\AirlinesApp\manage.py", line 52, in main
+    execute_from_command_line(sys.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 446, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 440, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 402, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 448, in execute
+    output = self.handle(*args, **options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 209, in handle
+    collected = self.collect()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 154, in collect
+    raise processed
+whitenoise.storage.MissingFileError: The file '&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000001A904132CE0>.
+
+The CSS file 'styles.css' references a file which could not be found:
+  &quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+
+2023-06-29 14:06:28,432 - __main__ - INFO - Server is starting...
+2023-06-29 14:06:37,097 - __main__ - INFO - Server is starting...
+2023-06-29 14:06:39,257 - __main__ - ERROR - An error occurred: The file '&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000002EA1D8C2CE0>.
+
+The CSS file 'styles.css' references a file which could not be found:
+  &quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Y510p\Documents\Felo\PRG\Backup\Public\AirlinesApp\manage.py", line 52, in main
+    execute_from_command_line(sys.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 446, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 440, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 402, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 448, in execute
+    output = self.handle(*args, **options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 209, in handle
+    collected = self.collect()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 154, in collect
+    raise processed
+whitenoise.storage.MissingFileError: The file '&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000002EA1D8C2CE0>.
+
+The CSS file 'styles.css' references a file which could not be found:
+  &quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+
+2023-06-29 14:10:05,052 - __main__ - INFO - Server is starting...
+2023-06-29 14:10:07,127 - __main__ - ERROR - An error occurred: The file '&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000002010EB22D70>.
+
+The CSS file 'styles.css' references a file which could not be found:
+  &quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Y510p\Documents\Felo\PRG\Backup\Public\AirlinesApp\manage.py", line 52, in main
+    execute_from_command_line(sys.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 446, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 440, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 402, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 448, in execute
+    output = self.handle(*args, **options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 209, in handle
+    collected = self.collect()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 154, in collect
+    raise processed
+whitenoise.storage.MissingFileError: The file '&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000002010EB22D70>.
+
+The CSS file 'styles.css' references a file which could not be found:
+  &quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+
+2023-06-29 14:10:43,910 - __main__ - INFO - Server is starting...
+2023-06-29 14:21:35,759 - __main__ - INFO - Server is starting...
+2023-06-29 14:21:36,476 - __main__ - INFO - Server is starting...
+2023-06-29 14:22:28,701 - __main__ - INFO - Server is starting...
+2023-06-29 14:22:29,372 - __main__ - INFO - Server is starting...
+2023-06-29 14:22:55,258 - __main__ - INFO - Server is starting...
+2023-06-29 14:22:55,949 - __main__ - INFO - Server is starting...
+2023-06-29 14:23:33,371 - __main__ - INFO - Server is starting...
