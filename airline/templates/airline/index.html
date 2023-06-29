@@ -12,6 +12,9 @@
       <nav class="navbar navbar-light bg-light border">
          <div class="container-fluid">
             <div class="navbar-header">
+               <a class="navbar-brand">
+                  <img src="{% static 'logo.png' %}" alt="PRZKSODPRASKDASOPWKAFIOSJSP">
+                  </a>
                <a class="navbar-brand" href="{% url 'airline:main' %}">Airlines</a>
                {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
                <a class="navbar-brand" href="/airline/staff">Staff</a>
