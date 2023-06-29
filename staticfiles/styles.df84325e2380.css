@@ -1,0 +1,68 @@
+th, td {
+    vertical-align: middle !important;
+}
+
+
+.banner-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    padding: 1rem;
+    color: white;
+}
+
+
+.custom-height {
+   min-height: 100vh;
+   overflow: hidden;
+}
+
+.map {
+    max-height: 250px; 
+    overflow: auto;
+}
+
+.airport-main {
+    position: absolute;
+    width: 100%;
+}
+
+.airport-title {
+    text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.airport-border {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    overflow-x: auto;
+}
+
+.airport-container-title {
+    overflow-x: auto;
+}
+
+.sign-container {
+    position: fixed, width=100%;
+}
+
+.passager-td {
+    width: 15%; 
+    max-height: 10%; 
+    overflow: hidden; 
+    line-height: 1em;
+}
+
+.airport-link{
+    color: black;
+}
+
+.hidden-element {
+    display: none;
+}
+
+.media-chat-even {
+    border-bottom: 1px solid #ccc;
+}
+
+.media-chat-odd {
+    border-bottom: 1px solid #ddd;
+}
