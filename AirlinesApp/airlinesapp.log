@@ -1122,3 +1122,35 @@ The CSS file 'airline\styles.css' references a file which could not be found:
 Please check the URL references in this CSS file, particularly any
 relative paths which might be pointing to the wrong location.
 
+2023-06-29 14:28:58,234 - __main__ - INFO - Server is starting...
+2023-06-29 14:29:00,158 - __main__ - ERROR - An error occurred: The file 'airline/&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000001EAF9552CE0>.
+
+The CSS file 'airline\styles.css' references a file which could not be found:
+  airline/&quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Y510p\Documents\Felo\PRG\Backup\Public\AirlinesApp\manage.py", line 52, in main
+    execute_from_command_line(sys.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 446, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\__init__.py", line 440, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 402, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\core\management\base.py", line 448, in execute
+    output = self.handle(*args, **options)
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 209, in handle
+    collected = self.collect()
+  File "C:\Users\Lenovo Y510p\AppData\Local\Programs\Python\Python310\lib\site-packages\django\contrib\staticfiles\management\commands\collectstatic.py", line 154, in collect
+    raise processed
+whitenoise.storage.MissingFileError: The file 'airline/&quot' could not be found with <whitenoise.storage.CompressedManifestStaticFilesStorage object at 0x000001EAF9552CE0>.
+
+The CSS file 'airline\styles.css' references a file which could not be found:
+  airline/&quot
+
+Please check the URL references in this CSS file, particularly any
+relative paths which might be pointing to the wrong location.
+
+2023-06-29 14:30:18,780 - __main__ - INFO - Server is starting...
