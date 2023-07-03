@@ -27,10 +27,13 @@ AirlinesApp is a Django-based application that allows users to import real data 
 ## Technologies Used
 
 - Django
-- Docker
 - Folium
-- Faker (for generating fake data)
+- Faker
+- Selenium
+- Pytest
 - MongoDB
+- Docker
+- Kubernetes
 
 ## Installation
 
