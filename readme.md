@@ -3,6 +3,10 @@
 AirlinesApp is a Django-based application that allows users to import real data about airports and create fake connections (flights) between them. The app provides features such as displaying airports on a map, creating routes between airports, and allowing users to sign up for flights.
 
 
+## Overview
+![You can have an overview of the functionality of the app on replit](https://replit.com/@KamilFalkowski/AirlineAppdjango)
+
+
 ## Features
 
 - Import real data about airports including country, coordinates, city, and name
