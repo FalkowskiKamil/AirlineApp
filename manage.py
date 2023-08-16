@@ -7,12 +7,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AirlinesApp.settings")
 
 
 def configure_logger():
-    """
-    Configures the logger for the application.
-
-    Returns:
-        The configured logger object.
-    """
     logger = logging.getLogger(__name__)
     logger.setLevel(settings.LOGGING["loggers"]["airlinesapp"]["level"])
 
@@ -32,9 +26,6 @@ def configure_logger():
 
 
 def main():
-    """
-    Main function to run administrative tasks.
-    """
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AirlinesApp.settings")
 
     try:
@@ -47,7 +38,7 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
-    logger.info("Server is starting...")
+        logger.info("Server is starting...")
     try:
         execute_from_command_line(sys.argv)
     except Exception as e:

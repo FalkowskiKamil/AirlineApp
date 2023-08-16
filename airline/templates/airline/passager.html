@@ -1,36 +1,30 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<div class="background custom-height">
-   <h1 class="align-middle text-center m-4 text-shadow airport-title banner-text">Flights registered for: {{passager.first_name}} {{passager.surname}}</h1>
-   <small><a href="/airline/new_message/{{passager.user.id}}">Write message to user</a></small>
-   
-   <div class="shadow-lg p-3 mb-5 bg-white rounded airport-border">
-      <table class="table table-striped table-secondary table-bordered shadow-lg p-3 mb-5 bg-white rounded">
-         <thead>
-            <tr>
-               <th>Flight number: </th>
-               <th>Start:</th>
-               <th>Destination: </th>
-               <th>Date: </th>
-            </tr>
-         </thead>
-         <tbody>
-            {% if passager.flight_passagers.all %}
-            {% for fli in passager.flights_passengers.all %}
-            <tr >
-               <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
-               <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
-               <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
-               <td>{{fli.date}}</td>
-            </tr>
-            {% endfor %}
-            {% else %}
-            <tr>
-               <td>Sorry, currently no flight data are avaible</td>
-            </tr>
-            {% endif %}
-         </tbody>
-      </table>
-   </div>
-</div>
+<main>
+    <h1 class="text-center m-4 banner-text">
+        Flights registered for: {{passager.first_name}} {{passager.surname}}
+    </h1>
+   <section class="d-flex flex-wrap justify-content-center">
+      {% if passager.flight_passagers.all %}
+      {% for fli in passager.flights_passengers.all %}
+      <div class="card m-3" style="width: 18rem;">
+         <div class="card-header text-center">
+            Flight number: <a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>
+         </div>
+         <div class="card-body">
+            <p class="card-text">Start: <a href="/airline/airport/{{fli.start.airport_id}}">
+               {{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a>
+            </p>
+            <p class="card-text">Destination: <a href="/airline/airport/{{fli.destination.airport_id}}">
+               {{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a>
+            </p>
+            <p class="card-text">Date: {{fli.date}}</p>
+         </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p class="text-center">Sorry, currently no flight data are available</p>
+      {% endif %}
+   </section>
+</main>
 {% endblock %}

@@ -1,24 +1,16 @@
-{% extends "airline/index.html" %}
-{% block content %}
-<div class="background custom-height">
-<div class="row h-50 justify-content-center align-items-center">
-   <div class="m-3 text-center">
-      <form action="{% url 'airline:country' %}" method="post">
-         <label for="" class="form-label display-4 text-light banner-text">Where do we fly?</label>
-         <input type="text" class="form-control form-control-sm m-2" name="start_country" id="start_country" list="countries" placeholder="Flight Start" required>
-         <small class="form-text text-white">Flight Start</small>
-         <input type="text" class="form-control form-control-sm m-2" name="destination_country" id="destination_country" list="countries" placeholder="Flight Destination">
-         <small class="form-text text-white mb-2">Flight Destination</small>
-         <datalist id="countries">
-            {% for country in countries %}
-            <option value="{{country}}">
-               {% endfor %}
-         </datalist>
-         {% csrf_token %}
-         <div class="d-grid gap-2">
-         <button type="submit" class="btn btn-primary">Check flights</a>
-      </form>
-      </div>
-   </div>
-</div>
+{% extends "airline/index.html" %} {% block content %}
+<form class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-5 mt-5" action="{% url 'airline:country' %}" method="post">
+    {% csrf_token %}
+    <h1 class="display-3 banner-text">Where do we fly?</h1>
+    <label for="start_country" class="col-form-label">Flight Start</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="start_country" id="start_country" list="countries" placeholder="Flight Start" required>
+    <label for="destination_country" class="col-form-label">Flight Destination</label>
+    <input type="text" class="form-control form-control-sm mb-2" name="destination_country" id="destination_country" list="countries" placeholder="Flight Destination">
+    <datalist id="countries">
+        {% for country in countries %}
+        <option value="{{country}}">
+        {% endfor %}
+    </datalist>
+    <button type="submit" class="btn btn-success form-control form-control-sm mt-4">Check flights</button>
+</form>
 {% endblock %}

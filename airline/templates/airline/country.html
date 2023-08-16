@@ -1,38 +1,41 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<div class="background text-center text-white banner-text  custom-height">
-   <div class=" d-flex flex-column justify-content-center">
-      <h1>All Possible Flights on This Track:</h1>
+<main>
+    <h1 class="text-center m-4 banner-text">
+        All Possible Flights on This Track:
+    </h1>
+   <section class="d-flex flex-wrap justify-content-center">
       {% if countries|length %}
       {% for country in countries %}
-      {% if forloop.counter <= 5 %}
-      <div class="p-3">
-         <h2>Every flight from: {{ country.start.country }} to {{ country.destination.country }}:</h2>
-         <a class="btn btn-primary btn-lg mt-3" href="{% url 'airline:routes' route_id=country.id %}">
-         {{ country.flights.first.start}} to {{country.flights.first.destination}}
-         </a>
+      {% if forloop.counter <= 15 %}
+      <div class="card m-3 col-4" style="width: 18rem;">
+         <div class="card-header text-center">
+            {{ country.start.country }} to {{ country.destination.country }}:
+         </div>
+         <div class="card-body d-flex justify-content-center align-items-center">
+            <p class="card-text">
+                <a class="btn btn-success " href="{% url 'airline:routes' route_id=country.id %}">
+                    {{ country.flights.first.start.city }} to {{ country.flights.first.destination.city }}
+                </a>
+            </p>
+         </div>
       </div>
       {% endif %}
       {% endfor %}
-      {% if countries|length > 5 %}
-      <div>
-         <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button"> and {{ countries|length|add:-5 }} more...</a>
-      </div>
+      {% if countries|length > 15 %}
+      <div class="text-center col-12 mt-2">
+          <a class="btn btn-success" href="{% url 'airline:full_data_user' %}" role="button"> and {{ countries|length|add:-5 }} more...</a>
       {% endif %}
       {% else %}
-      <h2>Sorry, Currently No Flights on This Track</h2>
-      <div>
-         <a class="btn btn-primary" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
+      <p class="text-center m-4 col-12">Sorry, Currently No Flights on This Track</p>
+      <div class="d-flex justify-content-center">
+          <a class="btn btn-success m-3" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
+          <span class="m-3">or</span>
+          <a class="btn btn-success m-3" href="{% url 'airline:all' %}" role="button">
+              Check Every Possible Flight in our Airline
+          </a>
       </div>
-      <div >
-         <span>or</span>
-      </div>
-      <div>
-         <a class="btn btn-primary" href="{% url 'airline:all' %}" role="button">
-         Check Every Possible Flight on Our Airline
-         </a>
-      </div>
-   </div>
-   {% endif %}
-</div>
+      {% endif %}
+   </section>
+</main>
 {% endblock %}

@@ -5,71 +5,24 @@ from user.forms import MessageForm, MessageAnswerForm
 from user.models import Message
 from django.contrib.auth.models import User
 from manage import configure_logger
+import requests
+import folium
+import geoip2.database
 
 logger = configure_logger()
 
 
 # Create your views here.
 def main(request):
-    """
-    Renders the main page.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {
         "countries": countries,
     }
+    
     return render(request, template_name="airline/main.html", context=context)
 
 
-def create_message(request):
-    if request.method == "POST":
-        if request.POST.get("validator_field") == "answer":
-            form = MessageAnswerForm(request.POST)
-            if form.is_valid():
-                message_answer = form.save(commit=False)
-                message_answer.message = Message.objects.get(
-                    id=request.POST.get("message_id")
-                )
-                message_answer.save()
-
-        elif request.POST.get("validator_field") == "message":
-            form = MessageForm(request.POST)
-            if form.is_valid():
-                message = form.save(commit=False)
-                message.sender = request.user
-                if request.POST.get("recipient") == "":
-                    message.recipient = User.objects.get(is_superuser=True)
-                else:
-                    message.recipient = User.objects.get(
-                        id=request.POST.get("recipient")
-                    )
-                message.save()
-        return redirect("user:message")
-
-
-def new_message(request, user_id):
-    context = {"form": MessageForm, "user_id": user_id}
-    return render(request, template_name="airline/new_message.html", context=context)
-
-
 def country(request):
-    """
-    Renders the page for a searched country.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     context = {}
     if not request.POST["destination_country"]:
         route = Route.objects.filter(
@@ -85,33 +38,13 @@ def country(request):
     return render(request, template_name="airline/country.html", context=context)
 
 
-def all(request):
-    """
-    Renders the page with all routes.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
+def full_data_user(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {"countries": countries, "routes": Route.objects.all()}
-    return render(request, template_name="airline/all.html", context=context)
+    return render(request, template_name="airline/full_data_user.html", context=context)
 
 
-def staff(request):
-    """
-    Renders the staff page with all of the data.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
+def full_data_staff(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
     context = {
         "airport": Airport.objects.all(),
@@ -119,21 +52,10 @@ def staff(request):
         "flight": Flight.objects.all().order_by("date"),
         "countries": countries,
     }
-    return render(request, template_name="airline/main_staff.html", context=context)
+    return render(request, template_name="airline/full_data_staff.html", context=context)
 
 
 def passager(request, passager_id):
-    """
-    Renders the page for a specific passenger.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-        passager_id (int): The ID of the passenger.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     passager = get_object_or_404(Passager, pk=passager_id)
     context = {
         "passager": passager,
@@ -143,17 +65,6 @@ def passager(request, passager_id):
 
 
 def flight(request, fli_id):
-    """
-    Renders the page for a specific flight.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-        fli_id (int): The ID of the flight.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     flight = get_object_or_404(Flight, pk=fli_id)
     map = map_creator.create_map(flight.start, flight.destination)
     form = MessageForm(
@@ -169,17 +80,6 @@ def flight(request, fli_id):
 
 
 def airport(request, airport_id):
-    """
-    Renders the page for a specific airport.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-        airport_id (int): The ID of the airport.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     airport = get_object_or_404(Airport, pk=airport_id)
     map = map_creator.create_map(airport)
     context = {
@@ -191,17 +91,6 @@ def airport(request, airport_id):
 
 
 def routes(request, route_id):
-    """
-    Renders the page for a specific route.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-        route_id (int): The ID of the route.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     route = get_object_or_404(Route, pk=route_id)
     map = map_creator.create_map(route.start, route.destination)
     context = {"route": route, "map": map._repr_html_()}
@@ -209,29 +98,16 @@ def routes(request, route_id):
 
 
 def add_data(request):
-    """
-    Renders the page for adding data to the database.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The HTTP response containing the rendered page.
-
-    """
     context = {}
     if request.method == "POST":
         match list(request.POST.keys())[1]:
             case "airport":
                 data_manager.upload_airport(request.POST)
-                logger.info(f"Added {request.POST.get('airport')} airport")
                 context = {"message": "Succesfuly loaded airport!"}
             case "flight":
                 data_manager.upload_flight(request.POST)
-                logger.info(f"Added {request.POST.get('flight')} flight")
                 context = {"message": "Succesfuly loaded flight!"}
             case "passager":
                 data_manager.upload_passager(request.POST)
-                logger.info(f"Added {request.POST.get('passager')} passager")
                 context = {"message": "Succesfuly loaded passager"}
     return render(request, template_name="airline/add_data.html", context=context)

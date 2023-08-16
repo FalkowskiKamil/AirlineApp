@@ -12,15 +12,6 @@ logger = configure_logger()
 
 # Create your views here.
 def registration_request(request):
-    """
-    Handles the user registration request.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The rendered template or a redirect response.
-    """
     context = {}
     if request.method == "POST":
         # Check if user exists
@@ -47,15 +38,6 @@ def registration_request(request):
 
 
 def login_request(request):
-    """
-    Handles the user login request.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: The rendered template or a redirect response.
-    """
     context = {}
     if request.method == "POST":
         username = request.POST["username"]
@@ -71,25 +53,8 @@ def login_request(request):
 
 
 def logout_request(request):
-    """
-    Handles the user logout request.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    Returns:
-        HttpResponse: A redirect response.
-    """
     logger.debug(f"Logout user: {request.user.username}")
     logout(request)
     return redirect("airline:main")
 
 
-def message(request):
-    messages = Message.objects.filter(sender=request.user) | Message.objects.filter(
-        recipient=request.user
-    )
-    messages = messages.order_by("-date")[:10]
-    context = {"messages": messages, "form": MessageAnswerForm}
-    Message.objects.filter(recipient=request.user).update(is_read=True)
-    return render(request, template_name="user/message.html", context=context)

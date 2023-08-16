@@ -1,15 +1,16 @@
 {% extends "airline/index.html" %}
 {% block content %}
-{% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
+{% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+<main class="bg-white w-100">
 <table class="table" id="table1">
-   <thead>
-      <tr class="bg-info">
+   <thead class="bg-success">
+      <tr class="align-middle">
          <th>Flight number: </th>
          <th>Route number: </th>
          <th>
             <label for="start">Start: </label>
             {% if countries|length > 5 %}
-            <input type="text" id="start" placeholder="Search start country...">
+            <input type="text" id="start" class="start" placeholder="Search start country...">
             {% else %}
             <select id="start">
                <option value="">All</option>
@@ -22,7 +23,7 @@
          <th>
             <label for="destination">Destination: </label>
             {% if countries|length > 5 %}
-            <input type="text" id="destination" placeholder="Search destination country...">
+            <input type="text" id="destination" class="destination" placeholder="Search destination country...">
             {% else %}
             <select id="destination">
                <option value="">All</option>
@@ -36,7 +37,7 @@
          <th>Passager: </th>
       </tr>
    </thead>
-   <tbody id="flight-table-body">
+   <tbody class="flight-table-body" id="flight-table-body">
       {% if not airport %}
       <form class="form-inline" action="{% url 'airline:upload_airport' %}" method="post">
          {% csrf_token %}
@@ -47,13 +48,13 @@
       {% else %}
       {% if flight %}
       {% for fli in flight %}
-      <tr data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
-         <td><a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>  </td>
+      <tr class="align-middle" data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
+         <td><a class="text-decoration-none link-dark" href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
          {% for route in fli.routes.all %}
-         <td><a href="/airline/routes/{{route}}">{{route}}</a></td>
+         <td><a class="text-decoration-none link-dark" href="/airline/routes/{{route}}">{{route}}</a></td>
          {% endfor %}
-         <td><a href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
-         <td><a href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
+         <td><a class="text-decoration-none link-dark" href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
+         <td><a class="text-decoration-none link-dark" href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
          <td>{{fli.date}}</td>
          {% if fli.passengers.all %}
          <td class="passager-td">
@@ -61,7 +62,7 @@
             {% if forloop.counter <= 5 %}
             <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, 
             {% elif forloop.counter == 6 %}
-            <a href='/airline/flight/{{fli.id}}'> and {{ fli.passengers.all|length|add:-5 }} more...</a>
+            <a href="/airline/flight/{{fli.id}}"> and {{ fli.passengers.all|length|add:-5 }} more...</a>
             {% endif %}
             {% endfor %}
          </td>
@@ -84,8 +85,9 @@
       {% endif %}
    </tbody>
 </table>
+</main>
 {% else %}
-<h1 class="align-middle text-center"><a href="/airline/"> Sory,you have no permission for this page</a></h1>
+<h1 class="align-middle text-center"><a href="/airline/"> Sory,you dont have permission for this page</a></h1>
 {% endif %}
-<script src="/static/script_main_staff.js"></script>
+<script src="/static/filter&Stripe.js"></script>
 {% endblock %}

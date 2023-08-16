@@ -1,42 +1,44 @@
 {% extends "airline/index.html" %}
 {% block content %}
-{% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-<div class="background custom-height">
-   <table class="table table-striped table-secondary border border-dark shadow p-3 mb-5 bg-white rounded airport-container-title" >
-      <tbody>
-         <tr>
-            <td>
-               <form class="form-inline mt-2" method="post">
-                  {% csrf_token %}
-                  <label for="airport">Quantity of random airport to load: (2-250)</label>
-                  <input class="m-2" type="number" name="airport" min="2" max="250">
-                  <button class="btn btn-primary m-2" type="submit">Upload airport Data</button>
-               </form>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <form class="form-inline"method="post">
-                  {% csrf_token %}
-                  <label for="flight">Quantity of fake flight to load: (1-100)</label>
-                  <input class="m-2" type="number" name="flight" min="1" max="100">
-                  <button class="btn btn-primary m-2" type="submit">Upload flight Data</button>
-               </form>
-            </td>
-         </tr>
-         <tr>
-            <td class="border-bottom">
-               <form class="form-inline" method="post">
-                  {% csrf_token %}
-                  <label for="passager">Quantity of fake passager to create: (1-100)</label>
-                  <input class = "m-2" type="number" name="passager" min="1" max="100">
-                  <button class="btn btn-primary m-2" type="submit">Upload passager Data</button>
-               </form>
-            </td>
-         </tr>
-      </tbody>
-   </table>
-</div>
+{% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+<main class="d-flex flex-wrap mt-4 justify-content-center">
+    <header class="col-12 text-center">
+        <h1>Choose a data to load:</h1>
+        <small>Caution! Loading data need connection with MongoDB, so it may take a while</small>
+    </header>
+    <section class="card shadow p-3 m-2 bg-white rounded">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <label class="form-label fw-bold" for="airport">Quantity of random airport to load: (2-250)</label>
+                <input class="form-control my-2" placeholder="Airport" type="number" name="airport" min="2" max="250">
+                <button class="btn btn-success form-control form-control-sm" type="submit">Upload airport Data</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="card shadow p-3 m-2 bg-white rounded">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <label class="form-label fw-bold" for="flight">Quantity of fake flight to load: (1-100)</label>
+                <input class="form-control my-2" placeholder="Flight" type="number" name="flight" min="1" max="100">
+                <button class="btn btn-success form-control form-control-sm" type="submit">Upload flight Data</button>
+            </form>
+    </div>
+    </section>
+
+    <section class="card shadow p-3 m-2 bg-white rounded">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <label class="form-label fw-bold" for="passager">Quantity of fake passager to create: (1-100)</label>
+                <input class="form-control my-2" placeholder="Passager" type="number" name="passager" min="1" max="100">
+                <button class="btn btn-success form-control form-control-sm" type="submit">Upload passager Data</button>
+            </form>
+        </div>
+    </section>
+</main>
 {% else %}
 <h1 class="align-middle text-center"><a href="/airline/"> Sory,you have no permission for this page</a></h1>
 {% endif %}

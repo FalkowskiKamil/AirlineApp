@@ -1,68 +1,56 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<div class="map">{{ map|safe }}</div>
-<div class="p-3 bg-info text-white text-center airport-main background custom-height" >
-   <h1 class="text-shadow airport-title banner-text" >
+<main>
+   <div class="map">{{ map|safe }}</div>
+   <header>
+      <h1 class="text-center m-4 banner-text">
       Flight "{{flight.id}}"
-      from: <a class="airport-link" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
-      to: <a class="airport-link" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
-      (route {% for route in flight.routes.all %} <a href=/airline/routes/{{route}} class="airport-link">{{route}}</a>{% endfor %})
+      from: <a class="link-secondary" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
+      to: <a class="link-secondary" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
+      (route {% for route in flight.routes.all %} <a class="link-secondary" href=/airline/routes/{{route}}>{{route}}</a>{% endfor %})
       on {{flight.date}}
-   </h1>
-   {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-   <div class="shadow-lg p-3 mb-5 bg-white rounded airport-border">
-      <table class="table table-striped table-secondary table-bordered shadow-lg p-3 mb-5 bg-white rounded">
-         <thead>
-            <div class="p-3 mt-0 bg-light text-dark text-center border border-dark">
-               <h2 >All of the passagers {% if flight.passengers.all %}({{ flight.passengers.all|length }}):{% endif %}</h2>
-            </div>
-            <tr>
-               <th>Passager id: </th>
-               <th>Passager first name: </th>
-               <th>Passager surname: </th>
-            </tr>
-         </thead>
-         <tbody class="text-left">
+      </h1>
+   </header>
+   <section class="d-flex flex-wrap justify-content-center">
+   {% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+   <div class="card m-3 col-4" style="width: 18rem;">
+      <div class="card-header text-center">
+         <h2>All of the passagers {% if flight.passengers.all %}({{ flight.passengers.all|length }}):{% endif %}</h2>
+      </div>
+      <div class="card-body d-flex flex-wrap justify-content-center align-items-center">
             {% if flight.passengers.all %}
             {% for passager in flight.passengers.all %}
-            <tr>
-               <td><a href="/airline/passager/{{passager.id}}">{{passager.id}}</a></td>
-               <td>{{passager.first_name}}</td>
-               <td>{{passager.surname}}</td>
-            </tr>
+            <div class="text-center col-12 mt-2">
+               <a class="btn btn-success" href="/airline/passager/{{passager.id}}">{{passager.first_name}} {{passager.surname}}</a>
+            </div>
             {% endfor %}
             {% else %}
-            <tr>
-               <td>No passager</td>
-               <td></td>
-               <td></td>
-            </tr>
-            {% endif %}  
-         </tbody>
-      </table>
+            <div class="text-center col-12 mt-2">
+               <span>No passager</span>
+            </div>
+            {% endif %}
+      </div>
    </div>
-</div>
-{% else %}
-{% if user.is_authenticated %}
-<div class="p-4 m-4 text-center">
-   {% for passager in user.passager_user.all %}
-   {% if user.passager_user.first in flight.passagers.all %}
-   <h1 class="display-4 text-danger text-shadow airport-title banner-text">You are signed up for this flight</h1>
-   <small class="m-2">If you want to check out, contact with us and we will try to help you:</small>
-   <form method="post" id="message" action="{% url 'airline:create_message' %}">
-     {% csrf_token %}
-     {{ form.as_p }}
-     <input type="hidden" name="validator_field" value="message">
-     <input type="hidden" name="recipient" value="">
-     <button type="submit" class="btn btn-primary">Send Message</button>
-   </form>
+   </section>
    {% else %}
-   <h1 class="display-4">You are not signed up for this flight</h1>
-   <form id="record" method="POST" class="mt-4">{% csrf_token %}</form>
-   <button type="submit" form="record" class="btn btn-primary">Sign up</button>
+   <section>
+   {% if user.is_authenticated %}
+   <div class="p-4 m-4 text-center card border">
+      {% for passager in user.passager_user.all %}
+         {% if user.passager_user.first in flight.passagers.all %}
+            <h2 class="display-4 text-danger text-shadow banner-text">You are signed up for this flight</h2>
+            <small class="m-2">If you want to check out, contact with us and we will try to help you</small>
+         {% else %}
+            <h2 class="display-4 text-danger text-shadow banner-text">You are not signed up for this flight</h2>
+            <form id="record" method="POST">{% csrf_token %}</form>
+            <div class="d-flex justify-content-center">
+               <button type="submit" form="record" class="btn btn-success fw-bold">Sign up</button>
+            </div>
+         {% endif %}
+      {% endfor %}
+   </div>
    {% endif %}
-   {% endfor %}
-</div>
-{% endif %}
-{% endif %}
+   {% endif %}
+   </section>
+</main>
 {% endblock %}

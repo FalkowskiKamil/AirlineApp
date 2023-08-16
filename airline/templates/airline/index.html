@@ -2,79 +2,69 @@
 <html lang="en">
    <head>
       {% load static %}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <meta charset="UTF-8">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <meta charset="UTF-8" />
+      <meta name="description" content="This is a Django App for Airline"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="Kamil Falkowski" />
       <title>Airline</title>
-      <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-      <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+      <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
    </head>
-   <body>
+   <body class="background">
       <!-- Navigation bar -->
-      <nav class="navbar navbar-light bg-light border">
-         <div class="container-fluid">
-            <div class="navbar-header">
-               <a class="navbar-brand" href="{% url 'airline:main' %}">Airlines</a>
-               {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-               <a class="navbar-brand" href="/airline/staff">Staff</a>
-               {% endif %}
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-               <li>
-               {% if user.is_authenticated %}
-              
-            
-            <a class="btn btn-link" href="/user/message/">
-               
-            <!--If there is no new messages-->
-            {% if user.has_unread_messages  %}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-exclamation" viewBox="0 0 16 16">
-               <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
-               <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0Zm0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"/>
-               </svg>
-               </a>
-                {% else %}
-  
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-                </svg>
-                  </a>
-                 {% endif %}
-                  
-                  {% for passager in user.passager_user.all %}
-                  <a class="btn btn-link" href="/airline/passager/{{passager.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+      <nav class="navbar navbar-expand-sm navbar-light px-2">
+         <a class="navbar-brand" href="{% url 'airline:main' %}">Airlines</a>
+         <ul class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+               <a class="nav-link" href="/airline/passager/{{user.passager_user.first.id}}" title="Passager">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                   </svg></a>
-                  {% endfor %}
-                  {% if user.groups.all.0.name == "Staff" or request.user.is_superuser  %}
-                  <a class="btn btn-link" href="/admin">{{user}}</a>
-                  <a class="btn btn-link" href="/airline/add_data">Add data</a>
-                  {% endif %}
-                  <a class="btn btn-link" href="{% url 'user:logout' %}">Logout</a>
-               </li>
-               {% else %}
-               <li>
-                  <form class="form-inline" action="{% url 'user:login' %}" method="post">
-                     {% csrf_token %}
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Username" name="username" >
-                        <input type="password" class="form-control" placeholder="Password" name="psw" >
-                        <button class="btn btn-primary" type="submit">Login</button>
-                        <a class="btn btn-link" href="{% url 'user:registration' %}">Sign Up</a>
-                     </div>
-                  </form>
-               </li>
-               {% endif %}
-            </ul>
+                  </svg>
+               </a>
+            </li>
+            {% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+            <li class="nav-item">
+               <a class="nav-link" href="/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="/airline/full_data_staff">Full Data View</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="/airline/add_data">Add data</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+               <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+               <form class="form-inline" action="{% url 'user:login' %}" method="post">
+                  {% csrf_token %}
+                  <div class="input-group px-2">
+                     <input type="text" class="form-control" placeholder="Username" name="username"/>
+                     <input type="password" class="form-control ml-2" placeholder="Password" name="psw"/>
+                     <button class="btn btn-success ml-2" type="submit">Login</button>
+                     <a class="btn btn-success mx-2" href="{% url 'user:registration' %}">Sign Up</a>
+                  </div>
+               </form>
+            </li>
+            {% endif %}
+         </ul>
          </div>
       </nav>
-      <!-- Page content -->
+      <!--Messages-->
       {% if message %}
       <div class="alert alert-primary" role="alert">
          <strong>{{message}}</strong>
       </div>
-      {% endif %}
-      {% block content %}
-      {% endblock %}
-      <script src="/static/script_main.js"></script>
-      <script src="/static/script_main2.js"></script>
+      {% endif %} 
+      <!-- Page content -->
+      <div class="d-flex justify-content-center">
+         {% block content %}>
+         {% endblock %}
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   </body>
 </html>

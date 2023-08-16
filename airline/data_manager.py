@@ -5,20 +5,12 @@ from django.utils import timezone
 import random
 from manage import configure_logger
 from faker import Faker
-from mongo_connection import client
 
 logger = configure_logger()
 fake = Faker()
 
 
 def upload_passager(request):
-    """
-    Create passagers to the database.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    """
     passagers = []
     flights = Flight.objects.all()
     num_passager = int(request.get("passager"))
@@ -44,16 +36,10 @@ def upload_passager(request):
             for passager_id, flight_id in passager_flight_ids
         ]
     )
+    logger.debug(f"Make {num_passager} passagers")
 
 
 def upload_flight(request):
-    """
-    Create flight to the database.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-
-    """
     airports = Airport.objects.all()
     num_flights = int(request.get("flight"))
     for i in range(num_flights):
@@ -62,16 +48,12 @@ def upload_flight(request):
         date = fake.date_time_between(start_date=timezone.now(), end_date="+1y")
         flight = Flight.objects.create(start=start, destination=destination, date=date)
         flight.save()
+    
+    logger.debug(f"Make {num_flights} flight")
 
 
 def upload_airport(request):
-    """
-    Upload airport from database
-
-    Args:
-        request (HttpRequest): the HTTP request object.
-
-    """
+    from mongo_connection import client
     db = client["AirlinesAppDB"]
     collection = db["Airport"]
     csv_file = pd.DataFrame(list(collection.find()))
@@ -94,17 +76,10 @@ def upload_airport(request):
             airports.append(airport)
             existing_airport_ids.append(row[0])
     Airport.objects.bulk_create(airports)
+    logger.debug(f"Upload {max_vol} airport")
 
 
 def sign_for_flight(passager_id, flight_id):
-    """
-    Create connection flight-passager
-
-    Args:
-        passager_id (int): number of passager id
-        flight_id (int): number of flight id
-
-    """
     passager = get_object_or_404(Passager, pk=passager_id)
     flight = get_object_or_404(Flight, pk=flight_id)
     FlightPassager.objects.create(passager=passager, flight=flight)

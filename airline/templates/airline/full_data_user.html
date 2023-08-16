@@ -1,0 +1,73 @@
+{% extends "airline/index.html" %}
+{% block content %}
+<main class="bg-white w-100">
+<table class="table" id="route_table1">
+   <thead class="bg-success">
+      <tr class="align-middle">
+         <th>Route number: </th>
+         <th>
+            <label for="start">Start: </label>
+            {% if countries|length > 5 %}
+            <input type="text" class="start" id="start" placeholder="Search start country...">
+            {% else %}
+            <select id="start">
+               <option value="">All</option>
+               {% for country in countries %}
+               <option value="{{country}}">{{country}}</option>
+               {% endfor %}
+            </select>
+            {% endif %}
+         </th>
+         <th>
+            <label for="destination">Destination: </label>
+            {% if countries|length > 5 %}
+            <input type="text" class="destination" id="destination" placeholder="Search destination country...">
+            {% else %}
+            <select id="destination">
+               <option value="">All</option>
+               {% for country in countries %}
+               <option value="{{country}}">{{country}}</option>
+               {% endfor %}
+            </select>
+            {% endif %}
+         </th>
+         <th class="text-center">Date: </th>
+      </tr>
+   </thead>
+   <tbody class="flight-table-body" id="route-table-body">
+      {% if routes %}
+      {% for route in routes %}
+      {% if forloop.counter <= 10 %}
+      <tr class="align-middle" data-start="{{route.start.country}}" data-destination="{{route.destination.country}}" data-date="#">
+         <td><a class="text-decoration-none link-dark" href="/airline/routes/{{route.id}}">{{route}}</a></td>
+         <td><a class="text-decoration-none link-dark" href="/airline/airport/{{route.start.airport_id}}">{{route.start.city}} in {{route.start.country}}</a></td>
+         <td><a class="text-decoration-none link-dark" href="/airline/airport/{{route.destination.airport_id}}">{{route.destination.city}} in {{route.destination.country}}</a></td>
+         <td>
+            <div class="flight-date-container">
+               {% for flight in route.flights.all|dictsort:"date" %}
+               {% if forloop.counter <= 5 %}
+               <a class="text-decoration-none link-dark flight-date border m-1" href="/airline/flight/{{flight.id}}">{{ flight.date|date:"d/m/Y" }}</a>
+               {% elif forloop.counter == 6 %}
+               <a href="/airline/routes/{{route.id}}">and {{ route.flights.all|length|add:-5 }} more...</a>
+               {% endif %}
+               {% endfor %}
+            </div>
+         </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% else %}
+      <tr>
+         <td colspan="4">Sorry, currently no flight data are available</td>
+      </tr>
+      {% endif %}
+   </tbody>
+</table>
+{% if routes|length > 10 %}
+<div class="text-center col-12 m-2">
+    <small" role="button">Use filter to see more...</small>
+</div>
+{% endif %}
+</main>
+<script src="/static/filter&Stripe.js"></script>
+{% endblock %}
