@@ -1,6 +1,7 @@
 import folium
 from folium.vector_layers import PolyLine
 import geopy.distance
+import random
 
 def create_map(airport_start, airport_dest=None):
     if airport_dest:
@@ -64,3 +65,40 @@ def create_map(airport_start, airport_dest=None):
         ).add_to(map)
 
     return map
+
+def create_full_map(route_list):
+    map = folium.Map(
+        location=[0,0],
+        zoom_start=2
+    )
+    for route in route_list:
+        folium.Marker(
+            location=[route.start.latitude, route.start.longitude],
+            popup=f'<a href=/airline/airport/{route.start.airport_id}>Start: {route.start.name}</a>',
+            icon=folium.Icon(color="green"),
+        ).add_to(map)
+        folium.Marker(
+            location=[route.destination.latitude+0.01, route.destination.longitude],
+            popup=f'<a href=/airline/airport/{route.destination.airport_id}>Destination: {route.destination.name}</a>',
+            icon=folium.Icon(color="red"),
+        ).add_to(map)
+        line = PolyLine(
+            locations=[
+                [route.start.latitude, route.start.longitude],
+                [route.destination.latitude+0.01, route.destination.longitude],
+            ],
+            color=f'{get_random_color()}',
+            weight=2,
+            opacity=10,
+            popup=f"<a href=/airline/routes/{route.id}>Route '{route.id}' Details</a>",
+            tooltip=f"<a href=/airline/routes/{route.id}>Route from: '{route.start.name}', to: '{route.destination.name}'</a>"
+
+        )
+        line.add_to(map)
+    return map
+
+def get_random_color():
+    color = random.randrange(0, 2**24)
+    hex_color = hex(color)
+    std_color = "#" + hex_color[2:]
+    return std_color

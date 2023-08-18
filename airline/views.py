@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
 from user.forms import MessageForm, MessageAnswerForm
@@ -96,6 +96,12 @@ def routes(request, route_id):
     context = {"route": route, "map": map._repr_html_()}
     return render(request, template_name="airline/route.html", context=context)
 
+def full_map(request):
+    route = Route.objects.all()
+    print(len(route))
+    map = map_creator.create_full_map(route)
+    context={"map":map._repr_html_()}
+    return render(request, template_name="airline/full_map.html", context=context)
 
 def add_data(request):
     context = {}

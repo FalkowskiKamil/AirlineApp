@@ -1,0 +1,12 @@
+{% extends "airline/index.html" %}
+{% block content %}
+<div class="text-center">
+<head class="mb-1">
+    <h1 class="banner-text">Full map:</h1>
+    <small><a href="{% url 'airline:full_data_user' %}">If you prefer table view, click here</a></small>
+</head>
+<main class="d-inline-block min-vw-75 vw-100">
+    <div class="nowrap"> {{ map|safe }} </div>
+</main>
+</div>
+{% endblock %}
