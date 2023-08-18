@@ -12,6 +12,9 @@ def create_map(airport_start, airport_dest=None):
         cord_start = (airport_start.latitude, airport_start.longitude)
         cord_destination = (airport_dest.latitude, airport_dest.longitude)
         distance = geopy.distance.geodesic(cord_start, cord_destination).km
+        if abs(airport_start.longitude - airport_dest.longitude) > abs(airport_start.longitude - (airport_dest.longitude-360)):
+            cord_destination=(cord_destination[0], cord_destination[1]-360)
+            center_longitude = (airport_start.longitude + cord_destination[1]) / 2
         if distance > 5000:
             zoom_level = 2  
         else:
@@ -35,21 +38,20 @@ def create_map(airport_start, airport_dest=None):
 
     if airport_dest:
         folium.Marker(
-            location=[airport_dest.latitude, airport_dest.longitude],
+            location=[cord_destination[0], cord_destination[1]],
             popup=f"Destination: {airport_dest.name}",
             icon=folium.Icon(color="red"),
         ).add_to(map)
         line = PolyLine(
             locations=[
                 [airport_start.latitude, airport_start.longitude],
-                [airport_dest.latitude, airport_dest.longitude],
+                [cord_destination[0], cord_destination[1]],
             ],
             color="blue",
             weight=2,
             opacity=10,
         )
         line.add_to(map)
-
 
         distance_text = f"Distance: {distance:.2f} km"
 
@@ -60,7 +62,7 @@ def create_map(airport_start, airport_dest=None):
         # Add the distance DivIcon to the map
         folium.Marker(
             location=[(airport_start.latitude + airport_dest.latitude) / 2,
-                      (airport_start.longitude + airport_dest.longitude) / 2],
+                      (airport_start.longitude + cord_destination[1]) / 2],
             icon=div_icon
         ).add_to(map)
 

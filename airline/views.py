@@ -98,7 +98,6 @@ def routes(request, route_id):
 
 def full_map(request):
     route = Route.objects.all()
-    print(len(route))
     map = map_creator.create_full_map(route)
     context={"map":map._repr_html_()}
     return render(request, template_name="airline/full_map.html", context=context)
