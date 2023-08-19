@@ -12,5 +12,5 @@ urlpatterns = [
     path("routes/<int:route_id>", views.routes, name="routes"),
     path("country/", views.country, name="country"),
     path("full_data_user", views.full_data_user, name="full_data_user"),
-    path("full_map", views.full_map, name="full_map")
+    path("full_map", views.full_map, name="full_map"),
 ]

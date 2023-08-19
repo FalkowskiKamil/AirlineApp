@@ -18,7 +18,6 @@ def main(request):
     context = {
         "countries": countries,
     }
-    
     return render(request, template_name="airline/main.html", context=context)
 
 
@@ -52,7 +51,9 @@ def full_data_staff(request):
         "flight": Flight.objects.all().order_by("date"),
         "countries": countries,
     }
-    return render(request, template_name="airline/full_data_staff.html", context=context)
+    return render(
+        request, template_name="airline/full_data_staff.html", context=context
+    )
 
 
 def passager(request, passager_id):
@@ -96,11 +97,13 @@ def routes(request, route_id):
     context = {"route": route, "map": map._repr_html_()}
     return render(request, template_name="airline/route.html", context=context)
 
+
 def full_map(request):
     route = Route.objects.all()
     map = map_creator.create_full_map(route)
-    context={"map":map._repr_html_()}
+    context = {"map": map._repr_html_()}
     return render(request, template_name="airline/full_map.html", context=context)
+
 
 def add_data(request):
     context = {}

@@ -48,12 +48,13 @@ def upload_flight(request):
         date = fake.date_time_between(start_date=timezone.now(), end_date="+1y")
         flight = Flight.objects.create(start=start, destination=destination, date=date)
         flight.save()
-    
+
     logger.debug(f"Make {num_flights} flight")
 
 
 def upload_airport(request):
     from mongo_connection import client
+
     db = client["AirlinesAppDB"]
     collection = db["Airport"]
     csv_file = pd.DataFrame(list(collection.find()))
