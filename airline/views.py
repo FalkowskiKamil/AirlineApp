@@ -1,13 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
-from user.forms import MessageForm, MessageAnswerForm
-from user.models import Message
-from django.contrib.auth.models import User
 from manage import configure_logger
-import requests
-import folium
-import geoip2.database
 
 logger = configure_logger()
 
