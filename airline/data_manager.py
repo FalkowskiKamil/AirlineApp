@@ -53,8 +53,6 @@ def upload_flight(request):
 
 
 def upload_airport(request):
-    from mongo_connection import client
-
     db = client["AirlinesAppDB"]
     collection = db["Airport"]
     csv_file = pd.DataFrame(list(collection.find()))

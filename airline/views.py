@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
 from manage import configure_logger
+from utils.mongo_connection import connect_to_mongodb
 
 logger = configure_logger()
 
@@ -100,7 +101,6 @@ def full_map(request):
 
 
 def add_data(request):
-    context = {}
     if request.method == "POST":
         match list(request.POST.keys())[1]:
             case "airport":
@@ -112,4 +112,7 @@ def add_data(request):
             case "passager":
                 data_manager.upload_passager(request.POST)
                 context = {"message": "Succesfuly loaded passager"}
-    return render(request, template_name="airline/add_data.html", context=context)
+    else:
+        status_of_connection = connect_to_mongodb()
+        context = {"message":status_of_connection}
+        return render(request, template_name="airline/add_data.html", context=context)

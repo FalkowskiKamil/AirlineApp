@@ -1390,3 +1390,5 @@ relative paths which might be pointing to the wrong location.
 2023-08-10 15:22:48,654 - manage - DEBUG - Logout user: admin
 2023-08-10 15:22:50,565 - manage - DEBUG - Login user: asd 
 2023-08-10 15:57:32,749 - manage - DEBUG - Login user: admin 
+2023-08-21 15:09:13,931 - manage - DEBUG - Login user: admin 
+2023-08-21 15:09:54,839 - manage - DEBUG - Upload 2 airport
