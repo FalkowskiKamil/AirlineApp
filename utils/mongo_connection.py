@@ -1,8 +1,10 @@
 from pymongo import MongoClient
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-CONNECTION_STATUS = False
+import pandas as pd
 
+CONNECTION_STATUS = False
+dataframe=[]
 def connect_to_mongodb():
     global CONNECTION_STATUS
     if CONNECTION_STATUS == False:
@@ -13,9 +15,13 @@ def connect_to_mongodb():
         try:
             client.admin.command("ping")
             CONNECTION_STATUS = True
-            return "Pinged your deployment. You successfully connected to MongoDB!"
+            db = client["AirlinesAppDB"]
+            collection = db["Airport"]
+            global dataframe
+            dataframe = pd.DataFrame(list(collection.find()))
+            return ["Pinged your deployment. You successfully connected to MongoDB!", dataframe]
 
         except Exception as e:
             print(e)
     else:
-        return "Alredy connected to MongoDB!"
+        return ["Alredy connected to MongoDB!", dataframe]

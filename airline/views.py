@@ -63,12 +63,7 @@ def passager(request, passager_id):
 def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
     map = map_creator.create_map(flight.start, flight.destination)
-    form = MessageForm(
-        initial={
-            "context": f"I would like to check out from my upcoming flight nr: {fli_id}"
-        }
-    )
-    context = {"flight": flight, "map": map._repr_html_(), "form": form}
+    context = {"flight": flight, "map": map._repr_html_()}
     if request.method == "POST":
         data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
         context["message"] = "Signed up for flight!"
@@ -101,18 +96,25 @@ def full_map(request):
 
 
 def add_data(request):
+    status_of_connection = connect_to_mongodb()
+    context = {"message":status_of_connection[0]}
+    flights_already_made = Flight.objects.all()
+    routes_alredy_made = Route.objects.all()
+    context['flights']=flights_already_made
+    context['routes']=routes_alredy_made
+    db = status_of_connection[1]
+    db = sorted(db['Country'].unique())
+    context['countries'] = db
     if request.method == "POST":
-        match list(request.POST.keys())[1]:
-            case "airport":
-                data_manager.upload_airport(request.POST)
-                context = {"message": "Succesfuly loaded airport!"}
-            case "flight":
-                data_manager.upload_flight(request.POST)
-                context = {"message": "Succesfuly loaded flight!"}
-            case "passager":
-                data_manager.upload_passager(request.POST)
-                context = {"message": "Succesfuly loaded passager"}
-    else:
-        status_of_connection = connect_to_mongodb()
-        context = {"message":status_of_connection}
-        return render(request, template_name="airline/add_data.html", context=context)
+        if "add_airport_form" in request.POST:
+            message = data_manager.upload_airport(request.POST)
+            context["message"]= message
+        elif "add_flight_form" in request.POST:
+            data_manager.upload_flight(request.POST)
+            context["message"]="Succesfuly loaded flight!"
+        elif "add_passager_form" in request.POST:
+            data_manager.upload_passager(request.POST)
+            context["message"] = "Succesfuly loaded passager"
+        else:
+            print("Error")
+    return render(request, template_name="airline/add_data.html", context=context)

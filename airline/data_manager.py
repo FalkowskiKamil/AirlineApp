@@ -1,19 +1,23 @@
-from .models import Flight, Passager, Airport, FlightPassager
+from .models import Flight, Passager, Airport, FlightPassager, Route
 from django.shortcuts import get_object_or_404
 import pandas as pd
 from django.utils import timezone
 import random
 from manage import configure_logger
 from faker import Faker
+from utils.mongo_connection import connect_to_mongodb
 
 logger = configure_logger()
 fake = Faker()
 
 
 def upload_passager(request):
-    passagers = []
-    flights = Flight.objects.all()
-    num_passager = int(request.get("passager"))
+    num_passager = int(request.get("passager_count"))
+    flight_id = request.get("flight_number")
+    if flight_id:
+        flight = Flight.objects.get(id=flight_id)
+    else:
+        flight = Flight.objects.order_by('?').first()
     for i in range(num_passager):
         fullname = fake.name()
         name_parts = fullname.split(" ")
@@ -22,60 +26,60 @@ def upload_passager(request):
             first_name, surname = name_parts
         else:
             first_name, surname = name_parts[1], name_parts[2]
-        passager = Passager(first_name=first_name, surname=surname)
-        passagers.append(passager)
-    # Creating Passagers
-    Passager.objects.bulk_create(passagers)
-    # Connecting Passagers with flight
-    passager_flight_ids = [
-        (passager.id, random.choice(flights).id) for passager in passagers
-    ]
-    Passager.flights.through.objects.bulk_create(
-        [
-            Passager.flights.through(passager_id=passager_id, flight_id=flight_id)
-            for passager_id, flight_id in passager_flight_ids
-        ]
-    )
+        passager = Passager.objects.create(first_name=first_name, surname=surname)
+        passager.flights.add(flight)
+        passager.save()
+
     logger.debug(f"Make {num_passager} passagers")
 
 
 def upload_flight(request):
-    airports = Airport.objects.all()
-    num_flights = int(request.get("flight"))
-    for i in range(num_flights):
-        start = random.choice(airports)
-        destination = random.choice(airports.exclude(airport_id=start.airport_id))
+    route_id = request.get("route_id")
+    if route_id:
+        route = Route.objects.get(id=route_id)
+    else:
+        route = Route.objects.order_by("?").first()
+    flight_date = request.get("datetime")
+    if flight_date:
+        date = flight_date
+    else:
         date = fake.date_time_between(start_date=timezone.now(), end_date="+1y")
-        flight = Flight.objects.create(start=start, destination=destination, date=date)
-        flight.save()
-
-    logger.debug(f"Make {num_flights} flight")
+    start = route.start
+    destination = route.destination
+    flight = Flight.objects.create(start=start, destination=destination, date=date)
+    flight.save()
+    logger.debug(f"Make new flight on route {route_id} with date {date}")
 
 
 def upload_airport(request):
-    db = client["AirlinesAppDB"]
-    collection = db["Airport"]
-    csv_file = pd.DataFrame(list(collection.find()))
-    airports = []
-    existing_airport_ids = [airport.airport_id for airport in Airport.objects.all()]
-    max_vol = int(request.get("airport"))
-    for i in range(max_vol):
-        random_index = random.randint(0, len(csv_file) - 1)
-        row = csv_file.iloc[random_index]
-        # Checking duplication
-        if row[0] not in existing_airport_ids:
-            airport = Airport(
-                airport_id=row[1],
-                name=row[2],
-                city=row[3],
-                country=row[4],
-                latitude=row[5],
-                longitude=row[6],
-            )
-            airports.append(airport)
-            existing_airport_ids.append(row[0])
-    Airport.objects.bulk_create(airports)
-    logger.debug(f"Upload {max_vol} airport")
+    countries = request.get("airport_country")
+    _,df=connect_to_mongodb()
+    if countries:
+        airports_list = df[(df.Country == countries)]
+        try:
+            existing_airport_name = [airport.name for airport in Airport.objects.filter(country=countries)]
+        except:
+            existing_airport_name = []
+    else:
+        airports_list = df
+        existing_airport_name = [airport.name for airport in Airport.objects.all()]
+    filtered_airports_list = airports_list[~airports_list.Name.isin(existing_airport_name)]
+    if len(filtered_airports_list) > 0:
+        airport_to_add = filtered_airports_list.sample()
+        airport = Airport(
+                airport_id=airport_to_add.iloc[0][1],
+                name=airport_to_add.iloc[0][2],
+                city=airport_to_add.iloc[0][3],
+                country=airport_to_add.iloc[0][4],
+                latitude=airport_to_add.iloc[0][5],
+                longitude=airport_to_add.iloc[0][6],
+                )
+        airport.save()
+        logger.debug(f"Added airport: {airport.name}")
+        return f"Added {airport.name}"
+    else:
+        logger.debug(f'Country: {countries} have imported all of the avaible airport')
+        return "No more Airport avaible in this area"
 
 
 def sign_for_flight(passager_id, flight_id):

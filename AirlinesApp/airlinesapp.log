@@ -1392,3 +1392,28 @@ relative paths which might be pointing to the wrong location.
 2023-08-10 15:57:32,749 - manage - DEBUG - Login user: admin 
 2023-08-21 15:09:13,931 - manage - DEBUG - Login user: admin 
 2023-08-21 15:09:54,839 - manage - DEBUG - Upload 2 airport
+2023-08-21 15:49:51,570 - manage - DEBUG - Upload 2 airport
+2023-08-21 15:50:26,659 - manage - DEBUG - Upload 2 airport
+2023-08-21 15:50:31,777 - manage - DEBUG - Make 2 flight
+2023-08-21 15:51:33,466 - manage - DEBUG - Make 2 flight
+2023-08-21 15:52:30,772 - manage - DEBUG - Make 1 passagers
+2023-08-21 16:06:54,525 - manage - DEBUG - Make 5 passagers
+2023-08-21 16:07:10,231 - manage - DEBUG - Make 5 passagers
+2023-08-21 16:08:39,325 - manage - DEBUG - Make 3 passagers
+2023-08-21 17:12:42,266 - manage - DEBUG - Make 2 passagers
+2023-08-21 17:19:07,700 - manage - DEBUG - Make 2 passagers
+2023-08-21 17:34:34,398 - manage - DEBUG - Make 2 passagers
+2023-08-21 17:34:45,951 - manage - DEBUG - Make 5 passagers
+2023-08-21 17:37:27,283 - manage - DEBUG - Make 5 passagers
+2023-08-21 17:37:44,306 - manage - DEBUG - Make 2 passagers
+2023-08-21 17:37:50,568 - manage - DEBUG - Make 5 passagers
+2023-08-21 18:11:05,514 - manage - DEBUG - Make new flight on route 10 with date 2023-08-09T12:12
+2023-08-21 18:11:41,216 - manage - DEBUG - Make new flight on route 1 with date 2023-08-15T12:12
+2023-08-21 18:20:19,260 - manage - DEBUG - Make new flight on route  with date 2023-12-09 17:24:23
+2023-08-21 18:20:20,769 - manage - DEBUG - Make new flight on route  with date 2024-06-12 17:32:50
+2023-08-21 19:29:52,346 - manage - DEBUG - Added airport: Fitiuta Airport
+2023-08-21 19:29:55,702 - manage - DEBUG - Added airport: Pago Pago International Airport
+2023-08-21 19:31:30,252 - manage - DEBUG - Added airport: Capital City Airport
+2023-08-21 19:34:06,619 - manage - DEBUG - Added airport: Gitega Airport
+2023-08-21 19:34:08,673 - manage - DEBUG - Added airport: Pudasjärvi Airport
+2023-08-21 19:34:12,398 - manage - DEBUG - Country: American Samoa have imported all of the avaible airport
