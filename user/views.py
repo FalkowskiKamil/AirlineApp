@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from airline.models import Passager
-from manage import configure_logger
+from utils.logger import configure_logger
 
 logger = configure_logger()
 
@@ -12,11 +12,11 @@ logger = configure_logger()
 def registration_request(request):
     context = {}
     if request.method == "POST":
-        # Check if user exists
         username = request.POST["username"]
         password = request.POST["psw"]
         first_name = request.POST["firstname"]
         last_name = request.POST["lastname"]
+        # Check if user exists
         current_user = User.objects.filter(username=username).first()
         if current_user is None:
             user = User.objects.create_user(
@@ -26,10 +26,9 @@ def registration_request(request):
                 password=password,
             )
             Passager.objects.create(user=user, first_name=first_name, surname=last_name)
-
-            logger.debug(f"Register user: {username}")
             login(request, user)
-            context={'message':'User register succesfuly!'}
+            logger.debug(f"Register user: {username}")
+            context={'message':'Register succesfuly!'}
             return redirect("airline:main", context=context)
         else:
             context={"message" : "User already exists."}
@@ -43,9 +42,9 @@ def login_request(request):
         password = request.POST["psw"]
         user = authenticate(username=username, password=password)
         if user is not None:
-            logger.debug(f"Login user: {username} ")
             login(request, user)
-            context={"message":"Succesfully logged in!"}
+            logger.debug(f"Login user: {username} ")
+            context={"message":"Loggin succesfuly!"}
             return render(request, "airline/main.html", context=context)
         else:
             context={"message":"Invalid username or password."}
@@ -53,9 +52,9 @@ def login_request(request):
 
 
 def logout_request(request):
-    logger.debug(f"Logout user: {request.user.username}")
     logout(request)
-    context={"message":"Logout Succesfuly"}
+    logger.debug(f"Logout user: {request.user.username}")
+    context={"message":"Logout Succesfuly!"}
     return render(request, "airline/main.html", context=context)
 
 

@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
-from . import data_manager, map_creator
+from . import data_manager
 from utils.mongo_connection import connect_to_mongodb
+from utils.map_creator import create_full_map, create_map
 
 
 # Create your views here.
@@ -24,7 +25,7 @@ def country_map(request):
             destination__country=request.POST["destination_country"].title(),
         )
     if route: 
-        map = map_creator.create_full_map(route)
+        map = create_full_map(route)
         context = {"map": map._repr_html_()}
     else:
         context = {"no_map":True}
@@ -60,7 +61,7 @@ def passager(request, passager_id):
 
 def flight(request, fli_id):
     flight = get_object_or_404(Flight, pk=fli_id)
-    map = map_creator.create_map(flight.start, flight.destination)
+    map = create_map(flight.start, flight.destination)
     context = {"flight": flight, "map": map._repr_html_()}
     if request.method == "POST":
         message = data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
@@ -70,7 +71,7 @@ def flight(request, fli_id):
 
 def airport(request, airport_id):
     airport = get_object_or_404(Airport, pk=airport_id)
-    map = map_creator.create_map(airport)
+    map = create_map(airport)
     context = {
         "airport": airport,
         "map": map._repr_html_(),
@@ -81,14 +82,14 @@ def airport(request, airport_id):
 
 def routes(request, route_id):
     route = get_object_or_404(Route, pk=route_id)
-    map = map_creator.create_map(route.start, route.destination)
+    map = create_map(route.start, route.destination)
     context = {"route": route, "map": map._repr_html_()}
     return render(request, template_name="airline/route.html", context=context)
 
 
 def full_map(request):
     route = Route.objects.all()
-    map = map_creator.create_full_map(route)
+    map = create_full_map(route)
     context = {"map": map._repr_html_()}
     return render(request, template_name="airline/full_map.html", context=context)
 

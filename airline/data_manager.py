@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
-from manage import configure_logger
 from utils.mongo_connection import connect_to_mongodb
+from utils.logger import configure_logger
 from .models import Flight, Passager, Airport, FlightPassager, Route
 from faker import Faker
 

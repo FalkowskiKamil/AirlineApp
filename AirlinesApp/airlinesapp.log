@@ -1495,3 +1495,7 @@ NameError: name 'execute_from_command_line' is not defined
 2023-08-22 15:33:32,234 - manage - DEBUG - Login user: asd 
 2023-08-22 15:34:24,276 - manage - DEBUG - Logout user: asd
 2023-08-22 15:34:27,838 - manage - DEBUG - Login user: asd 
+2023-08-22 15:42:58,716 - utils.logger - DEBUG - Logout user: asd
+2023-08-22 15:43:02,325 - utils.logger - DEBUG - Login user: admin 
+2023-08-22 15:43:11,858 - utils.logger - DEBUG - Added airport: Borroloola Airport
+2023-08-22 15:43:13,300 - utils.logger - DEBUG - Added airport: Lime Acres Finsch Mine Airport

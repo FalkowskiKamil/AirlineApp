@@ -6,7 +6,7 @@ from .models import Airport, Flight, Passager
 from django.utils import timezone
 import unittest
 import folium
-from .map_creator import create_map
+from ..utils.map_creator import create_map
 from .urls import *
 from .data_manager import *
 from .views import *
