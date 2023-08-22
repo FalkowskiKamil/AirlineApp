@@ -3,8 +3,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from airline.models import Passager
-from .models import Message
-from .forms import MessageAnswerForm
 from manage import configure_logger
 
 logger = configure_logger()
@@ -31,14 +29,15 @@ def registration_request(request):
 
             logger.debug(f"Register user: {username}")
             login(request, user)
-            return redirect("airline:main")
+            context={'message':'User register succesfuly!'}
+            return redirect("airline:main", context=context)
         else:
-            context["message"] = "User already exists."
-    return render(request, "user/user_registration.html", context)
+            context={"message" : "User already exists."}
+    return render(request, "user/user_registration.html", context=context)
 
 
 def login_request(request):
-    context = {}
+    context={}
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["psw"]
@@ -46,15 +45,17 @@ def login_request(request):
         if user is not None:
             logger.debug(f"Login user: {username} ")
             login(request, user)
-            return redirect("airline:main")
+            context={"message":"Succesfully logged in!"}
+            return render(request, "airline/main.html", context=context)
         else:
-            context["message"] = "Invalid username or password."
-    return render(request, "user/user_login.html", context)
+            context={"message":"Invalid username or password."}
+    return render(request, "user/user_login.html", context=context)
 
 
 def logout_request(request):
     logger.debug(f"Logout user: {request.user.username}")
     logout(request)
-    return redirect("airline:main")
+    context={"message":"Logout Succesfuly"}
+    return render(request, "airline/main.html", context=context)
 
 

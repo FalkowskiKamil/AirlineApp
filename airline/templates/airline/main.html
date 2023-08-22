@@ -1,5 +1,5 @@
 {% extends "airline/index.html" %} {% block content %}
-<form class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-5 mt-5" action="{% url 'airline:country' %}" method="post">
+<form class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-5 mt-5" action="{% url 'airline:country_map' %}" method="post">
     {% csrf_token %}
     <h1 class="display-3 banner-text">Where do we fly?</h1>
     <label for="start_country" class="col-form-label">Flight Start</label>

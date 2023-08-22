@@ -1,10 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
 from . import data_manager, map_creator
-from manage import configure_logger
 from utils.mongo_connection import connect_to_mongodb
-
-logger = configure_logger()
 
 
 # Create your views here.
@@ -16,21 +13,22 @@ def main(request):
     return render(request, template_name="airline/main.html", context=context)
 
 
-def country(request):
-    context = {}
+def country_map(request):
     if not request.POST["destination_country"]:
         route = Route.objects.filter(
             start__country=request.POST["start_country"].title()
         )
-        context["countries"] = route
     else:
         route = Route.objects.filter(
             start__country=request.POST["start_country"].title(),
             destination__country=request.POST["destination_country"].title(),
         )
-        context["countries"] = route
-    return render(request, template_name="airline/country.html", context=context)
-
+    if route: 
+        map = map_creator.create_full_map(route)
+        context = {"map": map._repr_html_()}
+    else:
+        context = {"no_map":True}
+    return render(request, template_name="airline/full_map.html", context=context)
 
 def full_data_user(request):
     countries = Airport.objects.values_list("country", flat=True).distinct()
@@ -65,8 +63,8 @@ def flight(request, fli_id):
     map = map_creator.create_map(flight.start, flight.destination)
     context = {"flight": flight, "map": map._repr_html_()}
     if request.method == "POST":
-        data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
-        context["message"] = "Signed up for flight!"
+        message = data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
+        context["message"] = message
     return render(request, template_name="airline/flight.html", context=context)
 
 
@@ -97,24 +95,31 @@ def full_map(request):
 
 def add_data(request):
     status_of_connection = connect_to_mongodb()
-    context = {"message":status_of_connection[0]}
+    db = status_of_connection[1]
+    countries = sorted(db["Country"].unique())
     flights_already_made = Flight.objects.all()
     routes_alredy_made = Route.objects.all()
-    context['flights']=flights_already_made
-    context['routes']=routes_alredy_made
-    db = status_of_connection[1]
-    db = sorted(db['Country'].unique())
-    context['countries'] = db
+    airport_alredy_made = Airport.objects.all()
+    context = {
+        "message": status_of_connection[0],
+        "flights": flights_already_made,
+        "routes": routes_alredy_made,
+        "airports": airport_alredy_made,
+        "countries": countries,
+    }
     if request.method == "POST":
         if "add_airport_form" in request.POST:
             message = data_manager.upload_airport(request.POST)
-            context["message"]= message
+            context["message"] = message
         elif "add_flight_form" in request.POST:
-            data_manager.upload_flight(request.POST)
-            context["message"]="Succesfuly loaded flight!"
+            message = data_manager.upload_flight(request.POST)
+            context["message"] = message
         elif "add_passager_form" in request.POST:
-            data_manager.upload_passager(request.POST)
-            context["message"] = "Succesfuly loaded passager"
+            message = data_manager.upload_passager(request.POST)
+            context["message"] = message
+        elif "add_route_form" in request.POST:
+            message = data_manager.upload_route(request.POST)
+            context["message"] = message
         else:
-            print("Error")
+            context["message"] = "Error"
     return render(request, template_name="airline/add_data.html", context=context)

@@ -8,6 +8,7 @@ dataframe=[]
 def connect_to_mongodb():
     global CONNECTION_STATUS
     if CONNECTION_STATUS == False:
+        print("Connecting to database..")
         uri = "mongodb+srv://airlinetest:airlinetest@airlinesapp.izaoc4c.mongodb.net/"
         # Create a new client and connect to the server
         client = MongoClient(uri, server_api=ServerApi("1"))

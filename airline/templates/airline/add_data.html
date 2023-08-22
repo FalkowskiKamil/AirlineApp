@@ -3,59 +3,85 @@
 {% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
 <main class="d-flex flex-wrap mt-4 justify-content-center">
     <header class="col-12 text-center">
-        <h1>Choose a data to load:</h1>
+        <h1>Choose data type to load:</h1>
     </header>
-    <section class="card shadow p-3 m-2 bg-white rounded">
-        <div class="card-body">
+    <section class="card shadow p-3 m-2 bg-white rounded col-4">
+        <div class="card-body text-center">
+            <h2>Airport</h2>
             <form method="post" id="add_airport_form">
                 <input type="hidden" name="add_airport_form" id="add_airport_form">
                 {% csrf_token %}
-                <label class="form-label fw-bold" for="airport">Choose Country to add Airport:</label>
-    
-                <select name="airport_country" id="airport_country">
-                <option value="">Random</option>
-
+                <label class="form-label fw-bold m-2" for="airport">Choose Country</label>
+                
+                <select class="form-select form-select-sm m-2" name="airport_country" id="airport_country">
+                    <option value="">Random</option>
                 {% for country in countries %}
                     <option value="{{country}}">{{country}}</option>
                 {% endfor %}
                 </select>
-                <button class="btn btn-success form-control form-control-sm" type="submit">Upload airport Data</button>
+                <button class="btn btn-success form-control form-control-sm m-2" type="submit">Upload airport Data</button>
             </form>
         </div>
     </section>
 
-    <section class="card shadow p-3 m-2 bg-white rounded">
-        <div class="card-body">
+    <section class="card shadow p-3 m-2 bg-white rounded col-4">
+        <div class="card-body text-center ">
+            <h2>Route</h2>
+            <form method="post" id="add_route_form">
+                <input type="hidden" name="add_route_form" id="add_route_form">
+                {% csrf_token %}
+                <label class="form-label fw-bold m-2"> Choose start-destination</label>
+                <select class="form-select form-select-sm m-2" name="airport_start" id="airport_start">
+                <option selected value="">Random Start</option>
+                    {% for airport in airports %}
+                    <option value="{{airport.airport_id}}">{{airport.name}} in {{airport.city}}</option>
+                {% endfor %}
+                </select>                
+                <select class="form-select form-select-sm m-2" name="airport_destination" id="airport_destination"> 
+                    <option selected value="">Random Destination</option>
+                    {% for airport in airports %}
+                        <option value="{{airport.airport_id}}">{{airport.name}} in {{airport.city}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-success form-control form-control-sm m-2" type="submit">Upload Route Data</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="card shadow p-3 m-2 bg-white rounded col-4">
+        <div class="card-body text-center">
+            <h2>Flight</h2>
             <form method="post" id="add_flight_form">
                 <input type="hidden" name="add_flight_form" id="add_flight_form">
                 {% csrf_token %}
-                <label class="form-label fw-bold" for="flight">Choose route to add flight and put data</label>
-                <select name="route_id" id="route_id">
+                <label class="form-label fw-bold m-2" for="flight">Choose route</label>
+                <select class="form-select form-select-sm m-2" name="route_id" id="route_id">
                     <option value="">Random</option>
                     {% for route in routes %}
                         <option value="{{route.id}}">From: {{route.start.city}} to {{route.destination.city}}</option>
                     {% endfor %}
                 </select>
-                <input type="datetime-local" name="datetime">
-                <button class="btn btn-success form-control form-control-sm" type="submit">Upload flight Data</button>
+                <input class="form-control m-2" type="datetime-local" name="datetime">
+                <button class="btn btn-success form-control form-control-sm m-2" type="submit">Upload flight Data</button>
             </form>
     </div>
     </section>
 
-    <section class="card shadow p-3 m-2 bg-white rounded">
-        <div class="card-body">
+    <section class="card shadow p-3 m-2 bg-white rounded col-4">
+        <div class="card-body text-center">
+            <h2>Passager</h2>
             <form method="post" id="add_passager_form">
                 <input type="hidden" name="add_passager_form" id="add_passager_form">
                 {% csrf_token %}
-                <label class="form-label fw-bold" for="passager">Quantity of fake passager to create: (1-100)</label>
-                <input class="form-control my-2" placeholder="Passager" type="number" name="passager_count" min="1" max="100">
-                <select id="flight_id" name="flight_id">
+                <label class="form-label fw-bold m-2" for="passager">Flight + number of passager</label>
+                <input class="form-control m-2" placeholder="Passager" type="number" name="passager_count" min="1" max="100" required>
+                <select class="form-select form-select-sm m-2" id="flight_id" name="flight_id">
                     <option value="">Random</option>
                     {% for flight in flights %}
                     <option value="{{flight.id}}">From: {{flight.start}} to {{flight.destination}}</option>
                     {% endfor %}
                 </select>
-                <button class="btn btn-success form-control form-control-sm" type="submit">Upload passager Data</button>
+                <button class="btn btn-success form-control form-control-sm m-2" type="submit">Upload passager Data</button>
             </form>
         </div>
     </section>

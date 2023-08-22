@@ -1417,3 +1417,81 @@ relative paths which might be pointing to the wrong location.
 2023-08-21 19:34:06,619 - manage - DEBUG - Added airport: Gitega Airport
 2023-08-21 19:34:08,673 - manage - DEBUG - Added airport: Pudasjärvi Airport
 2023-08-21 19:34:12,398 - manage - DEBUG - Country: American Samoa have imported all of the avaible airport
+2023-08-22 12:48:34,396 - manage - DEBUG - Trying to make route with this same start and destination (Cape Dorset Airport)
+2023-08-22 12:49:00,465 - manage - DEBUG - Trying to make route with this same start and destination (Cape Dorset Airport)
+2023-08-22 12:49:06,228 - manage - DEBUG - Trying to make existing route 50
+2023-08-22 12:49:10,595 - manage - DEBUG - Make new route (55) from Mestia Queen Tamar Airport to Cape Dorset Airport
+2023-08-22 12:49:47,438 - manage - DEBUG - Added airport: Bamenda Airport
+2023-08-22 12:56:53,526 - manage - DEBUG - Added airport: Mazar I Sharif Airport
+2023-08-22 12:56:57,754 - manage - DEBUG - Trying to make route with this same start and destination (Cape Dorset Airport)
+2023-08-22 12:57:01,689 - manage - DEBUG - Make new route (56) from Cape Dorset Airport to Hurghada International Airport
+2023-08-22 12:57:27,747 - manage - DEBUG - Make new flight (53) on route  with date 2024-08-03 22:09:10
+2023-08-22 12:58:08,899 - manage - DEBUG - Added airport: Gainesville Regional Airport
+2023-08-22 12:58:16,157 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:11:32,269 - __main__ - ERROR - An error occurred: name 'execute_from_command_line' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Y510p\Documents\Felo\PRG\Backup\Public\AirlinesApp\manage.py", line 33, in main
+    execute_from_command_line(sys.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'execute_from_command_line' is not defined
+2023-08-22 13:31:07,513 - manage - DEBUG - Make new route (57) from Ifrane Airport to Balkhash Airport
+2023-08-22 13:31:08,834 - manage - DEBUG - Make new route (58) from Metz-Nancy-Lorraine Airport to RAAF Williams, Point Cook Base
+2023-08-22 13:31:13,816 - manage - DEBUG - Make new route (59) from Khuzdar Airport to Lawrence Municipal Airport
+2023-08-22 13:31:55,977 - manage - DEBUG - Make new route (60) from Gitega Airport to Wuzhou Changzhoudao Airport
+2023-08-22 13:31:58,935 - manage - DEBUG - Make new route (61) from Capital City Airport to Hurghada International Airport
+2023-08-22 13:32:02,783 - manage - DEBUG - Make new route (62) from London Luton Airport to Celle-Arloh Airport
+2023-08-22 13:33:35,681 - manage - DEBUG - Added airport: Lublin Airport
+2023-08-22 13:33:39,489 - manage - DEBUG - Added airport: Cewice Air Base
+2023-08-22 13:36:02,704 - manage - DEBUG - Make new route (63) from Cewice Air Base to Lublin Airport
+2023-08-22 13:36:47,306 - manage - DEBUG - Make new flight (54) on route 63 with date 2023-08-24T23:59
+2023-08-22 13:37:28,865 - manage - DEBUG - Make 50 passagers
+2023-08-22 13:39:13,754 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:40:03,664 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:40:19,956 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:40:56,502 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:41:37,503 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:41:47,302 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:42:13,528 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:42:40,159 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:42:48,369 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:43:24,824 - manage - DEBUG - Make 1 passagers
+2023-08-22 13:43:52,142 - manage - DEBUG - Make 21 passagers
+2023-08-22 13:55:30,686 - manage - DEBUG - Logout user: admin
+2023-08-22 13:55:41,971 - manage - DEBUG - Login user: asd 
+2023-08-22 13:56:25,241 - manage - DEBUG - User: asd asd register for flight 54
+2023-08-22 13:56:50,491 - manage - DEBUG - Logout user: asd
+2023-08-22 13:56:55,596 - manage - DEBUG - Login user: admin 
+2023-08-22 13:57:23,042 - manage - DEBUG - Make new flight (55) on route 63 with date 2023-08-17T22:22
+2023-08-22 13:58:09,781 - manage - DEBUG - Logout user: admin
+2023-08-22 13:58:15,676 - manage - DEBUG - Login user: asd 
+2023-08-22 14:02:46,154 - manage - DEBUG - Logout user: asd
+2023-08-22 14:02:50,212 - manage - DEBUG - Login user: admin 
+2023-08-22 14:05:11,785 - manage - DEBUG - Logout user: admin
+2023-08-22 14:05:16,622 - manage - DEBUG - Login user: asd 
+2023-08-22 14:07:05,113 - manage - DEBUG - User: asd asd register for flight 55
+2023-08-22 14:08:40,183 - manage - DEBUG - Logout user: asd
+2023-08-22 14:08:43,180 - manage - DEBUG - Login user: admin 
+2023-08-22 14:09:02,913 - manage - DEBUG - Logout user: admin
+2023-08-22 14:09:05,125 - manage - DEBUG - Login user: asd 
+2023-08-22 14:09:20,337 - manage - DEBUG - User: asd asd register for flight 29
+2023-08-22 14:12:53,165 - manage - DEBUG - Logout user: asd
+2023-08-22 14:12:56,110 - manage - DEBUG - Login user: admin 
+2023-08-22 14:20:16,670 - manage - DEBUG - Make new flight (56) on route  with date 2024-02-03 12:38:22
+2023-08-22 14:20:20,485 - manage - DEBUG - Make new flight (57) on route  with date 2023-12-28 09:54:41
+2023-08-22 14:20:21,753 - manage - DEBUG - Make new flight (58) on route  with date 2024-07-04 10:47:19
+2023-08-22 14:20:45,583 - manage - DEBUG - Make new flight (59) on route  with date 2023-08-28 12:59:20
+2023-08-22 14:20:47,125 - manage - DEBUG - Make new route (64) from Lublin Airport to Richmond County Airport
+2023-08-22 14:20:48,345 - manage - DEBUG - Added airport: Mukah Airport
+2023-08-22 14:20:51,269 - manage - DEBUG - Make 1 passagers
+2023-08-22 15:28:41,202 - manage - DEBUG - Logout user: admin
+2023-08-22 15:28:48,455 - manage - DEBUG - Register user: 123
+2023-08-22 15:29:05,147 - manage - DEBUG - Logout user: 123
+2023-08-22 15:29:33,142 - manage - DEBUG - Register user: zxc
+2023-08-22 15:30:07,216 - manage - DEBUG - Logout user: zxc
+2023-08-22 15:31:27,441 - manage - DEBUG - Logout user: 
+2023-08-22 15:31:37,774 - manage - DEBUG - Register user: aaaa
+2023-08-22 15:33:04,111 - manage - DEBUG - Login user: asd 
+2023-08-22 15:33:27,151 - manage - DEBUG - Logout user: asd
+2023-08-22 15:33:32,234 - manage - DEBUG - Login user: asd 
+2023-08-22 15:34:24,276 - manage - DEBUG - Logout user: asd
+2023-08-22 15:34:27,838 - manage - DEBUG - Login user: asd 

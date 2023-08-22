@@ -1,7 +1,7 @@
+import random
 import folium
 from folium.vector_layers import PolyLine
 import geopy.distance
-import random
 
 
 def create_map(airport_start, airport_destination=None):
