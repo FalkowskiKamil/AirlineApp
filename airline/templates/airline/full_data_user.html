@@ -1,7 +1,6 @@
 {% extends "airline/index.html" %}
 {% block content %}
-<main class="bg-white w-100">
-<table class="table" id="route_table">
+<table class="table bg-white position-absolute start-0" id="route_table">
    <thead class="bg-success">
       <tr class="align-middle">
          <th>Route number: </th>
@@ -37,7 +36,6 @@
    <tbody class="flight-table-body" id="route-table-body">
       {% if routes %}
       {% for route in routes %}
-      {% if forloop.counter <= 10 %}
       <tr class="align-middle" data-start="{{route.start.country}}" data-destination="{{route.destination.country}}" data-date="#">
          <td><a class="text-decoration-none link-dark" href="/airline/routes/{{route.id}}">{{route}}</a></td>
          <td><a class="text-decoration-none link-dark" href="/airline/airport/{{route.start.airport_id}}">{{route.start.city}} in {{route.start.country}}</a></td>
@@ -45,16 +43,15 @@
          <td>
             <div class="flight-date-container">
                {% for flight in route.flights.all|dictsort:"date" %}
-               {% if forloop.counter <= 5 %}
+               {% if forloop.counter <= 30 %}
                <a class="text-decoration-none link-dark flight-date border m-1" href="/airline/flight/{{flight.id}}">{{ flight.date|date:"d/m/Y" }}</a>
-               {% elif forloop.counter == 6 %}
+               {% elif forloop.counter == 31 %}
                <a href="/airline/routes/{{route.id}}">and {{ route.flights.all|length|add:-5 }} more...</a>
                {% endif %}
                {% endfor %}
             </div>
          </td>
       </tr>
-      {% endif %}
       {% endfor %}
       {% else %}
       <tr>
@@ -63,11 +60,5 @@
       {% endif %}
    </tbody>
 </table>
-{% if routes|length > 10 %}
-<div class="text-center col-12 m-2">
-    <small" role="button">Use filter to see more...</small>
-</div>
-{% endif %}
-</main>
 <script src="/static/filter&Stripe.js"></script>
 {% endblock %}

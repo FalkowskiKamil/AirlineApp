@@ -1,8 +1,7 @@
 {% extends "airline/index.html" %}
 {% block content %}
 {% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
-<main class="bg-white w-100">
-<table class="table">
+<table class="table bg-white position-absolute start-0">
    <thead class="bg-success">
       <tr class="align-middle">
          <th>Flight number: </th>
@@ -55,14 +54,14 @@
          {% endfor %}
          <td><a class="text-decoration-none link-dark" href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
          <td><a class="text-decoration-none link-dark" href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
-         <td>{{fli.date}}</td>
-         {% if fli.passengers.all %}
+         <td>{{fli.date|date:"d/m/Y"}}</td>
+         {% if fli.passengers_flights.all %}
          <td class="passager-td">
-            {% for passagers in fli.passengers.all %} 
+            {% for passagers in fli.passengers_flights.all %} 
             {% if forloop.counter <= 5 %}
-            <a href="/airline/passager/{{passagers.id}}">{{passagers}}</a>, 
+            <a class="text-decoration-none link-dark" href="/airline/passager/{{passagers.id}}">{{passagers.first_name}} {{passagers.surname}}</a>, 
             {% elif forloop.counter == 6 %}
-            <a href="/airline/flight/{{fli.id}}"> and {{ fli.passengers.all|length|add:-5 }} more...</a>
+            <a class="text-decoration-none link-dark" href="/airline/flight/{{fli.id}}"> and {{ fli.passengers.all|length|add:-5 }} more...</a>
             {% endif %}
             {% endfor %}
          </td>
@@ -85,7 +84,6 @@
       {% endif %}
    </tbody>
 </table>
-</main>
 {% else %}
 <h1 class="align-middle text-center"><a href="/airline/"> Sory,you dont have permission for this page</a></h1>
 {% endif %}

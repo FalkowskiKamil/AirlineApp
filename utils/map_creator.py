@@ -31,6 +31,7 @@ def create_map(airport_start, airport_destination=None):
     map = folium.Map(
         location=[center_latitude, center_longitude],
         zoom_start=zoom_level,
+        min_zoom=zoom_level,
         height=250,
     )
 
@@ -79,7 +80,7 @@ def create_map(airport_start, airport_destination=None):
 
 
 def create_full_map(route_list):
-    map = folium.Map(location=[0, 0], zoom_start=2)
+    map = folium.Map(location=[0, 0], zoom_start=2, min_zoom=2)
     for route in route_list:
         folium.Marker(
             location=[route.start.latitude, route.start.longitude],
