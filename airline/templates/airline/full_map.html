@@ -13,7 +13,7 @@
    {% else %}
    <div class="d-flex flex-wrap flex-column align-items-center">
       <p class="text-center m-4 display-4">No flight with this data</p>
-      <a class="btn btn-success m-2 p-1 col-3" href="{% url 'airline:main' %}" role="button">Back to the Main Site</a>
+      <a class="btn btn-success m-2 p-1 col-3" href="{% url 'airline:main' %}" role="button" id="main_site">Back to the Main Site</a>
       <a class="btn btn-success m-1 p-1 col-3" href="{% url 'airline:full_map' %}" role="button">
       Check Every Possible Flight in our Airline
       </a>

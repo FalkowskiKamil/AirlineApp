@@ -83,6 +83,6 @@
    </section>
 </main>
 {% else %}
-<h1 class="align-middle text-center"><a href="/airline/"> Sory,you have no permission for this page</a></h1>
+<h1 class="align-middle text-center"><a href="{% url 'airline:main' %}"> Sory,you have no permission for this page</a></h1>
 {% endif %}
 {% endblock %}

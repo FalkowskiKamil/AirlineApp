@@ -33,6 +33,7 @@ tzdata = "==2023.3"
 urllib3 = "==2.0.3"
 geoip2 = "*"
 geopy = "*"
+selenium = "*"
 
 [dev-packages]
 

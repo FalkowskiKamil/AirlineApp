@@ -6,7 +6,7 @@
       Flight "{{flight.id}}"
       from: <a class="link-secondary" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
       to: <a class="link-secondary" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
-      (route {% for route in flight.routes.all %} <a class="link-secondary" href=/airline/routes/{{route}}>{{route}}</a>{% endfor %})
+      (route {% for route in flight.routes.all %} <a class="link-secondary" id="route" href=/airline/routes/{{route}}>{{route}}</a>{% endfor %})
       on {{flight.date}}
    </h1>
 </header>
