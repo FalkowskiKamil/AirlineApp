@@ -1,8 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils import timezone
-from airline.models import *
-import json
+from airline.models import Airport, Route, Flight, Passager
 
 
 class TestViews(TestCase):

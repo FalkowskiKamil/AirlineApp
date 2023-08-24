@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.models import User
 from airline.models import Passager
 from utils.logger import configure_logger
@@ -29,7 +29,7 @@ def registration_request(request):
             login(request, user)
             logger.debug(f"Register user: {username}")
             context={'message':'Register succesfuly!'}
-            return redirect("airline:main", context=context)
+            return render(request, "airline/main.html", context=context)
         else:
             context={"message" : "User already exists."}
     return render(request, "user/user_registration.html", context=context)
