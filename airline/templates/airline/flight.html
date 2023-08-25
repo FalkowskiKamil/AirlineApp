@@ -11,37 +11,36 @@
    </h1>
 </header>
 {% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
-<section class="d-flex flex-wrap m-4 justify-content-center ">
-   <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
-      <h2 class="display-6 banner-text text-center">All of the passagers {% if flight.passengers_flights.all %}({{ flight.passengers_flights.all|length }}):{% endif %}</h2>
-      <div class="card-body d-flex flex-wrap justify-content-center">
-         {% if flight.passengers_flights.all %}
-         {% for passager in flight.passengers_flights.all %}
-         <a class="btn btn-success m-2" href="/airline/passager/{{passager.id}}">{{passager.first_name}} {{passager.surname}}</a>
-         {% endfor %}
-         {% else %}
-         <div class="text-center">
-            <span>No passager</span>
+   <section class="d-flex flex-wrap m-4 justify-content-center ">
+      <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
+         <h2 class="display-6 banner-text text-center">All of the passagers {% if flight.passengers_flights.all %}({{ flight.passengers_flights.all|length }}):{% endif %}</h2>
+         <div class="card-body d-flex flex-wrap justify-content-center">
+            {% if flight.passengers_flights.all %}
+               {% for passager in flight.passengers_flights.all %}
+                  <a class="btn btn-success m-2" href="/airline/passager/{{passager.id}}">{{passager.first_name}} {{passager.surname}}</a>
+               {% endfor %}
+            {% else %}
+               <div class="text-center">
+                  <span>No passager</span>
+               </div>
+            {% endif %}
          </div>
-         {% endif %}
       </div>
-   </div>
-   {% else %}
+{% else %}
    {% if user.is_authenticated %}
-   
-   <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
-   {% for passager in user.passager_user.all %}
-   {% if user.passager_user.first in flight.passagers.all %}
-   <h2 class="display-4 text-danger text-shadow banner-text">You are signed up for this flight</h2>
-   <small class="m-2">If you want to check out, contact with us and we will try to help you</small>
-   {% else %}
-   <h2 class="display-4 text-danger text-shadow banner-text mb-4">You are not signed up for this flight</h2>
-   <form id="record" method="POST">{% csrf_token %}</form>
-   <button type="submit" form="record" class="btn btn-success fw-bold">Sign up</button>
+      <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
+      {% for passager in user.passager_user.all %}
+         {% if user.passager_user.first in flight.passagers.all %}
+            <h2 class="display-4 text-danger text-shadow banner-text">You are signed up for this flight</h2>
+            <small class="m-2">If you want to check out, contact with us and we will try to help you</small>
+         {% else %}
+            <h2 class="display-4 text-danger text-shadow banner-text mb-4">You are not signed up for this flight</h2>
+            <form id="record" method="POST">{% csrf_token %}</form>
+            <button type="submit" form="record" class="btn btn-success fw-bold">Sign up</button>
+         {% endif %}
+      {% endfor %}
+      </div>
+      {% endif %}
    {% endif %}
-   {% endfor %}
-   </div>
-   {% endif %}
-   {% endif %}
-</section>
+   </section>
 {% endblock %}

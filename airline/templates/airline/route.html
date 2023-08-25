@@ -12,9 +12,9 @@
       <h2 class="text-center">Date of registered flight:</h2>
       <div class="card-body d-flex flex-wrap justify-content-center">
          {% for fli in route.flights.all|dictsort:"date" %} 
-         <a class="btn btn-success m-2" href="/airline/flight/{{fli.id}}">
-         {{ fli.date|date:'H:i d-m' }}
-         </a>
+            <a class="btn btn-success m-2" href="/airline/flight/{{fli.id}}">
+            {{ fli.date|date:'H:i d-m' }}
+            </a>
          {% endfor %}
       </div>
    </div>
