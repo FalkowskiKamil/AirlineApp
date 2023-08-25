@@ -28,6 +28,8 @@
    </div>
    {% else %}
    {% if user.is_authenticated %}
+   
+   <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
    {% for passager in user.passager_user.all %}
    {% if user.passager_user.first in flight.passagers.all %}
    <h2 class="display-4 text-danger text-shadow banner-text">You are signed up for this flight</h2>
