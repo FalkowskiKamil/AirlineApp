@@ -48,20 +48,20 @@
          {% if flight %}
             {% for fli in flight %}
                <tr class="align-middle" data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
-               <td><a class="text-decoration-none link-dark" href="/airline/flight/{{fli.id}}">{{fli.id}}</a></td>
+               <td><a class="text-decoration-none link-dark" href="{% url 'airline:flight' fli.id %}">{{fli.id}}</a></td>
                {% for route in fli.routes.all %}
-                  <td><a class="text-decoration-none link-dark" href="/airline/routes/{{route}}">{{route}}</a></td>
+                  <td><a class="text-decoration-none link-dark" href="{% url 'airline:routes' route %}">{{route}}</a></td>
                {% endfor %}
-               <td><a class="text-decoration-none link-dark" href="/airline/airport/{{fli.start.airport_id}}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
-               <td><a class="text-decoration-none link-dark" href="/airline/airport/{{fli.destination.airport_id}}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
+               <td><a class="text-decoration-none link-dark" href="{% url 'airline:airport' fli.start.airport_id %}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
+               <td><a class="text-decoration-none link-dark" href="{% url 'airline:airport' fli.destination.airport_id %}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>
                <td>{{fli.date|date:"d/m/Y"}}</td>
                {% if fli.passengers_flights.all %}
                   <td class="passager-td">
                      {% for passagers in fli.passengers_flights.all %} 
                         {% if forloop.counter <= 5 %}
-                           <a class="text-decoration-none link-dark" href="/airline/passager/{{passagers.id}}">{{passagers.first_name}} {{passagers.surname}}</a>, 
+                           <a class="text-decoration-none link-dark" href="{% url 'airline:passager' passagers.id %}">{{passagers.first_name}} {{passagers.surname}}</a>, 
                         {% elif forloop.counter == 6 %}
-                           <a class="text-decoration-none link-dark" href="/airline/flight/{{fli.id}}"> and {{ fli.passengers.all|length|add:-5 }} more...</a>
+                           <a class="text-decoration-none link-dark" href="{% url 'airline:flight' fli.id %}"> and {{ fli.passengers.all|length|add:-5 }} more...</a>
                         {% endif %}
                      {% endfor %}
                   </td>
@@ -72,20 +72,14 @@
             {% endfor %}
          {% else %}
             <tr>
-               <td>Sorry, currently no flight data are avaible</td>
-               <form class="form-inline" action="{% url 'airline:upload_flight' %}" method="post">
-                  {% csrf_token %}
-                  <label for="vol">Enter quantity of fake flight to load: (1-100)</label>
-                  <input type="number" id="quan" name="quan" min="1" max="100">
-                  <button class="btn btn-primary" type="submit">Upload flight Data</button>
-               </form>
+               <td><a href="{% url 'airline:add_data' %}">Sorry, currently no flight data are avaible, click to add</a></td>
             </tr>
          {% endif %}
       {% endif %}
    </tbody>
 </table>
 {% else %}
-   <h1 class="align-middle text-center"><a href="/airline/"> Sory,you dont have permission for this page</a></h1>
+   <h1 class="align-middle text-center mt-5"><a href="{% url 'airline:main' %}"> Sory,you dont have permission to this page, back to main menu</a></h1>
 {% endif %}
 <script src="/static/filter&Stripe.js"></script>
 {% endblock %}

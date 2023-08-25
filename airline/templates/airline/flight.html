@@ -4,9 +4,9 @@
 <header>
    <h1 class="text-center m-4 banner-text">
       Flight "{{flight.id}}"
-      from: <a class="link-secondary" href="/airline/airport/{{flight.start.airport_id}}">{{flight.start}}</a>
-      to: <a class="link-secondary" href="/airline/airport/{{flight.destination.airport_id}}">{{flight.destination}}</a>
-      (route {% for route in flight.routes.all %} <a class="link-secondary" id="route" href=/airline/routes/{{route}}>{{route}}</a>{% endfor %})
+      from: <a class="link-secondary" href="{% url 'airline:airport' flight.start.airport_id %}">{{flight.start}}</a>
+      to: <a class="link-secondary" href="{% url 'airline:airport' flight.destination.airport_id %}">{{flight.destination}}</a>
+      (route {% for route in flight.routes.all %} <a class="link-secondary" id="route" href="{% url 'airline:routes' route %}">{{route}}</a>{% endfor %})
       on {{flight.date}}
    </h1>
 </header>
@@ -17,7 +17,7 @@
          <div class="card-body d-flex flex-wrap justify-content-center">
             {% if flight.passengers_flights.all %}
                {% for passager in flight.passengers_flights.all %}
-                  <a class="btn btn-success m-2" href="/airline/passager/{{passager.id}}">{{passager.first_name}} {{passager.surname}}</a>
+                  <a class="btn btn-success m-2" href="{% url 'airline:passager' passager.id %}">{{passager.first_name}} {{passager.surname}}</a>
                {% endfor %}
             {% else %}
                <div class="text-center">

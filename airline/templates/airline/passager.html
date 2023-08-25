@@ -10,13 +10,13 @@
       {% for fli in passager.flights_passengers.all %}
          <div class="card m-3" style="width: 18rem;">
             <div class="card-header text-center">
-               Flight number: <a href="/airline/flight/{{fli.id}}">{{fli.id}}</a>
+               Flight number: <a href="{% url 'airline:flight' fli.id %}">{{fli.id}}</a>
             </div>
             <div class="card-body">
-               <p class="card-text">Start: <a href="/airline/airport/{{fli.start.airport_id}}">
+               <p class="card-text">Start: <a href="{% url 'airline:airport' fli.start.airport_id %}">
                   {{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a>
                </p>
-               <p class="card-text">Destination: <a href="/airline/airport/{{fli.destination.airport_id}}">
+               <p class="card-text">Destination: <a href="{% url 'airline:airport' fli.destination.airport_id %}">
                   {{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a>
                </p>
                <p class="card-text">Date: {{fli.date}}</p>
