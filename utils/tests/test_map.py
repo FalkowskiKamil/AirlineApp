@@ -86,3 +86,12 @@ class MapTest(TestCase):
         for airport_start, airport_destination in test_cases:
             result = meridian_calculator(airport_start, airport_destination)
             self.assertTrue(abs(result - airport_destination) <= 180)
+
+    def test_get_random_color(self):
+        random_color = get_random_color()
+        self.assertTrue(random_color.startswith("#"))
+        self.assertEqual(len(random_color), 7)
+
+        color_int = int(random_color[1:], 16)
+        self.assertGreaterEqual(color_int, 0)
+        self.assertLessEqual(color_int, 0xFFFFFF)

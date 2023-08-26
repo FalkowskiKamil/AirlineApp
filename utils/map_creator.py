@@ -112,9 +112,10 @@ def create_full_map(route_list):
 
 def get_random_color():
     color = random.randrange(0, 2**24)
-    hex_color = hex(color)
-    std_color = "#" + hex_color[2:]
+    hex_color = format(color, '06x')
+    std_color = "#" + hex_color
     return std_color
+
 
 
 def meridian_calculator(airport_start, airport_destination):

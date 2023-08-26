@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Airport, Flight, Route, Passager
-from . import data_manager
+from utils import data_manager
 from utils.mongo_connection import connect_to_mongodb
 from utils.map_creator import create_full_map, create_map
 
