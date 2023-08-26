@@ -18,3 +18,7 @@ def configure_logger():
         logger.addHandler(handler)
 
     return logger
+
+def logger_example():
+    logger = configure_logger()
+    logger.info(f"Example logger")

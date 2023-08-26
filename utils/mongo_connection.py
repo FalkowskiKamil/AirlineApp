@@ -21,7 +21,6 @@ def connect_to_mongodb():
             global dataframe
             dataframe = pd.DataFrame(list(collection.find()))
             return ["Pinged your deployment. You successfully connected to MongoDB!", dataframe]
-
         except Exception as e:
             print(e)
     else:
