@@ -6,7 +6,7 @@ import random
 import string
 
 
-class TestViews(TestCase):
+class TestViewsUser(TestCase):
     def setUp(self):
         self.client = Client()
         self.data = self.random_register_data()

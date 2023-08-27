@@ -9,9 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-class TestAirlineuser(StaticLiveServerTestCase):
+class TestFunctionalityAirline(StaticLiveServerTestCase):
   def setUp(self):
-
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
     self.driver = webdriver.Firefox(options=options)

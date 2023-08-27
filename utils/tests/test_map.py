@@ -8,7 +8,7 @@ from ..map_creator import (
 from airline.models import Airport, Route
 
 
-class MapTest(TestCase):
+class TestMap(TestCase):
     def setUp(self):
         self.airport1 = Airport.objects.create(
             airport_id=1,

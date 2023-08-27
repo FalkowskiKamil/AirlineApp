@@ -4,7 +4,7 @@ from django.utils import timezone
 from ..admin import AirportAdmin, FlightAdmin, PassagerAdmin, RouteAdmin
 from ..models import Airport, Flight, Passager, Route
 
-class AdminTests(TestCase):
+class TestAdmin(TestCase):
     def setUp(self):
         self.site = AdminSite()
         self.airport1 = Airport.objects.create(

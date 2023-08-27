@@ -1,7 +1,7 @@
 from django.test import TestCase
 from ..logger import configure_logger
 
-class TestExample(TestCase):
+class TestLogger(TestCase):
     def setUp(self):
         logger = configure_logger()
         logger.info(f"Example logger")

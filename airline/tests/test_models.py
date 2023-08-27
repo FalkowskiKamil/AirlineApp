@@ -4,7 +4,7 @@ from ..models import Airport, Flight, Route, Passager, FlightPassager
 from django.contrib.auth.models import User
 
 
-class FlightModelTestCase(TestCase):
+class TestModels(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username="testuser", password="testpassword"

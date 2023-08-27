@@ -1,16 +1,16 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from user.views import registration_request, login_request, logout_request
+from user.views import register_request, login_request, logout_request
 
-class TestUrls(SimpleTestCase):
+class TestUrlsUser(SimpleTestCase):
     def test_registration_url_is_resolved(self):
-        url = reverse("user:registration")
-        self.assertEquals(resolve(url).func, registration_request)
+        url = reverse("user:register_request")
+        self.assertEquals(resolve(url).func, register_request)
         
     def test_login_url_is_resolved(self):
-        url = reverse("user:login")
+        url = reverse("user:login_request")
         self.assertEquals(resolve(url).func, login_request)
 
     def test_logout_url_is_resolved(self):
-        url = reverse("user:logout")
+        url = reverse("user:logout_request")
         self.assertEquals(resolve(url).func, logout_request)
