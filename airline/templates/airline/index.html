@@ -7,7 +7,7 @@
       <meta name="description" content="This is a Django App for Airline"/>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="author" content="Kamil Falkowski" />
-      <title>Airline</title>
+      <title>{% block title %}Airline{% endblock %}</title>
       <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
       <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
    </head>
@@ -41,17 +41,17 @@
                      </li>
                   {% endif %}
                   <li class="nav-item">
-                     <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
+                     <a class="nav-link" href="{% url 'user:logout_request' %}">Logout</a>
                   </li>
                {% else %}
                   <li class="nav-item">
-                     <form class="form-inline" action="{% url 'user:login' %}" method="post">
+                     <form class="form-inline" action="{% url 'user:login_request' %}" method="post">
                         {% csrf_token %}
                         <div class="input-group px-2">
                            <input type="text" class="form-control" placeholder="Username" name="username"/>
                            <input type="password" class="form-control ml-2" placeholder="Password" name="psw"/>
                            <button class="btn btn-success ml-2" type="submit">Login</button>
-                           <a class="btn btn-success mx-2" href="{% url 'user:registration' %}">Sign Up</a>
+                           <a class="btn btn-success mx-2" href="{% url 'user:registration_request' %}">Sign Up</a>
                         </div>
                      </form>
                   </li>

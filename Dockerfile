@@ -13,7 +13,7 @@ WORKDIR /code
 COPY requirements.txt .
 
 # Install project dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire Django project to the working directory
 COPY . .

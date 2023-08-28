@@ -1,8 +1,8 @@
-{% extends "airline/index.html" %}
+{% extends "airline/index.html" %}{% block title %}Registration form{% endblock %}
 {% block content %}
 
 <main class="d-flex justify-content-center">
-    <form class="text-center border border-5 card rounded rounded-3 shadow p-5 mt-5" action="{% url 'user:registration' %}" method="post">
+    <form class="text-center border border-5 card rounded rounded-3 shadow p-5 mt-5" action="{% url 'user:registration_request' %}" method="post">
         {% csrf_token %}
         <h1 class="display-4 fw-bold">Sign Up</h1>
         <label class="col-form-label" for="username"><b>User Name</b></label>
