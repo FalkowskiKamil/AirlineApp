@@ -19,12 +19,15 @@ AirlinesApp is a Django-based application that allows users to import real data 
 - Admin-only access to data upload functionality
 
 ## Screenshots
-![Screenshot 2023-06-13 at 13-24-23 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/6e19260c-2058-4b20-b795-b39826fe708f)
-![Screenshot 2023-06-13 at 13-24-40 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/91519aeb-ab2b-4723-b49d-82e099941ff9)
-![Screenshot 2023-06-13 at 13-25-11 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/f56d16b7-c035-4539-974e-c356d63bd71c)
-![Screenshot 2023-06-13 at 13-25-50 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/12f0474d-3886-4b43-b452-1ad6179366ed)
-![Screenshot 2023-06-13 at 13-26-24 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/94313bed-8e91-4354-90a0-5c0bdef18e61)
-![Screenshot 2023-08-29 at 15-37-30 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/2e61b52d-0226-4c22-b5bc-2e77e5898a41)
+![Screenshot 2023-08-29 at 15-41-09 Passager 123 123](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/8eb352c1-d459-4e1c-a16b-b2b2e19b6393)
+![Screenshot 2023-08-29 at 15-41-02 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/930a0d6a-1b19-4d20-980d-90b1a284729c)
+![Screenshot 2023-08-29 at 15-40-42 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/481fb262-9665-4825-9603-0063ed6b0ff2)
+![Screenshot 2023-08-29 at 15-40-14 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/4b24a7d4-ab3a-4987-83be-615cd5d3bff1)
+![Screenshot 2023-08-29 at 15-37-03 Airline](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/83c4b93c-dfe9-4965-b94d-8c2e4d918bd2)
+![Screenshot 2023-08-29 at 15-41-55 Flight Number 51](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/e48b06eb-c099-4335-8086-905ac89b3e4a)
+![Screenshot 2023-08-29 at 15-41-44 Route number 47](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/658fc5b0-a8b7-4035-978b-ed4a15964833)
+![Screenshot 2023-08-29 at 15-41-21 Ifrane Airport](https://github.com/FalkowskiKamil/AirlineApp_django/assets/116383333/d80f3b1e-2e23-4c5b-8bd9-015fc522ec4b)
+
 
 
 ## Technologies Used
