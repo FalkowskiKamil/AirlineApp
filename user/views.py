@@ -1,8 +1,10 @@
+from threading import Thread
 from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from airline.models import Passager
+from utils.mongo_connection import connect_to_mongodb
 from utils.logger import configure_logger
 
 logger = configure_logger()
@@ -45,6 +47,8 @@ def login_request(request):
             login(request, user)
             logger.debug(f"Login user: {username} ")
             context={"message":"Loggin succesfuly!"}
+            if user == "Staff" or user.is_superuser:
+                Thread(target= connect_to_mongodb, daemon=True).start()
             return render(request, "airline/main.html", context=context)
         else:
             context={"message":"Invalid username or password."}
