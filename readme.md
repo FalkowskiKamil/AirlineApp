@@ -32,13 +32,16 @@ AirlinesApp is a Django-based application that allows users to import real data 
 ## Technologies Used
 
 - Django
+- Bootstrap
 - Folium
 - Faker
 - Selenium
 - Pytest
+- SQLite
 - MongoDB
 - Docker
 - Kubernetes
+- Logger
 
 ## Installation
 
@@ -52,23 +55,6 @@ Option 2:
    1. Clone the Docker image using the command: 'docker pull falkowskikamil/airlinesapp:air' Make sure Docker is installed.
    2. Run container, using host Ports "8000"
    3. Open your browser and go to [http://localhost:8000/](http://localhost:8000/)
-
-## Usage
-
-- To access the full potential of the website, log in using the username "admin" and the password "admin."
-- Register a new user: Users can register by providing a unique username, password, first name, and last name.
-- Login: Registered users can log in using their username and password.
-- Logout: Users can log out of their accounts.
-- Data Upload (Admin Only): Admin users can upload data about airports, flights, and passengers using the provided CSV files.
-- Main Page: Users can view a list of countries and select a country to see the available routes.
-- Country Page: Users can view the routes within a specific country.
-- All Page: Users can view all airports and routes.
-- Staff Page (Admin Only): Admin users can view all airports, passengers, and flights, and manage the data.
-- Passager Page: Users can view details about a specific passenger.
-- Flight Page: Users can view details about a specific flight and sign up for it.
-- Airport Page: Users can view details about a specific airport and see it on a map.
-- Route Page: Users can view details about a specific route and see it on a map.
--  Add Data Page (Admin Only): Admin users can upload data about airports, flights, and passengers.
 
 ## Contribution
 
