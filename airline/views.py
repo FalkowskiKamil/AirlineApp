@@ -1,6 +1,7 @@
-from threading import Thread
-from django.shortcuts import render, get_object_or_404
-from .models import Airport, Flight, Route, Passager
+from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from airline.models import Airport, Flight, Route, Passager
 from utils import data_manager
 from utils.mongo_connection import connect_to_mongodb
 from utils.map_creator import create_full_map, create_map
@@ -56,10 +57,8 @@ def flight(request, fli_id):
     map = create_map(flight.start, flight.destination)
     context = {"flight": flight, "map": map._repr_html_()}
     if request.method == "POST":
-        message = data_manager.sign_for_flight(
-            request.user.passager_user.first().id, fli_id
-        )
-        context["message"] = message
+        data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
+        messages.success(f"Succesfuly signed for flight {flight.id}")
     return render(request, template_name="airline/flight.html", context=context)
 
 
@@ -99,6 +98,19 @@ def full_data_staff(request):
 
 
 def add_data(request):
+    if request.method == "POST":
+        if "add_airport_form" in request.POST:
+            message = data_manager.upload_airport(request.POST)
+        elif "add_flight_form" in request.POST:
+            message = data_manager.upload_flight(request.POST)
+        elif "add_passager_form" in request.POST:
+            message = data_manager.upload_passager(request.POST)
+        elif "add_route_form" in request.POST:
+            message = data_manager.upload_route(request.POST)
+        else:
+            messages.error(request, "Something went wrong!")
+        messages.success(request, str(f"{message}"))
+        return redirect(reverse("airline:add_data"))
     status_of_connection = connect_to_mongodb()
     db = status_of_connection[1]
     countries = sorted(db["Country"].unique())
@@ -106,25 +118,10 @@ def add_data(request):
     routes_alredy_made = Route.objects.all()
     airport_alredy_made = Airport.objects.all()
     context = {
-        "message": status_of_connection[0],
         "flights": flights_already_made,
         "routes": routes_alredy_made,
         "airports": airport_alredy_made,
         "countries": countries,
     }
-    if request.method == "POST":
-        if "add_airport_form" in request.POST:
-            message = data_manager.upload_airport(request.POST)
-            context["message"] = message
-        elif "add_flight_form" in request.POST:
-            message = data_manager.upload_flight(request.POST)
-            context["message"] = message
-        elif "add_passager_form" in request.POST:
-            message = data_manager.upload_passager(request.POST)
-            context["message"] = message
-        elif "add_route_form" in request.POST:
-            message = data_manager.upload_route(request.POST)
-            context["message"] = message
-        else:
-            context["message"] = "Error"
+    messages.info(request, str(f"{status_of_connection[0]}"))
     return render(request, template_name="airline/add_data.html", context=context)

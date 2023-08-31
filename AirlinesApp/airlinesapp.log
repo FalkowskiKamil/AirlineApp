@@ -1503,3 +1503,922 @@ NameError: name 'execute_from_command_line' is not defined
 2023-08-22 17:06:49,726 - utils.logger - DEBUG - Login user: asd 
 2023-08-22 17:27:33,198 - utils.logger - DEBUG - Logout user: 
 2023-08-22 17:27:36,768 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 11:48:51,540 - utils.logger - DEBUG - Logout user: 
+2023-08-24 11:53:11,316 - utils.logger - DEBUG - Logout user: 
+2023-08-24 13:31:20,560 - utils.logger - DEBUG - Added airport: Schönhagen Airport
+2023-08-24 13:34:22,348 - utils.logger - DEBUG - Added airport: Liuting Airport
+2023-08-24 13:34:43,509 - utils.logger - DEBUG - Added airport: Graaff Reinet Airport
+2023-08-24 13:36:00,707 - utils.logger - DEBUG - Added airport: Tenerife Norte Airport
+2023-08-24 13:36:38,294 - utils.logger - DEBUG - Added airport: Ulan-Ude East Airport
+2023-08-24 13:37:00,413 - utils.logger - DEBUG - Added airport: Fréjus Airport
+2023-08-24 13:38:09,601 - utils.logger - DEBUG - Added airport: Copernicus Wroc?aw Airport
+2023-08-24 13:38:32,256 - utils.logger - DEBUG - Added airport: Gda?sk Lech Wa??sa Airport
+2023-08-24 13:39:19,820 - utils.logger - DEBUG - Added airport: Bydgoszcz Ignacy Jan Paderewski Airport
+2023-08-24 13:39:34,792 - utils.logger - DEBUG - Added airport: Leczyca Military Air Base
+2023-08-24 13:42:06,457 - utils.logger - DEBUG - Added airport: Warsaw Chopin Airport
+2023-08-24 13:42:06,472 - utils.logger - DEBUG - Trying to make route with this same start and destination (Warsaw Chopin Airport)
+2023-08-24 13:44:07,278 - utils.logger - DEBUG - Added airport: Mielec Airport
+2023-08-24 13:44:07,322 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-03-18 07:07:24
+2023-08-24 13:44:07,338 - utils.logger - DEBUG - Trying to make route with this same start and destination (start_name)
+2023-08-24 13:46:09,597 - utils.logger - DEBUG - Added airport: Rzeszów-Jasionka Airport
+2023-08-24 13:46:09,628 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-06-05 01:08:49
+2023-08-24 13:46:09,628 - utils.logger - DEBUG - Make 1 passagers
+2023-08-24 13:46:09,644 - utils.logger - DEBUG - Trying to make existing route 1
+2023-08-24 13:56:39,790 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 13:57:27,034 - utils.logger - DEBUG - Logout user: 
+2023-08-24 13:57:33,396 - utils.logger - DEBUG - Login user: 123 
+2023-08-24 14:02:40,304 - utils.logger - DEBUG - Logout user: 
+2023-08-24 14:02:43,245 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 14:03:47,519 - utils.logger - DEBUG - Logout user: 
+2023-08-24 14:03:50,366 - utils.logger - DEBUG - Login user: 123 
+2023-08-24 14:18:50,051 - utils.logger - DEBUG - Added airport: Szczecin-D?bie Airport
+2023-08-24 14:18:50,067 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-11-14 17:50:08
+2023-08-24 14:18:50,080 - utils.logger - DEBUG - Make 1 passagers
+2023-08-24 14:18:50,089 - utils.logger - DEBUG - Trying to make route with this same start and destination (destination_name)
+2023-08-24 14:49:06,452 - utils.logger - DEBUG - Logout user: 
+2023-08-24 14:52:51,940 - utils.logger - DEBUG - Register user: okm
+2023-08-24 14:54:46,571 - utils.logger - DEBUG - Register user: vgy
+2023-08-24 14:55:16,358 - utils.logger - DEBUG - Register user: vgy1
+2023-08-24 14:55:46,303 - utils.logger - DEBUG - Logout user: 
+2023-08-24 14:56:27,354 - utils.logger - DEBUG - Register user: wwww
+2023-08-24 14:56:30,234 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:10:07,789 - utils.logger - DEBUG - Register user: ;	7}c~G
+2023-08-24 15:10:08,109 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:12:22,769 - utils.logger - DEBUG - Register user: j\binX
+2023-08-24 15:12:23,085 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:14:05,194 - utils.logger - DEBUG - Register user: RyDgO[Wg
+2023-08-24 15:14:05,676 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:20:02,968 - utils.logger - DEBUG - Register user: TQZ7e"cL
+2023-08-24 15:20:03,347 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:23:46,256 - utils.logger - DEBUG - Register user: bC	R`41B
+2023-08-24 15:23:46,748 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:29:57,409 - utils.logger - DEBUG - Register user: $_\+?s	
+2023-08-24 15:29:57,680 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:32:16,950 - utils.logger - DEBUG - Register user: 467.MT	{
+2023-08-24 15:32:17,506 - utils.logger - DEBUG - Logout user: 
+2023-08-24 15:36:27,425 - utils.logger - DEBUG - Register user: Y~m>E0NV
+2023-08-24 15:36:27,959 - utils.logger - DEBUG - Logout user: 
+2023-08-24 16:06:50,529 - utils.logger - DEBUG - Register user: test
+2023-08-24 16:06:53,026 - utils.logger - DEBUG - Logout user: 
+2023-08-24 16:08:02,006 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:12:53,226 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:13:49,741 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:14:28,180 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:15:27,309 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:16:14,428 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:23:15,032 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:34:52,438 - utils.logger - DEBUG - Logout user: 
+2023-08-24 16:35:21,316 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 16:37:05,656 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 16:38:12,266 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 16:40:34,283 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:42:17,203 - utils.logger - DEBUG - Added airport: Szczecin-D?bie Airport
+2023-08-24 16:42:17,234 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-11-14 15:57:02
+2023-08-24 16:42:17,234 - utils.logger - DEBUG - Make 1 passagers
+2023-08-24 16:42:17,250 - utils.logger - DEBUG - Trying to make route with this same start and destination (destination_name)
+2023-08-24 16:42:26,780 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 16:44:47,169 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:47:25,676 - utils.logger - DEBUG - Added airport: Olsztyn-Mazury Airport
+2023-08-24 16:47:25,692 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-10-20 19:24:15
+2023-08-24 16:47:25,698 - utils.logger - DEBUG - Make 1 passagers
+2023-08-24 16:47:25,707 - utils.logger - DEBUG - Trying to make route with this same start and destination (destination_name)
+2023-08-24 16:47:34,713 - utils.logger - DEBUG - Login user: admin 
+2023-08-24 16:49:52,918 - utils.logger - DEBUG - Login user: test 
+2023-08-24 16:52:57,678 - utils.logger - DEBUG - Register user: .&6hMPPC
+2023-08-24 16:52:58,414 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:12:58,195 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:18:55,669 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:19:05,970 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:19:07,170 - utils.logger - DEBUG - Register user: bc4EC}}
+2023-08-24 17:20:31,950 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:20:33,154 - utils.logger - DEBUG - Register user: cCnF>@+4
+2023-08-24 17:20:45,515 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:20:46,700 - utils.logger - DEBUG - Register user: V=d)isL
+2023-08-24 17:22:51,640 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:22:52,849 - utils.logger - DEBUG - Register user: Vj#iiAp7
+2023-08-24 17:23:08,849 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:23:10,073 - utils.logger - DEBUG - Register user: y6V2,N\[
+2023-08-24 17:24:27,827 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:24:29,028 - utils.logger - DEBUG - Register user: h&Q 5{0p
+2023-08-24 17:24:57,320 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:24:58,523 - utils.logger - DEBUG - Register user: 5C^^y3|%
+2023-08-24 17:25:14,427 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:25:15,620 - utils.logger - DEBUG - Register user: n{=2D~X_
+2023-08-24 17:25:39,720 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:25:41,034 - utils.logger - DEBUG - Register user: <]fgPwVM
+2023-08-24 17:25:56,432 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:25:57,634 - utils.logger - DEBUG - Register user: FaJTHF
+2023-08-24 17:27:36,728 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:27:38,341 - utils.logger - DEBUG - Register user: W@EuV)\e
+2023-08-24 17:28:53,513 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:28:54,319 - utils.logger - DEBUG - Register user: dWsY=9+y
+2023-08-24 17:28:54,329 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:28:55,533 - utils.logger - DEBUG - Register user: !utKYs=
+2023-08-24 17:29:59,145 - utils.logger - DEBUG - Register user: ,pH|@<19
+2023-08-24 17:29:59,148 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:29:59,564 - utils.logger - DEBUG - Login user: ,pH|@<19 
+2023-08-24 17:29:59,968 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:30:00,773 - utils.logger - DEBUG - Register user: S3r6gx |
+2023-08-24 17:30:00,783 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:30:01,984 - utils.logger - DEBUG - Register user: _Co%d.kb
+2023-08-24 17:30:24,706 - utils.logger - DEBUG - Register user: pV'e|?%7
+2023-08-24 17:30:24,716 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:30:25,120 - utils.logger - DEBUG - Login user: pV'e|?%7 
+2023-08-24 17:30:25,120 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:30:25,528 - utils.logger - DEBUG - Register user: L\(L0W0*
+2023-08-24 17:30:25,536 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:30:25,945 - utils.logger - DEBUG - Register user: _hn&#lQ
+2023-08-24 17:31:08,007 - utils.logger - DEBUG - Register user: bYbshL:
+2023-08-24 17:31:08,015 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:31:08,411 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:31:09,355 - utils.logger - DEBUG - Register user: cUZL7a#
+2023-08-24 17:31:09,357 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:31:10,602 - utils.logger - DEBUG - Register user: _4NzXuW?
+2023-08-24 17:31:30,189 - utils.logger - DEBUG - Register user: E0beU0b
+2023-08-24 17:31:30,199 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:31:30,990 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:31:31,793 - utils.logger - DEBUG - Register user: c.pZzit)
+2023-08-24 17:31:31,793 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:31:33,004 - utils.logger - DEBUG - Register user: Dj	+i
+\
+2023-08-24 17:32:21,549 - utils.logger - DEBUG - Register user: "!@>	YS6
+2023-08-24 17:32:21,559 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:32:21,956 - utils.logger - DEBUG - Login user: "!@>	YS6 
+2023-08-24 17:32:21,967 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:32:22,364 - utils.logger - DEBUG - Register user: )hHu<xA*
+2023-08-24 17:32:22,375 - utils.logger - DEBUG - Logout user: 
+2023-08-24 17:32:22,782 - utils.logger - DEBUG - Register user: K5WLIL~!
+2023-08-25 16:17:22,322 - utils.logger - DEBUG - Logout user: 
+2023-08-25 16:17:26,298 - utils.logger - DEBUG - Login user: 123 
+2023-08-25 16:19:05,130 - utils.logger - DEBUG - User: 123 123 register for flight 5
+2023-08-25 16:40:56,886 - utils.logger - DEBUG - Logout user: 
+2023-08-25 16:41:00,544 - utils.logger - DEBUG - Login user: admin 
+2023-08-25 16:41:14,574 - utils.logger - DEBUG - Logout user: 
+2023-08-25 16:41:16,944 - utils.logger - DEBUG - Login user: 123 
+2023-08-25 16:41:30,032 - utils.logger - DEBUG - Logout user: 
+2023-08-25 16:41:32,656 - utils.logger - DEBUG - Login user: admin 
+2023-08-25 16:46:59,619 - utils.logger - DEBUG - Logout user: 
+2023-08-25 16:47:02,249 - utils.logger - DEBUG - Login user: 123 
+2023-08-25 16:47:08,499 - utils.logger - DEBUG - Logout user: 
+2023-08-25 16:49:39,829 - utils.logger - DEBUG - Login user: test 
+2023-08-26 10:56:36,801 - utils.logger - DEBUG - Example logger
+2023-08-26 10:56:53,096 - utils.logger - DEBUG - Example logger
+2023-08-26 10:57:18,314 - utils.logger - INFO - Example logger
+2023-08-26 10:57:31,536 - utils.logger - INFO - Example logger
+2023-08-26 10:58:54,807 - utils.logger - INFO - Example logger
+2023-08-26 10:59:04,357 - utils.logger - INFO - Example logger
+2023-08-26 11:00:39,195 - utils.logger - INFO - Example logger
+2023-08-26 11:00:52,195 - utils.logger - INFO - Example logger
+2023-08-26 11:01:06,793 - utils.logger - INFO - Example logger
+2023-08-26 11:01:06,793 - utils.logger - INFO - Example logger
+2023-08-26 11:12:53,479 - utils.logger - INFO - Example logger
+2023-08-26 11:12:53,494 - utils.logger - INFO - Example logger
+2023-08-26 11:14:42,735 - utils.logger - INFO - Example logger
+2023-08-26 11:14:42,735 - utils.logger - INFO - Example logger
+2023-08-26 11:15:03,013 - utils.logger - INFO - Example logger
+2023-08-26 11:15:03,013 - utils.logger - INFO - Example logger
+2023-08-26 11:15:23,830 - utils.logger - INFO - Example logger
+2023-08-26 11:15:23,830 - utils.logger - INFO - Example logger
+2023-08-26 11:15:23,830 - utils.logger - INFO - Example logger
+2023-08-26 11:15:23,830 - utils.logger - INFO - Example logger
+2023-08-26 11:15:36,673 - utils.logger - INFO - Example logger
+2023-08-26 11:15:36,673 - utils.logger - INFO - Example logger
+2023-08-26 11:15:45,924 - utils.logger - INFO - Example logger
+2023-08-26 11:15:45,924 - utils.logger - INFO - Example logger
+2023-08-26 11:16:17,862 - utils.logger - INFO - Example logger
+2023-08-26 11:16:17,862 - utils.logger - INFO - Example logger
+2023-08-26 11:16:39,872 - utils.logger - INFO - Example logger
+2023-08-26 11:16:39,874 - utils.logger - INFO - Example logger
+2023-08-26 11:16:54,954 - utils.logger - INFO - Example logger
+2023-08-26 11:16:54,954 - utils.logger - INFO - Example logger
+2023-08-26 11:17:26,096 - utils.logger - INFO - Example logger
+2023-08-26 11:17:26,112 - utils.logger - INFO - Example logger
+2023-08-26 11:17:47,207 - utils.logger - INFO - Example logger
+2023-08-26 11:17:47,207 - utils.logger - INFO - Example logger
+2023-08-26 11:18:09,913 - utils.logger - INFO - Example logger
+2023-08-26 11:18:09,913 - utils.logger - INFO - Example logger
+2023-08-26 11:18:25,693 - utils.logger - INFO - Example logger
+2023-08-26 11:18:25,693 - utils.logger - INFO - Example logger
+2023-08-26 11:18:44,991 - utils.logger - INFO - Example logger
+2023-08-26 11:18:45,007 - utils.logger - INFO - Example logger
+2023-08-26 11:19:37,838 - utils.logger - INFO - Example logger
+2023-08-26 11:19:37,840 - utils.logger - INFO - Example logger
+2023-08-26 12:23:03,558 - utils.logger - DEBUG - Logout user: 
+2023-08-26 12:23:06,821 - utils.logger - DEBUG - Login user: admin 
+2023-08-26 12:23:21,532 - utils.logger - DEBUG - Added airport: Ghazni Airport
+2023-08-26 12:23:25,847 - utils.logger - DEBUG - Make new route (65) from Cape Dorset Airport to Immola Airport
+2023-08-26 12:33:19,682 - utils.logger - DEBUG - Country: SomeCountry have imported all of the avaible airport
+2023-08-26 12:33:31,320 - utils.logger - DEBUG - Country: SomeCountry have imported all of the avaible airport
+2023-08-26 12:42:11,514 - utils.logger - DEBUG - Added airport: Bojnord Airport
+2023-08-26 12:42:11,529 - utils.logger - DEBUG - Added airport: Rechlin-Lärz Airport
+2023-08-26 12:46:00,608 - utils.logger - DEBUG - Added airport: Stuttgart Airport
+2023-08-26 12:46:00,623 - utils.logger - DEBUG - Added airport: Neustadt-Glewe Airport
+2023-08-26 12:47:23,683 - utils.logger - DEBUG - Added airport: Pangborn Memorial Airport
+2023-08-26 12:47:23,699 - utils.logger - DEBUG - Added airport: Neumünster Airport
+2023-08-26 12:48:03,180 - utils.logger - DEBUG - Added airport: Soroti Airport
+2023-08-26 12:48:03,180 - utils.logger - DEBUG - Added airport: Schleswig Air Base
+2023-08-26 12:48:03,180 - utils.logger - DEBUG - Trying to make route with this same start and destination (None)
+2023-08-26 12:48:43,327 - utils.logger - DEBUG - Added airport: Quebec Jean Lesage International Airport
+2023-08-26 12:48:43,327 - utils.logger - DEBUG - Added airport: Diepholz Air Base
+2023-08-26 12:48:43,327 - utils.logger - DEBUG - Trying to make route with this same start and destination (None)
+2023-08-26 12:50:07,390 - utils.logger - DEBUG - Added airport: Swartkop Air Force Base
+2023-08-26 12:50:07,390 - utils.logger - DEBUG - Added airport: Wilhelmshaven-Mariensiel Airport
+2023-08-26 12:50:07,406 - utils.logger - DEBUG - Trying to make route with this same start and destination (None)
+2023-08-26 12:50:33,378 - utils.logger - DEBUG - Added airport: Arba Minch Airport
+2023-08-26 12:50:33,378 - utils.logger - DEBUG - Added airport: Marburg-Schönstadt Airport
+2023-08-26 12:51:26,297 - utils.logger - DEBUG - Added airport: Terlet Glider Field
+2023-08-26 12:51:26,313 - utils.logger - DEBUG - Added airport: Itzehoe/Hungriger Wolf Airport
+2023-08-26 12:52:49,362 - utils.logger - DEBUG - Added airport: Kaukura Airport
+2023-08-26 12:52:49,362 - utils.logger - DEBUG - Added airport: Bremgarten Airport
+2023-08-26 12:54:17,644 - utils.logger - DEBUG - Added airport: Pudasjärvi Airport
+2023-08-26 12:54:30,484 - utils.logger - DEBUG - Added airport: Nittenau-Bruck Airport
+2023-08-26 12:54:30,499 - utils.logger - DEBUG - Added airport: Grafenwohr Army Air Field
+2023-08-26 12:55:26,033 - utils.logger - DEBUG - Added airport: Rottnest Island Airport
+2023-08-26 12:55:26,033 - utils.logger - DEBUG - Added airport: Lechfeld Air Base
+2023-08-26 12:55:26,049 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 12:56:27,299 - utils.logger - DEBUG - Added airport: Southern California Logistics Airport
+2023-08-26 12:56:27,315 - utils.logger - DEBUG - Added airport: Hildesheim Airport
+2023-08-26 12:56:27,315 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 12:57:03,106 - utils.logger - DEBUG - Added airport: Price County Airport
+2023-08-26 12:57:03,106 - utils.logger - DEBUG - Added airport: Allstedt Airport
+2023-08-26 12:57:03,121 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 12:57:52,017 - utils.logger - DEBUG - Added airport: Mallacoota Airport
+2023-08-26 12:57:52,033 - utils.logger - DEBUG - Added airport: Essen Mulheim Airport
+2023-08-26 12:57:52,033 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 12:57:52,033 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 13:00:00,237 - utils.logger - DEBUG - Added airport: Ketapang(Rahadi Usman) Airport
+2023-08-26 13:00:00,243 - utils.logger - DEBUG - Added airport: Stendal-Borstel Airport
+2023-08-26 13:00:00,248 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 13:00:00,251 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 13:00:00,253 - utils.logger - DEBUG - Trying to make existing route 1
+2023-08-26 13:00:32,296 - utils.logger - DEBUG - Added airport: Nusawiru Airport
+2023-08-26 13:00:32,296 - utils.logger - DEBUG - Added airport: Peenemünde Airport
+2023-08-26 13:00:32,296 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 13:00:32,311 - utils.logger - DEBUG - Make new route (1) from Airport 1 to Airport 2
+2023-08-26 13:00:32,311 - utils.logger - DEBUG - Trying to make existing route 1
+2023-08-26 13:06:42,470 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-11-26 14:26:02
+2023-08-26 13:07:14,438 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-01-24 05:25:04
+2023-08-26 13:07:28,227 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-02-04 12:45:02
+2023-08-26 13:09:37,495 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-06-25 07:29:42
+2023-08-26 13:11:31,726 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-10-31 09:50:58
+2023-08-26 13:11:31,742 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:11:31.726909+00:00
+2023-08-26 13:11:41,167 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-08-10 07:57:19
+2023-08-26 13:11:41,176 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:11:41.172324+00:00
+2023-08-26 13:12:01,111 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-07-04 23:40:18
+2023-08-26 13:12:01,117 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:12:01.117538+00:00
+2023-08-26 13:12:09,766 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-10-01 07:36:02
+2023-08-26 13:12:09,766 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:12:09.766253+00:00
+2023-08-26 13:12:21,758 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-08-23 17:12:21
+2023-08-26 13:12:21,773 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:12:21.758256+00:00
+2023-08-26 13:12:36,292 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-06-07 01:59:36
+2023-08-26 13:12:36,292 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:12:36.292487+00:00
+2023-08-26 13:12:55,635 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-01-08 21:02:43
+2023-08-26 13:12:55,635 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:12:55.635669+00:00
+2023-08-26 13:13:18,529 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-03-26 12:38:01
+2023-08-26 13:13:18,529 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:13:18.529270+00:00
+2023-08-26 13:13:31,002 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-05-25 04:53:50
+2023-08-26 13:13:31,018 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:13:31.002387+00:00
+2023-08-26 13:14:18,343 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-03-23 02:12:11
+2023-08-26 13:14:18,358 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:14:18.358932+00:00
+2023-08-26 13:15:10,565 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-12-22 09:47:51
+2023-08-26 13:15:10,581 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:15:10.581078+00:00
+2023-08-26 13:15:20,600 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-12-27 21:13:19
+2023-08-26 13:15:20,616 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:15:20.600971+00:00
+2023-08-26 13:16:00,510 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-09-18 12:32:14
+2023-08-26 13:16:00,519 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:16:00.514893+00:00
+2023-08-26 13:16:09,293 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-11-10 03:13:36
+2023-08-26 13:16:09,293 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:16:09.293410+00:00
+2023-08-26 13:17:50,211 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-01-13 12:35:17
+2023-08-26 13:17:50,211 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:17:50.211388+00:00
+2023-08-26 13:17:58,326 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-04-19 14:04:52
+2023-08-26 13:17:58,342 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:17:58.342145+00:00
+2023-08-26 13:21:38,230 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-10-10 01:15:52
+2023-08-26 13:21:38,230 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:21:38.230243+00:00
+2023-08-26 13:21:45,737 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-08-05 07:35:50
+2023-08-26 13:21:45,753 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:21:45.753067+00:00
+2023-08-26 13:22:34,720 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-10-22 16:13:00
+2023-08-26 13:22:34,720 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:22:34.720887+00:00
+2023-08-26 13:22:45,370 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-08-24 03:50:22
+2023-08-26 13:22:45,370 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:22:45.370907+00:00
+2023-08-26 13:23:34,946 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-09-10 05:39:26
+2023-08-26 13:23:34,946 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:23:34.946263+00:00
+2023-08-26 13:24:09,166 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-01-15 08:09:21
+2023-08-26 13:24:09,166 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:24:09.166570+00:00
+2023-08-26 13:24:22,004 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-08-27 19:25:45
+2023-08-26 13:24:22,020 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:24:22.020156+00:00
+2023-08-26 13:24:36,535 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-08-06 18:55:03
+2023-08-26 13:24:36,535 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:24:36.535738+00:00
+2023-08-26 13:24:53,964 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-04-09 07:24:17
+2023-08-26 13:24:53,979 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:24:53.964331+00:00
+2023-08-26 13:25:02,057 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-01-04 05:32:42
+2023-08-26 13:25:02,057 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:25:02.057065+00:00
+2023-08-26 13:25:59,861 - utils.logger - DEBUG - Make new flight (1) on route  with date 2023-12-11 07:53:47
+2023-08-26 13:25:59,861 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:25:59.861310+00:00
+2023-08-26 13:27:08,500 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-02-03 01:49:55
+2023-08-26 13:27:08,500 - utils.logger - DEBUG - Make new flight (1) on route 1 with date 2023-08-26 11:27:08.500880+00:00
+2023-08-26 13:33:27,579 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:33:47,312 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:34:13,837 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:35:05,973 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:35:16,929 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:36:19,870 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:37:25,862 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:37:44,019 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:38:38,297 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:38:38,297 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:38:49,950 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:38:49,966 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:39:02,204 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:39:02,220 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:39:47,434 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:39:47,449 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:42:32,149 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:42:32,165 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:42:42,919 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:42:42,935 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:42:51,274 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:42:51,290 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:43:01,753 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:43:01,753 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:43:01,768 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:43:13,199 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:43:13,199 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:43:13,215 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:43:16,461 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:43:16,476 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:43:25,919 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:43:25,934 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:43:25,950 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:43:37,858 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:43:37,858 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:43:37,874 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:43:47,100 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:43:47,100 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:43:47,116 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:44:02,010 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:44:02,026 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:44:02,033 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:44:51,222 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:44:51,222 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:44:51,238 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:45:42,318 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:45:42,318 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:45:42,333 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:46:52,668 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:46:52,668 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:46:52,684 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:47:58,539 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:47:58,539 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:47:58,555 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:48:09,724 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:48:19,169 - utils.logger - DEBUG - Added airport: Split Airport
+2023-08-26 13:48:19,169 - utils.logger - DEBUG - Added airport: Gießen-Lützellinden Airport
+2023-08-26 13:48:19,185 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-11-25 11:31:50
+2023-08-26 13:48:19,200 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:48:19.185023+00:00
+2023-08-26 13:48:19,200 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:48:19,216 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:48:19,216 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:48:19,216 - utils.logger - DEBUG - Make new route (4) from Airport 1 to Airport 2
+2023-08-26 13:48:19,231 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:48:19,231 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:49:10,985 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:49:19,861 - utils.logger - DEBUG - Added airport: Retford Gamston Airport
+2023-08-26 13:49:19,861 - utils.logger - DEBUG - Added airport: Westerland Sylt Airport
+2023-08-26 13:49:19,877 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-06-15 00:30:49
+2023-08-26 13:49:19,877 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:49:19.877148+00:00
+2023-08-26 13:49:19,892 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:49:19,899 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:49:19,914 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:49:19,914 - utils.logger - DEBUG - Make new route (4) from Airport 1 to Airport 2
+2023-08-26 13:49:19,914 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:49:19,914 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:50:34,738 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:50:42,160 - utils.logger - DEBUG - Added airport: Bursa Yeni?ehir Airport
+2023-08-26 13:50:42,176 - utils.logger - DEBUG - Added airport: Neustadt-Glewe Airport
+2023-08-26 13:50:42,176 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-07-04 15:17:04
+2023-08-26 13:50:42,191 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:50:42.191664+00:00
+2023-08-26 13:50:42,191 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:50:42,207 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:50:42,222 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:50:42,222 - utils.logger - DEBUG - Make new route (4) from Airport 1 to Airport 2
+2023-08-26 13:50:42,222 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:50:42,229 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:52:14,574 - utils.logger - DEBUG - Login user: admin 
+2023-08-26 13:52:29,601 - utils.logger - DEBUG - Trying to make existing route 50
+2023-08-26 13:52:44,782 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:52:54,803 - utils.logger - DEBUG - Added airport: Fria Airport
+2023-08-26 13:52:54,810 - utils.logger - DEBUG - Added airport: Regensburg-Oberhub Airport
+2023-08-26 13:52:54,821 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-04-02 03:07:12
+2023-08-26 13:52:54,821 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:52:54.821713+00:00
+2023-08-26 13:52:54,837 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:52:54,837 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:52:54,857 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:52:54,859 - utils.logger - DEBUG - Make new route (4) from Airport 1 to Airport 2
+2023-08-26 13:52:54,864 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:52:54,870 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:53:15,207 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:53:26,505 - utils.logger - DEBUG - Added airport: Honiara International Airport
+2023-08-26 13:53:26,520 - utils.logger - DEBUG - Added airport: Großenhain Airport
+2023-08-26 13:53:26,536 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-11-27 15:44:33
+2023-08-26 13:53:26,536 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:53:26.536289+00:00
+2023-08-26 13:53:26,551 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:53:26,567 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:53:26,567 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:53:26,567 - utils.logger - DEBUG - Make new route (4) from Airport 1 to Airport 2
+2023-08-26 13:53:26,592 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 13:53:26,597 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:56:13,602 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:56:22,300 - utils.logger - DEBUG - Added airport: Manakara Airport
+2023-08-26 13:56:22,312 - utils.logger - DEBUG - Added airport: Flugplatz Kitzingen
+2023-08-26 13:56:22,324 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-12-14 18:54:54
+2023-08-26 13:56:22,340 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:56:22.336617+00:00
+2023-08-26 13:56:22,348 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:56:22,368 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:56:22,376 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:56:22,380 - utils.logger - DEBUG - Make new route (4) from Airport 1 to Airport 2
+2023-08-26 13:56:22,388 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:56:22,396 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:56:58,116 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:57:05,131 - utils.logger - DEBUG - Added airport: Redcliffe Airport
+2023-08-26 13:57:05,146 - utils.logger - DEBUG - Added airport: Höxter-Holzminden Airport
+2023-08-26 13:57:05,162 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-04-03 11:58:20
+2023-08-26 13:57:05,162 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:57:05.162305+00:00
+2023-08-26 13:57:05,177 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:57:05,193 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:57:05,200 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:57:05,200 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:57:05,200 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 13:57:05,215 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:57:31,628 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:57:40,222 - utils.logger - DEBUG - Added airport: Panama Pacific International Airport
+2023-08-26 13:57:40,237 - utils.logger - DEBUG - Added airport: Hohn Air Base
+2023-08-26 13:57:40,253 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-10-23 19:07:20
+2023-08-26 13:57:40,259 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:57:40.259013+00:00
+2023-08-26 13:57:40,259 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:57:40,274 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:57:40,290 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:57:40,290 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:57:40,290 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:57:40,290 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:57:47,647 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:57:56,653 - utils.logger - DEBUG - Added airport: Wilmington Airpark
+2023-08-26 13:57:56,653 - utils.logger - DEBUG - Added airport: Bienenfarm Airport
+2023-08-26 13:57:56,668 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-02-15 23:26:44
+2023-08-26 13:57:56,684 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:57:56.668836+00:00
+2023-08-26 13:57:56,684 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:57:56,700 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:57:56,700 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:57:56,700 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:57:56,715 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 13:57:56,715 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:58:05,181 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:58:14,724 - utils.logger - DEBUG - Added airport: Southend Airport
+2023-08-26 13:58:14,740 - utils.logger - DEBUG - Added airport: Hüttenbusch Airport
+2023-08-26 13:58:14,740 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-05-24 16:46:41
+2023-08-26 13:58:14,762 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:58:14.755765+00:00
+2023-08-26 13:58:14,762 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:58:14,777 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:58:14,777 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:58:14,793 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:58:14,793 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:58:14,793 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:58:43,983 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:58:52,658 - utils.logger - DEBUG - Added airport: Tasiusaq (Qaasuitsup) Heliport
+2023-08-26 13:58:52,658 - utils.logger - DEBUG - Added airport: Höxter-Holzminden Airport
+2023-08-26 13:58:52,674 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-04-13 13:11:54
+2023-08-26 13:58:52,690 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:58:52.674599+00:00
+2023-08-26 13:58:52,690 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:58:52,705 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:58:52,712 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:58:52,712 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:58:52,712 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 13:58:52,729 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:00,271 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:59:09,670 - utils.logger - DEBUG - Added airport: Pozna?-?awica Airport
+2023-08-26 13:59:09,686 - utils.logger - DEBUG - Added airport: Harle Airport
+2023-08-26 13:59:09,701 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-04-09 19:03:07
+2023-08-26 13:59:09,701 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:59:09.701637+00:00
+2023-08-26 13:59:09,717 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:59:09,724 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:59:09,724 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:09,740 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:59:09,740 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:09,740 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:14,514 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:59:23,606 - utils.logger - DEBUG - Added airport: Pandora Airport
+2023-08-26 13:59:23,606 - utils.logger - DEBUG - Added airport: Erfurt Airport
+2023-08-26 13:59:23,618 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-01-21 11:47:23
+2023-08-26 13:59:23,633 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:59:23.618238+00:00
+2023-08-26 13:59:23,633 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:59:23,649 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:59:23,649 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:23,665 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:59:23,665 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:23,665 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:44,457 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 13:59:52,991 - utils.logger - DEBUG - Added airport: Revelstoke Airport
+2023-08-26 13:59:52,999 - utils.logger - DEBUG - Added airport: Osnabrück-Atterheide Airport
+2023-08-26 13:59:53,011 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-10-17 21:39:41
+2023-08-26 13:59:53,020 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 11:59:53.017785+00:00
+2023-08-26 13:59:53,029 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 13:59:53,043 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 13:59:53,054 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 13:59:53,055 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 13:59:53,063 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 13:59:53,071 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:00:07,759 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:00:17,079 - utils.logger - DEBUG - Added airport: Sultan Syarif Kasim Ii (Simpang Tiga) Airport
+2023-08-26 14:00:17,095 - utils.logger - DEBUG - Added airport: Segeletz Airport
+2023-08-26 14:00:17,101 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-01-12 05:06:42
+2023-08-26 14:00:17,101 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:00:17.101669+00:00
+2023-08-26 14:00:17,117 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:00:17,132 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:00:17,132 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:00:17,132 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:00:17,148 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:00:17,148 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:00:51,502 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:01:01,220 - utils.logger - DEBUG - Added airport: Ilo Airport
+2023-08-26 14:01:01,227 - utils.logger - DEBUG - Added airport: Whiting Field Naval Air Station South Airport
+2023-08-26 14:01:01,242 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-11-04 20:20:09
+2023-08-26 14:01:01,242 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:01:01.242882+00:00
+2023-08-26 14:01:01,242 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:01:01,258 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:01:01,274 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:01:01,274 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:01:01,274 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:01:01,289 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:01:24,192 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:01:31,244 - utils.logger - DEBUG - Added airport: Sazená Airport
+2023-08-26 14:01:31,244 - utils.logger - DEBUG - Added airport: Lahr Airport
+2023-08-26 14:01:31,259 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-03-28 16:23:49
+2023-08-26 14:01:31,275 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:01:31.259972+00:00
+2023-08-26 14:01:31,275 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:01:31,291 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:01:31,307 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:01:31,307 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:01:31,307 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:01:31,323 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:03:22,782 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:03:30,057 - utils.logger - DEBUG - Added airport: Burgos Airport
+2023-08-26 14:03:30,073 - utils.logger - DEBUG - Added airport: Emden Airport
+2023-08-26 14:03:30,088 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-02-24 06:14:16
+2023-08-26 14:03:30,088 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:03:30.088749+00:00
+2023-08-26 14:03:30,104 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:03:30,104 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:03:30,120 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:03:30,120 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:03:30,135 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:03:30,135 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:03:30,135 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:05:34,005 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:05:40,778 - utils.logger - DEBUG - Added airport: Uytash Airport
+2023-08-26 14:05:40,794 - utils.logger - DEBUG - Added airport: Regensburg-Oberhub Airport
+2023-08-26 14:05:40,794 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-07-09 17:21:39
+2023-08-26 14:05:40,809 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:05:40.809735+00:00
+2023-08-26 14:05:40,809 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:05:40,825 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:05:40,840 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:05:40,840 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:05:40,840 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:05:40,856 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:05:40,863 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:10:32,738 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:10:39,486 - utils.logger - DEBUG - Added airport: Iowa County Airport
+2023-08-26 14:10:39,501 - utils.logger - DEBUG - Added airport: Anklam Airfield
+2023-08-26 14:10:39,547 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:10:39.543757+00:00
+2023-08-26 14:10:39,551 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:10:39,566 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:10:39,566 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:10:39,566 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:10:39,582 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:10:39,582 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:10:39,598 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:11:23,738 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:11:30,587 - utils.logger - DEBUG - Added airport: Roshchino International Airport
+2023-08-26 14:11:30,597 - utils.logger - DEBUG - Added airport: Celle Airport
+2023-08-26 14:11:30,607 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:11:30.597324+00:00
+2023-08-26 14:11:30,607 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:11:30,627 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:11:30,627 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:11:30,640 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:11:30,640 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 2)
+2023-08-26 14:11:30,640 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:11:30,656 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:12:06,704 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:12:13,528 - utils.logger - DEBUG - Added airport: Gillam Airport
+2023-08-26 14:12:13,528 - utils.logger - DEBUG - Added airport: Leutkirch-Unterzeil Airport
+2023-08-26 14:12:13,544 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-08-17 20:06:09
+2023-08-26 14:12:13,559 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:12:13.544379+00:00
+2023-08-26 14:12:13,566 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:12:13,566 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:12:13,582 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:12:13,582 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:12:13,597 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:12:13,597 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:12:13,597 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:12:39,626 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:12:46,262 - utils.logger - DEBUG - Added airport: Cotswold Airport
+2023-08-26 14:12:46,262 - utils.logger - DEBUG - Added airport: Erding Airport
+2023-08-26 14:12:46,278 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-05-22 03:28:31
+2023-08-26 14:12:46,293 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:12:46.278227+00:00
+2023-08-26 14:12:46,293 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:12:46,309 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:12:46,319 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:12:46,319 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:12:46,319 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:12:46,334 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:12:46,334 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:15:29,364 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:15:36,071 - utils.logger - DEBUG - Added airport: Capitán de Av. Emilio Beltrán Airport
+2023-08-26 14:15:36,071 - utils.logger - DEBUG - Added airport: Braunschweig-Wolfsburg Airport
+2023-08-26 14:15:36,085 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-08-05 12:57:31
+2023-08-26 14:15:36,085 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:15:36.085567+00:00
+2023-08-26 14:15:36,101 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:15:36,116 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:15:36,116 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:15:36,116 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:15:36,132 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:15:36,132 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:16:06,404 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:16:13,059 - utils.logger - DEBUG - Added airport: Qaqortoq Heliport
+2023-08-26 14:16:13,067 - utils.logger - DEBUG - Added airport: Segeletz Airport
+2023-08-26 14:16:13,079 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-06-25 00:11:17
+2023-08-26 14:16:13,089 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:16:13.085057+00:00
+2023-08-26 14:16:13,097 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:16:13,112 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:16:13,121 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:16:13,123 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:16:13,131 - utils.logger - DEBUG - Make new route (3) from Airport 2 to Airport 1
+2023-08-26 14:16:13,136 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:16:13,143 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:12,388 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:17:19,594 - utils.logger - DEBUG - Added airport: Rangiroa Airport
+2023-08-26 14:17:19,610 - utils.logger - DEBUG - Added airport: Porta Westfalica Airport
+2023-08-26 14:17:19,610 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-10-17 22:46:44
+2023-08-26 14:17:19,626 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:17:19.626165+00:00
+2023-08-26 14:17:19,626 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:17:19,641 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:17:19,657 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:19,657 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:17:19,663 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:19,663 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:17:19,679 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:31,727 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:17:38,374 - utils.logger - DEBUG - Added airport: Dübendorf Air Base
+2023-08-26 14:17:38,390 - utils.logger - DEBUG - Added airport: Hamburg Airport
+2023-08-26 14:17:38,390 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-01-30 09:33:54
+2023-08-26 14:17:38,412 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:17:38.405744+00:00
+2023-08-26 14:17:38,412 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:17:38,427 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:17:38,427 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:38,427 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:17:38,443 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:38,443 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:17:38,459 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:46,676 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:17:55,810 - utils.logger - DEBUG - Added airport: Yam Island Airport
+2023-08-26 14:17:55,817 - utils.logger - DEBUG - Added airport: Neumünster Airport
+2023-08-26 14:17:55,831 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-05-26 19:39:04
+2023-08-26 14:17:55,845 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:17:55.837238+00:00
+2023-08-26 14:17:55,858 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:17:55,886 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:17:55,903 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:55,906 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:17:55,914 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:17:55,920 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:17:55,929 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:18:32,940 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:18:39,756 - utils.logger - DEBUG - Added airport: Moruya Airport
+2023-08-26 14:18:39,756 - utils.logger - DEBUG - Added airport: Cologne Bonn Airport
+2023-08-26 14:18:39,772 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-07-04 11:16:06
+2023-08-26 14:18:39,787 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:18:39.772235+00:00
+2023-08-26 14:18:39,787 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:18:39,803 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:18:39,803 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:18:39,819 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:18:39,825 - utils.logger - DEBUG - Make new route (3) from Airport 2 to Airport 1
+2023-08-26 14:18:39,825 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:18:39,825 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:18:51,884 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:18:59,403 - utils.logger - DEBUG - Added airport: Riverton Regional Airport
+2023-08-26 14:18:59,403 - utils.logger - DEBUG - Added airport: Frankfurt-Egelsbach Airport
+2023-08-26 14:18:59,419 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-10-02 03:57:45
+2023-08-26 14:18:59,419 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:18:59.419528+00:00
+2023-08-26 14:18:59,435 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:18:59,450 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:18:59,450 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:18:59,450 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:18:59,472 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:18:59,472 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:18:59,488 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:13,899 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:19:20,491 - utils.logger - DEBUG - Added airport: Monterey Peninsula Airport
+2023-08-26 14:19:20,491 - utils.logger - DEBUG - Added airport: Braunschweig-Wolfsburg Airport
+2023-08-26 14:19:20,507 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-01-08 23:13:43
+2023-08-26 14:19:20,519 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:19:20.507533+00:00
+2023-08-26 14:19:20,519 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:19:20,534 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:19:20,534 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:20,534 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:19:20,550 - utils.logger - DEBUG - Make new route (3) from Airport 2 to Airport 1
+2023-08-26 14:19:20,550 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:19:20,565 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:24,975 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:19:31,704 - utils.logger - DEBUG - Added airport: Comodoro Pierrestegui Airport
+2023-08-26 14:19:31,704 - utils.logger - DEBUG - Added airport: Hunt Field
+2023-08-26 14:19:31,719 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-12-02 15:34:12
+2023-08-26 14:19:31,735 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:19:31.719668+00:00
+2023-08-26 14:19:31,735 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:19:31,750 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:19:31,757 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:31,757 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:19:31,757 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:31,773 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:19:31,773 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:36,099 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:19:42,883 - utils.logger - DEBUG - Added airport: Yanji Chaoyangchuan Airport
+2023-08-26 14:19:42,899 - utils.logger - DEBUG - Added airport: Landshut Airport
+2023-08-26 14:19:42,905 - utils.logger - DEBUG - Make new flight (2) on route  with date 2023-09-29 17:09:50
+2023-08-26 14:19:42,921 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:19:42.905708+00:00
+2023-08-26 14:19:42,921 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:19:42,936 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:19:42,936 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:42,952 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:19:42,952 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:42,968 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:19:42,968 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:47,665 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:19:54,267 - utils.logger - DEBUG - Added airport: London Biggin Hill Airport
+2023-08-26 14:19:54,283 - utils.logger - DEBUG - Added airport: Neuburg AFB
+2023-08-26 14:19:54,283 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-05-21 06:31:56
+2023-08-26 14:19:54,298 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:19:54.298683+00:00
+2023-08-26 14:19:54,298 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:19:54,314 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:19:54,329 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:54,329 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:19:54,329 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:19:54,345 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:19:54,345 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:20:02,515 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:20:09,164 - utils.logger - DEBUG - Added airport: Belo sur Tsiribihina Airport
+2023-08-26 14:20:09,164 - utils.logger - DEBUG - Added airport: Stadtlohn-Vreden Airport
+2023-08-26 14:20:09,180 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-04-30 01:33:39
+2023-08-26 14:20:09,196 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:20:09.180592+00:00
+2023-08-26 14:20:09,196 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:20:09,211 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:20:09,227 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:20:09,227 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:20:09,227 - utils.logger - DEBUG - Make new route (3) from Airport 2 to Airport 1
+2023-08-26 14:20:09,227 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:20:09,243 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:20:31,883 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:20:38,991 - utils.logger - DEBUG - Added airport: Îles-de-la-Madeleine Airport
+2023-08-26 14:20:38,991 - utils.logger - DEBUG - Added airport: Flensburg-Schäferhaus Airport
+2023-08-26 14:20:39,007 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-06-30 07:02:01
+2023-08-26 14:20:39,022 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:20:39.022726+00:00
+2023-08-26 14:20:39,022 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:20:39,038 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:20:39,053 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:20:39,056 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:20:39,056 - utils.logger - DEBUG - Make new route (3) from Airport 2 to Airport 1
+2023-08-26 14:20:39,056 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:20:39,071 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:21:07,077 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:21:13,890 - utils.logger - DEBUG - Added airport: Sky Ranch At Carefree Airport
+2023-08-26 14:22:41,424 - utils.logger - DEBUG - User: Test_Name Surname register for flight 1
+2023-08-26 14:22:57,093 - utils.logger - DEBUG - Added airport: Shakawe Airport
+2023-08-26 14:22:57,093 - utils.logger - DEBUG - Added airport: Allstedt Airport
+2023-08-26 14:22:57,109 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-02-08 09:27:19
+2023-08-26 14:22:57,124 - utils.logger - DEBUG - Make new flight (2) on route 1 with date 2023-08-26 12:22:57.124855+00:00
+2023-08-26 14:22:57,138 - utils.logger - DEBUG - Make 1 passagers
+2023-08-26 14:22:57,138 - utils.logger - DEBUG - Make 5 passagers
+2023-08-26 14:22:57,154 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-26 14:22:57,154 - utils.logger - DEBUG - Trying to make existing route 3
+2023-08-26 14:22:57,170 - utils.logger - DEBUG - Make new route (3) from Airport 2 to Airport 1
+2023-08-26 14:22:57,170 - utils.logger - DEBUG - Trying to make route with this same start and destination (Airport 1)
+2023-08-26 14:22:57,170 - utils.logger - DEBUG - Make new route (3) from Airport 1 to Airport 2
+2023-08-28 17:22:49,417 - utils.logger - DEBUG - Login user: test 
+2023-08-28 17:24:39,164 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:20:47,299 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:21:22,979 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:21:37,059 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:21:53,111 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:22:11,915 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:22:20,792 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:22:23,672 - utils.logger - DEBUG - Login user: 123 
+2023-08-28 18:26:19,436 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:26:22,079 - utils.logger - DEBUG - Login user: 123 
+2023-08-28 18:26:24,352 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:26:26,535 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:27:09,313 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:27:12,993 - utils.logger - DEBUG - Login user: 123 
+2023-08-28 18:27:14,489 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:27:16,999 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:29:20,608 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:29:24,147 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:29:53,510 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:29:56,010 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:30:56,272 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:30:58,692 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:31:06,950 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:31:09,715 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:31:52,048 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:31:54,183 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:33:17,599 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:33:20,346 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:33:31,213 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:33:33,862 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:36:19,450 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:36:22,063 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:36:46,598 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:36:49,051 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:37:15,587 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:38:12,378 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:38:14,990 - utils.logger - DEBUG - Login user: admin 
+2023-08-28 18:38:23,734 - utils.logger - DEBUG - Logout user: 
+2023-08-28 18:38:25,980 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 12:36:18,724 - utils.logger - DEBUG - Logout user: 
+2023-08-29 12:36:21,467 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 12:37:00,356 - utils.logger - DEBUG - Logout user: 
+2023-08-29 12:37:06,546 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 12:37:53,487 - utils.logger - DEBUG - Logout user: 
+2023-08-29 12:37:58,885 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 12:38:23,654 - utils.logger - DEBUG - Logout user: 
+2023-08-29 12:38:28,305 - utils.logger - DEBUG - Login user: 123 
+2023-08-29 12:38:30,129 - utils.logger - DEBUG - Logout user: 
+2023-08-29 12:38:32,475 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 12:38:58,147 - utils.logger - DEBUG - Logout user: 
+2023-08-29 12:39:00,822 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:24:41,685 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:24:43,900 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:25:04,523 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:25:07,396 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:25:53,066 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:25:55,387 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:26:02,314 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:26:40,396 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:26:52,320 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:27:01,006 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:27:15,291 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:27:24,845 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:28:39,038 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:32:23,587 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:32:40,316 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:32:44,264 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:32:51,913 - utils.logger - DEBUG - Logout user: 
+2023-08-29 13:32:55,739 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 13:33:07,181 - utils.logger - DEBUG - Logout user: 
+2023-08-29 15:35:51,893 - utils.logger - DEBUG - Login user: admin 
+2023-08-29 15:40:19,232 - utils.logger - DEBUG - Logout user: 
+2023-08-29 15:40:52,282 - utils.logger - DEBUG - Login user: 123 
+2023-08-31 11:54:09,170 - utils.logger - DEBUG - Logout user: 
+2023-08-31 11:56:13,054 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 11:56:14,357 - utils.logger - DEBUG - Logout user: 
+2023-08-31 11:56:30,288 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 11:56:31,328 - utils.logger - DEBUG - Logout user: 
+2023-08-31 11:57:15,102 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 11:57:16,202 - utils.logger - DEBUG - Logout user: 
+2023-08-31 11:59:04,547 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:01:16,679 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:01:18,010 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:04:54,078 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:04:55,290 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:06:12,436 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:06:13,792 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:06:34,262 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:06:35,349 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:08:57,394 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:08:59,113 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:10:27,742 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:10:29,231 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:13:26,056 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:13:28,092 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:13:51,819 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:14:12,764 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:27:03,410 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:27:26,455 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:27:29,464 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:27:44,886 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:28:28,362 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:28:31,758 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:28:51,795 - utils.logger - DEBUG - Login user: test 
+2023-08-31 12:29:09,613 - utils.logger - DEBUG - Logout user: 
+2023-08-31 12:39:04,660 - utils.logger - DEBUG - Login user: admin 
+2023-08-31 12:53:26,996 - utils.logger - DEBUG - Make new route (66) from Americana Airport to Yeosu Airport
+2023-08-31 12:53:47,951 - utils.logger - DEBUG - Make new route (67) from Paz De Ariporo Airport to Landivisiau Air Base
+2023-08-31 12:53:58,544 - utils.logger - DEBUG - Make new route (68) from Ifrane Airport to Devonport Airport
+2023-08-31 12:57:02,982 - utils.logger - DEBUG - Added airport: Tortolì Airport
+2023-08-31 12:57:15,040 - utils.logger - DEBUG - Added airport: Capitán Av. German Quiroga G. Airport
+2023-08-31 12:58:12,468 - utils.logger - DEBUG - Added airport: Paros National Airport
+2023-08-31 12:58:19,486 - utils.logger - DEBUG - Added airport: Alferez Fap David Figueroa Fernandini Airport
+2023-08-31 12:58:38,186 - utils.logger - DEBUG - Added airport: Chenega Bay Airport
+2023-08-31 13:04:00,726 - utils.logger - DEBUG - Added airport: Kitona Base Airport
+2023-08-31 13:04:03,650 - utils.logger - DEBUG - Added airport: Chicago Executive Airport
+2023-08-31 13:04:04,983 - utils.logger - DEBUG - Added airport: Cunderdin Airport
+2023-08-31 13:04:06,159 - utils.logger - DEBUG - Added airport: Wasilla Airport
+2023-08-31 13:04:26,804 - utils.logger - DEBUG - Added airport: Franklin County Airport
+2023-08-31 13:04:28,155 - utils.logger - DEBUG - Make new route (69) from Manihiki Island Airport to Fitiuta Airport
+2023-08-31 13:04:29,959 - utils.logger - DEBUG - Make new flight (60) on route  with date 2024-03-09 20:46:19
+2023-08-31 13:04:34,406 - utils.logger - DEBUG - Make 1 passagers
+2023-08-31 13:05:03,512 - utils.logger - DEBUG - Make 1 passagers

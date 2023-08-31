@@ -60,10 +60,14 @@
          </div>
       </nav>
       <!--Messages-->
-      {% if message %}
-         <div class="alert alert-primary" role="alert">
-            <strong>{{message}}</strong>
-         </div>
+      {% if messages %}
+         {% for message in messages %}
+         {% if forloop.counter == 1 %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
+               {{ message }}
+            </div>
+         {% endif %}
+         {% endfor %}
       {% endif %} 
       <!-- Page content -->
       {% block content %}>

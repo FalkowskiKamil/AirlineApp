@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.db.models import Q
-from .mongo_connection import connect_to_mongodb
-from .logger import configure_logger
+from utils.mongo_connection import connect_to_mongodb
+from utils.logger import configure_logger
 from airline.models import Flight, Passager, Airport, FlightPassager, Route
 from faker import Faker
 
@@ -83,7 +83,6 @@ def upload_flight(request):
         route = Route.objects.get(id=route_id)
     else:
         route = Route.objects.order_by("?").first()
-        print("Random")
     flight_date = request.get("datetime")
     if flight_date:
         date = flight_date
@@ -126,4 +125,3 @@ def sign_for_flight(passager_id, flight_id):
     logger.debug(
         f"User: {passager.first_name} {passager.surname} register for flight {flight.id}"
     )
-    return f"Succesfuly signed for flight {flight.id}"

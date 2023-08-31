@@ -1,7 +1,8 @@
 from threading import Thread
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from airline.models import Passager
 from utils.mongo_connection import connect_to_mongodb
@@ -12,7 +13,6 @@ logger = configure_logger()
 
 # Create your views here.
 def registration_request(request):
-    context = {}
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["psw"]
@@ -30,15 +30,15 @@ def registration_request(request):
             Passager.objects.create(user=user, first_name=first_name, surname=last_name)
             login(request, user)
             logger.debug(f"Register user: {username}")
-            context={'message':'Register succesfuly!'}
-            return render(request, "airline/main.html", context=context)
+            messages.success("Successfully registered!")
+            return render(request, "airline/main.html")
         else:
-            context={"message" : "User already exists."}
-    return render(request, "user/user_registration.html", context=context)
+            messages.error("User already exists!")
+            return reverse(registration_request)
+    return render(request, "user/user_registration.html")
 
 
 def login_request(request):
-    context={}
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["psw"]
@@ -46,19 +46,20 @@ def login_request(request):
         if user is not None:
             login(request, user)
             logger.debug(f"Login user: {username} ")
-            context={"message":"Loggin succesfuly!"}
+            messages.success(request, "Successfully logged in!")
             if user == "Staff" or user.is_superuser:
                 Thread(target= connect_to_mongodb, daemon=True).start()
-            return render(request, "airline/main.html", context=context)
+            return redirect(reverse("airline:main"))
         else:
-            context={"message":"Invalid username or password."}
-    return render(request, "user/user_login.html", context=context)
+            messages.error(request, "Invalid username or password")
+            return redirect(reverse("user:login_request"))
+    return render(request, "user/user_login.html")
 
 
 def logout_request(request):
     logout(request)
     logger.debug(f"Logout user: {request.user.username}")
-    context={"message":"Logout Succesfuly!"}
-    return render(request, "airline/main.html", context=context)
+    messages.success(request, "Successfully logged out!")
+    return redirect(reverse("airline:main"))
 
 
