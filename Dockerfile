@@ -15,8 +15,13 @@ COPY requirements.txt .
 # Install project dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire Django project to the working directory
-COPY --exclude __pycache__/ --exclude .git/ . .
+# Create a temporary folder and copy everything there
+RUN mkdir /temp && \
+    cp -r . /temp/ && \
+    rm -r /temp/__pycache/ /temp/.git/
+
+# Copy the remaining files and folders to the working directory
+COPY --from=0 /temp/ .
 
 # Expose the port that your Django app will listen on
 EXPOSE 8000
