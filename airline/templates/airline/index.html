@@ -61,13 +61,13 @@
       </nav>
       <!--Messages-->
       {% if messages %}
-         {% for message in messages %}
+      {% for message in messages %}
          {% if forloop.counter == 1 %}
             <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
                {{ message }}
             </div>
          {% endif %}
-         {% endfor %}
+      {% endfor %}
       {% endif %} 
       <!-- Page content -->
       {% block content %}>

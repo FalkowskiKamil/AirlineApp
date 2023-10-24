@@ -29,12 +29,12 @@ def registration_request(request):
             )
             Passager.objects.create(user=user, first_name=first_name, surname=last_name)
             login(request, user)
-            logger.debug(f"Register user: {username}")
-            messages.success("Successfully registered!")
-            return render(request, "airline/main.html")
+            logger.debug(request, str(f"Register user: {username}"))
+            messages.success(request, "Successfully registered!")
+            return redirect(reverse("airline:main"))
         else:
-            messages.error("User already exists!")
-            return reverse(registration_request)
+            messages.error(request,"User already exists!")
+            return redirect(reverse("user:registration_request"))
     return render(request, "user/user_registration.html")
 
 
