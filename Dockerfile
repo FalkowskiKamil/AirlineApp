@@ -21,7 +21,7 @@ RUN mkdir /temp && \
     rm -r /temp/__pycache/ /temp/.git/
 
 # Copy the remaining files and folders to the working directory
-COPY --from=0 /temp/ .
+COPY /temp/ .
 
 # Expose the port that your Django app will listen on
 EXPOSE 8000
