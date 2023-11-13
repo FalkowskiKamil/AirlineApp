@@ -2422,3 +2422,4 @@ NameError: name 'execute_from_command_line' is not defined
 2023-08-31 13:04:29,959 - utils.logger - DEBUG - Make new flight (60) on route  with date 2024-03-09 20:46:19
 2023-08-31 13:04:34,406 - utils.logger - DEBUG - Make 1 passagers
 2023-08-31 13:05:03,512 - utils.logger - DEBUG - Make 1 passagers
+2023-10-30 17:35:01,406 - utils.logger - DEBUG - Login user: admin 
