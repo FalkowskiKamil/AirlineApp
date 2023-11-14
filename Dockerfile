@@ -1,5 +1,5 @@
 # Use the official Python base image with the desired version
-FROM python:3.10.8
+FROM arm32v7/python:3.7.10-buster
 
 
 # Set environment variables
