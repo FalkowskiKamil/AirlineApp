@@ -4,7 +4,7 @@ AirlinesApp is a Django-based application that allows users to import real data 
 
 
 ## Overview
-[You can have an overview of the functionality of the app on Replit](https://replit.com/@KamilFalkowski/AirlineAppdjango)
+[You can have an overview of the functionality of the app on this site](http://184.73.2.51/)
 
 
 ## Features
