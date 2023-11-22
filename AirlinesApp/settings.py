@@ -79,7 +79,7 @@ WSGI_APPLICATION = "AirlinesApp.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR / "data" / "db.sqlite3",
     }
 }
 
@@ -136,7 +136,7 @@ LOGGING = {
         "file": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "AirlinesApp/airlinesapp.log",
+            "filename": "data/airlinesapp.log",
         },
     },
     "loggers": {

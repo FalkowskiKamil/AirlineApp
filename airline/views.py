@@ -58,7 +58,7 @@ def flight(request, fli_id):
     context = {"flight": flight, "map": map._repr_html_()}
     if request.method == "POST":
         data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id)
-        messages.success(f"Succesfuly signed for flight {flight.id}")
+        messages.success(request, message=f"Succesfuly signed for flight {flight.id}")
     return render(request, template_name="airline/flight.html", context=context)
 
 

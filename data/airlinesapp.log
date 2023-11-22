@@ -2423,3 +2423,11 @@ NameError: name 'execute_from_command_line' is not defined
 2023-08-31 13:04:34,406 - utils.logger - DEBUG - Make 1 passagers
 2023-08-31 13:05:03,512 - utils.logger - DEBUG - Make 1 passagers
 2023-10-30 17:35:01,406 - utils.logger - DEBUG - Login user: admin 
+2023-11-22 16:00:19,874 - utils.logger - DEBUG - User: test7 test7 register for flight 60
+2023-11-22 16:02:17,756 - utils.logger - DEBUG - User: test7 test7 register for flight 59
+2023-11-22 16:02:37,450 - utils.logger - DEBUG - User: test7 test7 register for flight 52
+2023-11-22 16:02:57,343 - utils.logger - DEBUG - User: test7 test7 register for flight 6
+2023-11-22 16:03:08,875 - utils.logger - DEBUG - User: test7 test7 register for flight 3
+2023-11-22 16:04:25,632 - utils.logger - DEBUG - Logout user: 
+2023-11-22 16:33:13,118 - utils.logger - DEBUG - Login user: admin 
+2023-11-22 16:33:15,688 - utils.logger - DEBUG - Logout user: 

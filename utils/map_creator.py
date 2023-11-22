@@ -84,7 +84,7 @@ def create_full_map(route_list):
     for route in route_list:
         folium.Marker(
             location=[route.start.latitude, route.start.longitude],
-            popup=f"<a href=/airline/airport/{route.start.airport_id}>Start: {route.start.name}</a>",
+            popup=f"<a href=/airline/airport/{route.start.airport_id} target='_blank' rel='noopener noreferrer'>Start: {route.start.name}</a>",
             icon=folium.Icon(color="green"),
         ).add_to(map)
         destination_longitude = meridian_calculator(
@@ -92,7 +92,7 @@ def create_full_map(route_list):
         )
         folium.Marker(
             location=[route.destination.latitude + 0.01, destination_longitude],
-            popup=f"<a href=/airline/airport/{route.destination.airport_id}>Destination: {route.destination.name}</a>",
+            popup=f"<a href=/airline/airport/{route.destination.airport_id} target='_blank' rel='noopener noreferrer'>Destination: {route.destination.name}</a>",
             icon=folium.Icon(color="red"),
         ).add_to(map)
         line = PolyLine(
@@ -103,8 +103,8 @@ def create_full_map(route_list):
             color=f"{get_random_color()}",
             weight=2,
             opacity=10,
-            popup=f"<a href=/airline/routes/{route.id}>Route '{route.id}' Details</a>",
-            tooltip=f"<a href=/airline/routes/{route.id}>Route from: '{route.start.name}', to: '{route.destination.name}'</a>",
+            popup=f"<a href=/airline/routes/{route.id} target='_blank' rel='noopener noreferrer'>Route '{route.id}' Details</a> ",
+            tooltip=f"<a href=/airline/routes/{route.id} target='_blank' rel='noopener noreferrer'>Route from: '{route.start.name}', to: '{route.destination.name}'</a>",
         )
         line.add_to(map)
     return map
