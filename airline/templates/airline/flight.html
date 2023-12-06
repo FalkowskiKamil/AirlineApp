@@ -10,7 +10,7 @@
       on {{flight.date}}
    </h1>
 </header>
-{% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+{% if request.user.is_staff or request.user.is_superuser %}
    <section class="d-flex flex-wrap m-4 justify-content-center ">
       <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
          <h2 class="display-6 banner-text text-center">All of the passagers {% if flight.passengers_flights.all %}({{ flight.passengers_flights.all|length }}):{% endif %}</h2>

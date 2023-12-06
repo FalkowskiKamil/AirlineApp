@@ -1,6 +1,6 @@
 {% extends "airline/index.html" %}
 {% block content %}
-{% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+{% if request.user.is_staff or request.user.is_superuser %}
    <main class="d-flex flex-wrap mt-4 justify-content-center">
       <header class="col-12 text-center">
          <h1>Choose data type to load:</h1>

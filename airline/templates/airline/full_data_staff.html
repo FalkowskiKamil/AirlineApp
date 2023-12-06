@@ -1,6 +1,6 @@
 {% extends "airline/index.html" %}
 {% block content %}
-{% if user.groups.all.0.name == "Staff" or request.user.is_superuser %}
+{% if request.user.is_staff or request.user.is_superuser %}
 <table class="table bg-white position-absolute start-0">
    <thead class="bg-success">
       <tr class="align-middle">
