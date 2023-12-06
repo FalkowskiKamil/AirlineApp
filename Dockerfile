@@ -1,5 +1,5 @@
 # Use the official Python base image with the desired version
-FROM python:3.10-bullseye
+FROM python:3.10
 
 
 # Set environment variables
@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 
 # Copy the dependencies file to the working directory
-COPY requirements.txt .
+COPY ../requirements.txt .
 
 # Install project dependencies
 RUN pip install --no-cache-dir -r requirements.txt
