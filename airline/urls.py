@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 
-app_name = "airline"
-urlpatterns = [
+app_name:str = "airline"
+urlpatterns: list = [
     path("", views.main, name="main"),
     path("country_map/", views.country_map, name="country_map"),
     path("airport/<int:airport_id>", views.airport, name="airport"),

@@ -70,10 +70,17 @@
       <!-- Page content -->
       {% block content %}>
       {% endblock %}
-      <footer>
-         <span>Check my another site:</span>
-         <a href="https://footballquiz.falkowskikamil.site">FootballQuiz</a>
-         <a href="https://moviescatalogue.falkowskikamil.site">Movies Catalogue</a>
+      <footer class="border">
+         <div class="col-12 col-sm-6">
+            <p class="fw-bold">Check out my other sites:</p>
+            <a class="logo-text d-block" href="https://footballquiz.falkowskikamil.site"><img class="logo" src="{% static 'footballquiz.png' %}" alt="FootballQuiz Logo">FootballQuiz</a>
+            <a class="logo-text d-block" href="https://moviescatalogue.falkowskikamil.site"><img class="logo" src="{% static 'moviescatalogue.png' %}" alt="MoviesCatalogue logo">MoviesCatalogue</a>
+         </div>
+         <div class="col-12 col-sm-6">
+            <p class="fw-bold">Contact:</p>
+            <a class="logo-text d-block" href="https://github.com/falkowskikamil"><img class="logo" src="{% static 'github.png' %}" alt="Github Logo">Github</a>
+            <a class="logo-text d-block" href="https://www.linkedin.com/in/kamil-falkowski-6207a0273/"><img class="logo" src="{% static 'linkedin.png' %}" alt="Linkedin Logo">Linkedin</a>
+         </div>
       </footer>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
    </body>

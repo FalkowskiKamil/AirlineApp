@@ -6,7 +6,7 @@ from django.db.models.constraints import UniqueConstraint
 # Create your models here.
 class Airport(models.Model):
     airport_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
+    name= models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     latitude = models.FloatField()
@@ -18,7 +18,7 @@ class Airport(models.Model):
         "Flight", related_name="arrival_airports", blank=True
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"
 
 
@@ -37,17 +37,17 @@ class Flight(models.Model):
         blank=True,
     )
 
-    def clean(self):
+    def clean(self) -> None:
         if self.start == self.destination:
             raise ValueError("Start and destination cannot be the same.")
 
-    def __str__(self):
-        return f"{self.id}"
+    def __str__(self) -> str:
+        return f"{self.id}" # type: ignore
 
-    def formatted_date(self):
+    def formatted_date(self) -> str:
         return self.date.strftime("%d-%m-%Y")
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs) -> None:
         super(Flight, self).save(*args, **kwargs)
 
         # Check if there is an existing route with the same start and destination
@@ -73,8 +73,8 @@ class Route(models.Model):
     )
     flights = models.ManyToManyField(Flight, related_name="routes")
 
-    def __str__(self):
-        return f"{self.id}"
+    def __str__(self) -> str:
+        return f"{self.id}" # type: ignore
 
 
 class Passager(models.Model):
@@ -91,7 +91,7 @@ class Passager(models.Model):
         Flight, through="FlightPassager", related_name="passagers"
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.first_name, self.surname}"
 
 
