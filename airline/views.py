@@ -11,7 +11,7 @@ from utils.map_creator import create_full_map, create_map
 
 # Create your views here.
 def main(request: HttpRequest) -> HttpResponse:
-    countries: list[str] = list(Airport.objects.values_list("country", flat=True).distinct())
+    countries: iterable[str] = list(Airport.objects.values_list("country", flat=True).distinct())
     context: dict = {
         "countries": countries,
     }

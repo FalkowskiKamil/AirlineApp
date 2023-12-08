@@ -2446,3 +2446,4 @@ NameError: name 'execute_from_command_line' is not defined
 2023-12-06 15:49:44,530 - utils.logger - DEBUG - Login user: test 
 2023-12-06 15:49:47,173 - utils.logger - DEBUG - Logout user: 
 2023-12-06 15:52:51,480 - utils.logger - DEBUG - Login user: admin 
+2023-12-08 17:11:25,509 - utils.logger - DEBUG - Login user: admin 

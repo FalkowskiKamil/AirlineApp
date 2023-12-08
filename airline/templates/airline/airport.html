@@ -7,7 +7,7 @@
    </h1>
 </header>
 {% if airport.arrival_routes.all %}
-   <h2 class="p-3 fw-bold text-shadow bg-light text-dark text-center border border-dark col-8 mx-auto w-100">Flight to {{airport}}:</h2>
+   <h2 class="p-3 fw-bold text-shadow text-dark text-center border border-dark col-8 mx-auto w-100 card">Flight to {{airport}}:</h2>
    <section class="d-flex flex-wrap justify-content-center">
       {% for route in airport.arrival_routes.all|dictsort:"id" %}
          <div class="card m-3 col-4" style="width: 18rem;">
@@ -29,7 +29,7 @@
    </section>
 {% endif %}
 {% if airport.departure_routes.all %}
-   <h2 class="p-3 mt-5 fw-bold text-shadow bg-light text-dark text-center border border-dark col-8 mx-auto w-100">
+   <h2 class="p-3 mt-5 fw-bold text-shadow text-dark text-center col-8 mx-auto w-100 card">
       Flight from {{airport}}:
    </h2>
    <section class="d-flex flex-wrap justify-content-center">

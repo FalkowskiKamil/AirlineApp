@@ -1,21 +1,37 @@
+:root {
+    --background: rgb(255, 255, 255);
+    --text: rgb(0, 0, 0);
+    --border: rgb(211, 211, 211);
+    --background-image: url("background.png");
+}
+
 .background {
     background-size: cover;
-    background-image: url("background.png");
+    background-image: var(--background-image);
     height: max(100dvh, 800px);
 }
 
 .main {
     text-align: center;
-    border: solid 5px lightgrey;
+    background-color: var(--background);
+    border: solid 5px var(--border);
     border-radius: 2%;
     font-weight: bold;
     margin: auto;
     margin-top: min(50px, 25vh);
     margin-bottom: 25%;
     padding: 40px;
-    box-shadow: 0px 0px 5px 1px lightgray;
+    box-shadow: 0px 0px 5px 1px var(--border);
     width: min(60vw, 500px);
     min-width: 300px;
+}
+
+.card {
+    background-color: var(--background);
+    border: solid 5px var(--border);
+    text-decoration: bold;
+    box-shadow: 0px 0px 5px 1px var(--border);
+    color: var(--text);
 }
 
 .banner-text {
@@ -36,7 +52,7 @@ footer {
     position: fixed;
     bottom:0;
     left:0;
-    background-color: white;
+    background-color: var(--background);
     padding: 5px 5px 5px 20px;
     min-width:100%;
     flex-wrap: wrap;
@@ -51,6 +67,6 @@ footer {
 
 .logo-text {
     text-decoration: none;
-    color: black;
+    color: var(--text);
     text-overflow: ellipsis;
 }
