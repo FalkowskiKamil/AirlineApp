@@ -2447,3 +2447,36 @@ NameError: name 'execute_from_command_line' is not defined
 2023-12-06 15:49:47,173 - utils.logger - DEBUG - Logout user: 
 2023-12-06 15:52:51,480 - utils.logger - DEBUG - Login user: admin 
 2023-12-08 17:11:25,509 - utils.logger - DEBUG - Login user: admin 
+2023-12-09 13:35:13,147 - utils.logger - DEBUG - Logout user: 
+2023-12-09 13:35:16,376 - utils.logger - DEBUG - Login user: asd 
+2023-12-09 13:43:59,308 - utils.logger - DEBUG - User: asd asd register for flight 33
+2023-12-09 13:49:55,715 - utils.logger - DEBUG - Logout user: 
+2023-12-09 13:50:05,162 - utils.logger - DEBUG - Login user: admin 
+2023-12-09 13:50:56,192 - utils.logger - DEBUG - Logout user: 
+2023-12-09 13:50:58,415 - utils.logger - DEBUG - Login user: asd 
+2023-12-09 13:55:30,259 - utils.logger - DEBUG - Logout user: 
+2023-12-09 13:55:34,775 - utils.logger - DEBUG - Login user: admin 
+2023-12-09 14:00:00,961 - utils.logger - DEBUG - Added airport: Jalalabad Airport
+2023-12-09 14:00:06,941 - utils.logger - DEBUG - Added airport: Suwa?ki Airport
+2023-12-09 14:00:12,105 - utils.logger - DEBUG - Added airport: Gda?sk Lech Wa??sa Airport
+2023-12-09 14:00:27,139 - utils.logger - DEBUG - Make new route (70) from Gda?sk Lech Wa??sa Airport to Suwa?ki Airport
+2023-12-09 14:00:43,029 - utils.logger - DEBUG - Make new flight (61) on route 70 with date 2024-09-27 02:20:04
+2023-12-09 14:04:15,926 - utils.logger - DEBUG - Make 10 passagers
+2023-12-09 15:02:56,010 - utils.logger - DEBUG - Logout user: 
+2023-12-09 15:07:29,959 - utils.logger - DEBUG - Login user: asd 
+2023-12-09 15:07:33,281 - utils.logger - DEBUG - Logout user: 
+2023-12-09 15:07:37,371 - utils.logger - DEBUG - Login user: asd 
+2023-12-09 15:11:51,605 - utils.logger - DEBUG - Logout user: 
+2023-12-09 15:11:57,131 - utils.logger - DEBUG - Login user: asd 
+2023-12-09 15:13:09,001 - utils.logger - DEBUG - Logout user: 
+2023-12-09 15:13:12,416 - utils.logger - DEBUG - Login user: asd 
+2023-12-09 15:13:15,049 - utils.logger - DEBUG - Logout user: 
+2023-12-09 15:13:22,473 - utils.logger - DEBUG - Login user: admin 
+2023-12-09 15:52:49,734 - utils.logger - DEBUG - Logout user: 
+2023-12-09 16:17:27,925 - utils.logger - DEBUG - Login user: admin 
+2023-12-09 16:52:35,228 - utils.logger - DEBUG - Logout user: 
+2023-12-09 16:52:40,278 - utils.logger - DEBUG - Login user: test 
+2023-12-09 16:52:54,055 - utils.logger - DEBUG - User: test test register for flight 16
+2023-12-09 16:53:22,344 - utils.logger - DEBUG - User: test test register for flight 61
+2023-12-09 16:53:28,066 - utils.logger - DEBUG - User: test test register for flight 55
+2023-12-09 16:53:31,091 - utils.logger - DEBUG - User: test test register for flight 54

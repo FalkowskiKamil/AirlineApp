@@ -1,43 +1,32 @@
 :root {
     --background: rgb(255, 255, 255);
-    --text: rgb(0, 0, 0);
-    --border: rgb(211, 211, 211);
     --background-image: url("background.png");
+    --banner-text-color: rgb(20, 45, 76);
+    --border: rgb(211, 211, 211);
+    --dark-mode-image: url("night-mode-button.png");
+    --navi-text-color: rgb(13, 110, 253);
+    --text: rgb(0, 0, 0);
 }
 
 .background {
-    background-size: cover;
     background-image: var(--background-image);
+    background-size: cover;
     height: max(100dvh, 800px);
 }
 
 .main {
-    text-align: center;
-    background-color: var(--background);
-    border: solid 5px var(--border);
-    border-radius: 2%;
-    font-weight: bold;
-    margin: auto;
+    min-width: 300px;
     margin-top: min(50px, 25vh);
     margin-bottom: 25%;
-    padding: 40px;
-    box-shadow: 0px 0px 5px 1px var(--border);
+    margin: auto;
     width: min(60vw, 500px);
-    min-width: 300px;
-}
-
-.card {
-    background-color: var(--background);
-    border: solid 5px var(--border);
-    text-decoration: bold;
-    box-shadow: 0px 0px 5px 1px var(--border);
-    color: var(--text);
 }
 
 .banner-text {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    color: #142d4c;
+    color: var(--banner-text-color);
     font-size: 40px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .map {
@@ -46,27 +35,81 @@
 }
 
 footer {
-    display:flex;
     align-items: left;
-    justify-content: flex-start;
-    position: fixed;
-    bottom:0;
-    left:0;
     background-color: var(--background);
-    padding: 5px 5px 5px 20px;
-    min-width:100%;
+    bottom:0;
+    display:flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    left:0;
+    min-width:100%;
+    position: fixed;
+    padding: 5px 5px 5px 20px;
     text-align: left;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
     margin: 5px;
+    height: 50px;
+    width: 50px;
 }
 
 .logo-text {
-    text-decoration: none;
     color: var(--text);
+    text-decoration: none;
     text-overflow: ellipsis;
+}
+
+.card {
+    background-color: var(--background);
+    border: solid 5px var(--border);
+    border-radius: 2%;
+    box-shadow: 0px 0px 5px 1px var(--border);
+    color: var(--text);
+    font-weight: bold;
+    max-width: 50dvh;
+    padding: 40px;
+    text-align: center;
+}
+
+.card-passager {
+    max-width: none;
+}
+
+.card-title {
+    margin: auto;
+    min-width: 80%;
+    padding: 5dvh;
+    width: 80%;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.icon {
+    background: transparent;
+    background-image: var(--dark-mode-image);
+    background-size: cover; 
+    background-position: center; 
+    border: none; 
+    color: white;
+    cursor: pointer;
+    height: 50px;  
+    width: 50px;
+}
+
+.toggle-background {
+    background-color: rgb(255, 255, 255);
+    border: rgb(255, 255, 255);
+}
+
+.nav-button {
+    color:var(--navi-text-color);
+    display:block;
+    padding:.5rem 1rem;
+    text-decoration:none;
+    transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }

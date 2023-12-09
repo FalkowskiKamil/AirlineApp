@@ -11,7 +11,7 @@ from utils.map_creator import create_full_map, create_map
 
 # Create your views here.
 def main(request: HttpRequest) -> HttpResponse:
-    countries: iterable[str] = list(Airport.objects.values_list("country", flat=True).distinct())
+    countries: list[str] = list(Airport.objects.values_list("country", flat=True).distinct())
     context: dict = {
         "countries": countries,
     }
@@ -47,7 +47,7 @@ def airport(request: HttpRequest, airport_id) -> HttpResponse:
     return render(request, template_name="airline/airport.html", context=context)
 
 
-def routes(request: HttpRequest, route_id) -> HttpResponse:
+def routes(request: HttpRequest, route_id: int) -> HttpResponse:
     route: object = get_object_or_404(Route, pk=route_id)
     map: Map = create_map(route.start, route.destination)
     context: dict = {"route": route, "map": map._repr_html_()}
@@ -75,7 +75,7 @@ def passager(request: HttpRequest, passager_id) -> HttpResponse:
 
 def full_map(request: HttpRequest) -> HttpResponse:
     route: object = Route.objects.all()
-    map: Map = create_full_map(route)
+    map: Map = create_full_map(route) # type: ignore
     context: dict = {"map": map._repr_html_()}
     return render(request, template_name="airline/full_map.html", context=context)
 
@@ -102,13 +102,13 @@ def full_data_staff(request: HttpRequest) -> HttpResponse:
 def add_data(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         if "add_airport_form" in request.POST:
-            message: str = data_manager.upload_airport(request.POST)
+            message: str = data_manager.upload_airport(request.POST) # type: ignore
         elif "add_flight_form" in request.POST:
-            message: str = data_manager.upload_flight(request.POST)
+            message: str = data_manager.upload_flight(request.POST) # type: ignore
         elif "add_passager_form" in request.POST:
-            message: str = data_manager.upload_passager(request.POST)
+            message: str = data_manager.upload_passager(request.POST) # type: ignore
         elif "add_route_form" in request.POST:
-            message: str = data_manager.upload_route(request.POST)
+            message: str = data_manager.upload_route(request.POST) # type: ignore
         else:
             messages.error(request, "Something went wrong!")
         messages.success(request, str(f"{message}")) #type: ignore

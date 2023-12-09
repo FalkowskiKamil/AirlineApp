@@ -2,45 +2,46 @@
 {% block content %}
 <div class="map">{{ map|safe }}</div>
 <header>
-   <h1 class="text-center m-4 banner-text">
+   <h1 class="banner-text m-4 ">
       Flight "{{flight.id}}"
       from: <a class="link-secondary" href="{% url 'airline:airport' flight.start.airport_id %}">{{flight.start}}</a>
       to: <a class="link-secondary" href="{% url 'airline:airport' flight.destination.airport_id %}">{{flight.destination}}</a>
-      (route {% for route in flight.routes.all %} <a class="link-secondary" id="route" href="{% url 'airline:routes' route %}">{{route}}</a>{% endfor %})
+      (route {% for route in flight.routes.all %} <a class="link-secondary" id="route" href="{% url 'airline:routes' route.id %}">{{route}}</a>{% endfor %})
       on {{flight.date}}
    </h1>
 </header>
 {% if request.user.is_staff or request.user.is_superuser %}
-   <section class="d-flex flex-wrap m-4 justify-content-center">
-      <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3 card">
-         <h2 class="display-6 banner-text text-center">All of the passagers {% if flight.passengers_flights.all %}({{ flight.passengers_flights.all|length }}):{% endif %}</h2>
-         <div class="card-body d-flex flex-wrap justify-content-center">
-            {% if flight.passengers_flights.all %}
-               {% for passager in flight.passengers_flights.all %}
-                  <a class="btn btn-success m-2" href="{% url 'airline:passager' passager.id %}">{{passager.first_name}} {{passager.surname}}</a>
-               {% endfor %}
-            {% else %}
-               <div class="text-center">
-                  <span>No passager</span>
-               </div>
-            {% endif %}
+   <section class="card-container m-3">
+   <div class="card card-container flex-row card-passager">
+         <h2 class="banner-text w-100 mb-3">All of the passagers {% if flight.passengers_flights.all %}({{ flight.passengers_flights.all|length }}):{% endif %}</h2>
+      {% if flight.passengers_flights.all %}
+         {% for passager in flight.passengers_flights.all|dictsort:"surname" %}
+         <div class="m-2 col-sm-12 col-md-2">
+            <a class="btn btn-success" href="{% url 'airline:passager' passager.id %}">{{passager.first_name}} {{passager.surname}}</a>
          </div>
-      </div>
+         {% endfor %}
+      {% else %}
+         <span>No passager</span>
+      {% endif %}
+   </div>
+   </section>
 {% else %}
    {% if user.is_authenticated %}
-      <div class="fw-bold text-center border border-5 card rounded rounded-3 shadow p-3">
-      {% for passager in user.passager_user.all %}
-         {% if user.passager_user.first in flight.passagers.all %}
-            <h2 class="display-4 text-danger text-shadow banner-text">You are signed up for this flight</h2>
-            <small class="m-2">If you want to check out, contact with us and we will try to help you</small>
-         {% else %}
-            <h2 class="display-4 text-danger text-shadow banner-text mb-4">You are not signed up for this flight</h2>
-            <form id="record" method="POST">{% csrf_token %}</form>
-            <button type="submit" form="record" class="btn btn-success fw-bold">Sign up</button>
-         {% endif %}
-      {% endfor %}
-      </div>
-      {% endif %}
+   <section class="card-container">
+      <div class="card m-3 ">
+         {% for passager in user.passager_user.all %}
+            {% if user.passager_user.first in flight.passagers.all %}
+               <h2 class="text-danger banner-text">You are signed up for this flight</h2>
+               <small class="m-2">If you want to check out, contact with us and we will try to help you</small>
+            {% else %}
+               <h2 class="text-danger banner-text">You are not signed up for this flight</h2>
+               <form id="record" method="POST">{% csrf_token %}</form>
+               <button type="submit" form="record" class="btn btn-success fw-bold">Sign up</button>
+            {% endif %}
+         {% endfor %}
+         </div>
+      </section>
    {% endif %}
+{% endif %}
    </section>
 {% endblock %}

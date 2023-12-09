@@ -42,7 +42,7 @@ class Flight(models.Model):
             raise ValueError("Start and destination cannot be the same.")
 
     def __str__(self) -> str:
-        return f"{self.id}" # type: ignore
+        return f"Flight: {self.start} to {self.destination}, id: {self.id}" # type: ignore
 
     def formatted_date(self) -> str:
         return self.date.strftime("%d-%m-%Y")
@@ -74,7 +74,7 @@ class Route(models.Model):
     flights = models.ManyToManyField(Flight, related_name="routes")
 
     def __str__(self) -> str:
-        return f"{self.id}" # type: ignore
+        return f"Route: {self.start} {self.destination}" # type: ignore
 
 
 class Passager(models.Model):

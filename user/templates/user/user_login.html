@@ -1,13 +1,13 @@
 {% extends "airline/index.html" %}{% block title %}Login form{% endblock %}
 {% block content %}
-<main class="d-flex justify-content-center">
-  <form class="text-center border border-5 card rounded rounded-3 shadow p-5 mt-5" action="{% url 'user:login_request' %}" method="post">
+<main class="card-container">
+  <form class="card mt-5" action="{% url 'user:login_request' %}" method="post">
       {% csrf_token %}
-      <h1 class="display-4 fw-bold">Login</h1>
-        <label class="col-form-label" for="username"><b>User Name</b></label>
-        <input class="form-control form-control-lg mb-4" id="username" type="text" placeholder="Enter User Name: " name="username" required> 
-        <label class="col-form-label" for="psw"><b>Password</b></label>
-        <input class="form-control form-control-lg mb-4" id="psw" type="password" placeholder="Enter Password: " name="psw" required> 
+      <h1 class="banner-text">Login</h1>
+      <label class="col-form-label" for="username"><b>User Name</b></label>
+      <input class="form-control form-control-lg mb-4" id="username" type="text" placeholder="Enter User Name: " name="username" required> 
+      <label class="col-form-label" for="psw"><b>Password</b></label>
+      <input class="form-control form-control-lg mb-4" id="psw" type="password" placeholder="Enter Password: " name="psw" required> 
       <button class="btn btn-success form-control form-control-sm" type="submit">Login</button> 
   </form>
 </main>

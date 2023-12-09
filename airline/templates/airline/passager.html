@@ -1,26 +1,24 @@
 {% extends "airline/index.html" %}{% block title %}Passager: {{passager.first_name}} {{passager.surname}}{% endblock %}
 {% block content %}
 <header>
-   <h1 class="text-center m-4 banner-text">
+   <h1 class="banner-text m-4">
       Flights registered for: {{passager.first_name}} {{passager.surname}}
    </h1>
 </header>
-<section class="d-flex flex-wrap justify-content-center">
+<section class="card-container">
    {% if passager.flight_passagers.all %}
       {% for fli in passager.flights_passengers.all %}
-         <div class="card m-3" style="width: 18rem;">
-            <div class="card-header text-center">
+         <div class="card my-1">
+            <h2 class="card-title">
                Flight number: <a href="{% url 'airline:flight' fli.id %}">{{fli.id}}</a>
-            </div>
-            <div class="card-body">
-               <p class="card-text">Start: <a href="{% url 'airline:airport' fli.start.airport_id %}">
-                  {{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a>
-               </p>
-               <p class="card-text">Destination: <a href="{% url 'airline:airport' fli.destination.airport_id %}">
-                  {{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a>
-               </p>
-               <p class="card-text">Date: {{fli.date}}</p>
-            </div>
+            </h2>
+            <p>Start: <a href="{% url 'airline:airport' fli.start.airport_id %}">
+               {{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a>
+            </p>
+            <p>Destination: <a href="{% url 'airline:airport' fli.destination.airport_id %}">
+               {{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a>
+            </p>
+            <p>Date: {{fli.date}}</p>
          </div>
       {% endfor %}
    {% else %}
