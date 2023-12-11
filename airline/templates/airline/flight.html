@@ -32,6 +32,7 @@
          {% for passager in user.passager_user.all %}
             {% if user.passager_user.first in flight.passagers.all %}
                <h2 class="text-danger banner-text">You are signed up for this flight</h2>
+               <h3>{{ times_to_flight }}</h3>
                <small class="m-2">If you want to check out, contact with us and we will try to help you</small>
             {% else %}
                <h2 class="text-danger banner-text">You are not signed up for this flight</h2>

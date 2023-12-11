@@ -2,12 +2,13 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse
+from django.utils import timezone
 from folium import Map
 from airline.models import Airport, Flight, Route, Passager
 from utils import data_manager
 from utils.mongo_connection import connect_to_mongodb
 from utils.map_creator import create_full_map, create_map
-
+from functools import lru_cache
 
 # Create your views here.
 def main(request: HttpRequest) -> HttpResponse:
@@ -57,7 +58,15 @@ def routes(request: HttpRequest, route_id: int) -> HttpResponse:
 def flight(request: HttpRequest, fli_id: int) -> HttpResponse:
     flight: object = get_object_or_404(Flight, pk=fli_id)
     map: Map = create_map(flight.start, flight.destination)
-    context: dict = {"flight": flight, "map": map._repr_html_()}
+    times_to_flight = ""
+    if request.user:
+        check_register_user =  Flight.objects.filter(pk=fli_id, passengers_flights=request.user.passager_user.first().id).first() # type: ignore
+        if check_register_user:
+            today_date = timezone.now()
+            delta_time = check_register_user.date - today_date
+            times_to_flight = f'{delta_time.days} days to flight!'
+        
+    context: dict = {"flight": flight, "map": map._repr_html_(), "times_to_flight": times_to_flight}
     if request.method == "POST":
         data_manager.sign_for_flight(request.user.passager_user.first().id, fli_id) # type: ignore
         messages.success(request, message=f"Succesfuly signed for flight {flight.id}") # type: ignore
@@ -73,6 +82,7 @@ def passager(request: HttpRequest, passager_id) -> HttpResponse:
     return render(request, template_name="airline/passager.html", context=context)
 
 
+@lru_cache(maxsize=None)
 def full_map(request: HttpRequest) -> HttpResponse:
     route: object = Route.objects.all()
     map: Map = create_full_map(route) # type: ignore
@@ -80,12 +90,14 @@ def full_map(request: HttpRequest) -> HttpResponse:
     return render(request, template_name="airline/full_map.html", context=context)
 
 
+@lru_cache(maxsize=None)
 def full_data_user(request: HttpRequest) -> HttpResponse:
     countries: list[Airport] = list(Airport.objects.values_list("country", flat=True).distinct())
     context: dict = {"countries": countries, "routes": Route.objects.all()}
     return render(request, template_name="airline/full_data_user.html", context=context)
 
 
+@lru_cache(maxsize=None)
 def full_data_staff(request: HttpRequest) -> HttpResponse:
     countries: list[Airport] = list(Airport.objects.values_list("country", flat=True).distinct())
     context: dict = {

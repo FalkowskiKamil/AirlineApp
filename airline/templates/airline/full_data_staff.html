@@ -50,7 +50,7 @@
                <tr class="align-middle" data-start="{{fli.start.country}}" data-destination="{{fli.destination.country}}" data-date="{{fli.date}}">
                <td><a class="text-decoration-none link-dark" href="{% url 'airline:flight' fli.id %}">{{fli.id}}</a></td>
                {% for route in fli.routes.all %}
-                  <td><a class="text-decoration-none link-dark" href="{% url 'airline:routes' route %}">{{route}}</a></td>
+                  <td><a class="text-decoration-none link-dark" href="{% url 'airline:routes' route.id %}">{{route}}</a></td>
                {% endfor %}
                <td><a class="text-decoration-none link-dark" href="{% url 'airline:airport' fli.start.airport_id %}">{{fli.start}} ({{fli.start.city}} in {{fli.start.country}})</a></td>
                <td><a class="text-decoration-none link-dark" href="{% url 'airline:airport' fli.destination.airport_id %}">{{fli.destination}} ({{fli.destination.city}} in {{fli.destination.country}})</a></td>

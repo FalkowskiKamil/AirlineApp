@@ -2480,3 +2480,11 @@ NameError: name 'execute_from_command_line' is not defined
 2023-12-09 16:53:22,344 - utils.logger - DEBUG - User: test test register for flight 61
 2023-12-09 16:53:28,066 - utils.logger - DEBUG - User: test test register for flight 55
 2023-12-09 16:53:31,091 - utils.logger - DEBUG - User: test test register for flight 54
+2023-12-11 14:05:29,035 - utils.logger - DEBUG - Logout user: 
+2023-12-11 14:05:35,115 - utils.logger - DEBUG - Login user: asd 
+2023-12-11 14:33:24,893 - utils.logger - DEBUG - Logout user: 
+2023-12-11 14:33:28,602 - utils.logger - DEBUG - Login user: admin 
+2023-12-11 14:33:47,287 - utils.logger - DEBUG - Make new flight (62) on route 70 with date 2024-02-08T12:22
+2023-12-11 14:33:48,945 - utils.logger - DEBUG - Logout user: 
+2023-12-11 14:33:52,614 - utils.logger - DEBUG - Login user: asd 
+2023-12-11 14:34:07,770 - utils.logger - DEBUG - User: asd asd register for flight 61

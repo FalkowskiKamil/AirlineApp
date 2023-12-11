@@ -2,12 +2,12 @@
 <html lang="en">
    <head>
       {% load static %}
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <meta charset="UTF-8" />
       <meta name="description" content="This is a Django App for Airline"/>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="author" content="Kamil Falkowski" />
       <title>{% block title %}Airline{% endblock %}</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
       <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
    </head>
@@ -71,7 +71,6 @@
       <!-- Page content -->
       {% block content %}>
       {% endblock %}
-      <!--
       <footer class="border">
          <div class="col-12 col-sm-6">
             <p class="fw-bold">Check out my other sites:</p>
@@ -84,8 +83,8 @@
             <a class="logo-text d-block" href="https://www.linkedin.com/in/kamil-falkowski-6207a0273/"><img class="logo" src="{% static 'linkedin.png' %}" alt="Linkedin Logo">Linkedin</a>
          </div>
       </footer>
-      -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="{% static 'nightMode.js' %}"></script>
+      <script src="{% static 'footer.js' %}"></script>
    </body>
 </html>
