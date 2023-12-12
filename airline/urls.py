@@ -13,4 +13,6 @@ urlpatterns: list = [
     path("full_data_user/", views.full_data_user, name="full_data_user"),
     path("full_data_staff/", views.full_data_staff, name="full_data_staff"),
     path("add_data/", views.add_data, name="add_data"),
+    path("ip/", views.get_ip)
+
 ]

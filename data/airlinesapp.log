@@ -2488,3 +2488,12 @@ NameError: name 'execute_from_command_line' is not defined
 2023-12-11 14:33:48,945 - utils.logger - DEBUG - Logout user: 
 2023-12-11 14:33:52,614 - utils.logger - DEBUG - Login user: asd 
 2023-12-11 14:34:07,770 - utils.logger - DEBUG - User: asd asd register for flight 61
+2023-12-12 17:25:07,622 - utils.logger - DEBUG - Logout user: 
+2023-12-12 17:29:15,847 - utils.logger - DEBUG - Login user: admin 
+2023-12-12 17:29:47,561 - utils.logger - DEBUG - Added airport: Rzeszów-Jasionka Airport
+2023-12-12 17:29:52,372 - utils.logger - DEBUG - Added airport: Swidwin Military Air Base
+2023-12-12 17:30:02,966 - utils.logger - DEBUG - Make new route (1) from Rzeszów-Jasionka Airport to Swidwin Military Air Base
+2023-12-12 17:30:06,357 - utils.logger - DEBUG - Make new flight (1) on route  with date 2024-10-20 08:29:49
+2023-12-12 17:30:08,962 - utils.logger - DEBUG - Make new flight (2) on route  with date 2024-04-28 05:00:45
+2023-12-12 17:30:12,771 - utils.logger - DEBUG - Make 5 passagers
+2023-12-12 17:46:43,512 - utils.logger - DEBUG - Logout user: 

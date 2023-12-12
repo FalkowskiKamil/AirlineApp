@@ -60,11 +60,12 @@ def flight(request: HttpRequest, fli_id: int) -> HttpResponse:
     map: Map = create_map(flight.start, flight.destination)
     times_to_flight = ""
     if request.user:
-        check_register_user =  Flight.objects.filter(pk=fli_id, passengers_flights=request.user.passager_user.first().id).first() # type: ignore
-        if check_register_user:
-            today_date = timezone.now()
-            delta_time = check_register_user.date - today_date
-            times_to_flight = f'{delta_time.days} days to flight!'
+        if request.user.passager_user.first():
+            check_register_user =  Flight.objects.filter(pk=fli_id, passengers_flights=request.user.passager_user.first().id).first() # type: ignore
+            if check_register_user:
+                today_date = timezone.now()
+                delta_time = check_register_user.date - today_date
+                times_to_flight = f'{delta_time.days} days to flight!'
         
     context: dict = {"flight": flight, "map": map._repr_html_(), "times_to_flight": times_to_flight}
     if request.method == "POST":
@@ -139,3 +140,7 @@ def add_data(request: HttpRequest) -> HttpResponse:
     }
     messages.info(request, str(f"{status_of_connection[0]}")) #type: ignore
     return render(request, template_name="airline/add_data.html", context=context)
+
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META['REMOTE_ADDR'])

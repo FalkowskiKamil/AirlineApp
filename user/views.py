@@ -8,6 +8,7 @@ from django.http import HttpRequest, HttpResponse
 from airline.models import Passager
 from utils.mongo_connection import connect_to_mongodb
 from utils.logger import configure_logger
+from django.contrib.auth.decorators import login_required
 
 logger = configure_logger()
 
@@ -64,3 +65,7 @@ def logout_request(request: HttpRequest) -> HttpResponse:
     return redirect(reverse("airline:main"))
 
 
+
+@login_required
+def profile(request):
+    return render(request, "user/profile.html")
