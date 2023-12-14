@@ -10,6 +10,7 @@ from utils.mongo_connection import connect_to_mongodb
 from utils.logger import configure_logger
 from django.contrib.auth.decorators import login_required
 
+from django_registration.forms import RegistrationForm
 logger = configure_logger()
 
 
@@ -69,3 +70,7 @@ def logout_request(request: HttpRequest) -> HttpResponse:
 @login_required
 def profile(request):
     return render(request, "user/profile.html")
+
+class AirlineRegistrationForm(RegistrationForm):
+    class Meta(RegistrationForm.Meta):
+        model = User

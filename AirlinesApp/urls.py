@@ -25,7 +25,7 @@ import debug_toolbar
 urlpatterns = [
     path("", airline_views.main, name="main"),
     path("admin/", admin.site.urls),
-    path("user/", include("user.urls")),
+    path("", include("user.urls")),
     path("airline/", include("airline.urls")),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('airline/favicon.ico'))),
 ]

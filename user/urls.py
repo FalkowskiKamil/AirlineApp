@@ -1,14 +1,16 @@
 from django.urls import path, include
-from . import views
+from django_registration.backends.activation.views import RegistrationView
+from user.forms import AirlineRegistrationForm
+from user import views
 
-
-app_name = "user"
 urlpatterns = [
-    path("registration/", views.registration_request, name="registration_request"),
-    path("login/", views.login_request, name="login_request"),
-    path("logout/", views.logout_request, name="logout_request"),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/", include("allauth.urls")),
     path("accounts/profile/", views.profile, name="profile"),
-    path('accounts/', include('django_registration.backends.one_step.urls')),
+    path(
+        "accounts/register/",
+        RegistrationView.as_view(form_class=AirlineRegistrationForm),
+        name="django_registration_register",
+    ),    
     path('accounts/', include('django_registration.backends.activation.urls')),
 ]

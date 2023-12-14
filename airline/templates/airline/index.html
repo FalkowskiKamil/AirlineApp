@@ -34,7 +34,7 @@
                      </li>
                   {% else %}
                      <li class="nav-item">
-                        <a class="nav-button" href="{% url 'airline:passager' user.passager_user.first.id %}" name="Passager">
+                        <a class="nav-button" href="{% url 'profile' %}" name="Passager">
                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                            </svg>
@@ -42,16 +42,14 @@
                      </li>
                   {% endif %}
                   <li class="nav-item">
-                     <a class="nav-button" href="{% url 'user:logout_request' %}">Logout</a>
+                     <a class="nav-button" href="{% url 'logout' %}">Logout</a>
                   </li>
                {% else %}
-                     <form class="form-inline" action="{% url 'user:login_request' %}" method="post">
+                     <form class="form-inline" action="login" method="post">
                         {% csrf_token %}
                         <div class="input-group px-2">
-                           <input type="text" class="form-control d-none d-md-block d-lg-block" placeholder="Username" name="username"/>
-                           <input type="password" class="form-control ml-2 d-none d-md-block d-lg-block" placeholder="Password" name="psw"/>
-                           <button class="btn btn-success ml-2 d-block" type="submit">Login</button>
-                           <a class="btn btn-success mx-2" href="{% url 'user:registration_request' %}">Sign Up</a>
+                           <a class="nav-button" href="{% url "login" %}">Log In</a>
+                           <a class="btn btn-success mx-2" href="{% url 'django_registration_register' %}">Sign Up</a>
                            </div>
                      </form>
                {% endif %}

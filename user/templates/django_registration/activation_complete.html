@@ -1,0 +1,8 @@
+{% extends "airline/index.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Register for Airline{% endblock %}
+{% block content %}
+    <h2>Activation Complete</h2>
+    <p>Your account is now activated! You can now log in and use Blango.</p>
+    <p><a href="{% url "login" %}">Log In</a></p>
+{% endblock content %}

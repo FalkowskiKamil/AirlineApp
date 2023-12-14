@@ -5,7 +5,7 @@ from django.db.models.constraints import UniqueConstraint
 
 # Create your models here.
 class Airport(models.Model):
-    airport_id = models.IntegerField(primary_key=True)
+    airport_id = models.IntegerField(primary_key=True, unique=True)
     name= models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
