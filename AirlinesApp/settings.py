@@ -47,10 +47,12 @@ class Dev(Configuration):
         "debug_toolbar",
         "crispy_forms",
         "crispy_bootstrap5",
-        "allauth", 
-        "allauth.account", 
-        "allauth.socialaccount", 
+        "allauth",
+        "allauth.account",
+        "allauth.socialaccount",
         "allauth.socialaccount.providers.google",
+        "rest_framework",
+        "rest_framework.authtoken",
     ]
 
     MIDDLEWARE = [
@@ -182,7 +184,7 @@ class Dev(Configuration):
     # Crispy Fomrs
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
-    
+
     # Oauth
     SITE_ID = 1
     ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -190,6 +192,16 @@ class Dev(Configuration):
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = "email"
 
+    REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly"
+    ],
+}
 
 
 

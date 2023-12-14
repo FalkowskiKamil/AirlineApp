@@ -28,6 +28,7 @@ urlpatterns = [
     path("", include("user.urls")),
     path("airline/", include("airline.urls")),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('airline/favicon.ico'))),
+    path("api/v1/", include("airline.api.urls")),
 ]
 
 if settings.DEBUG:
