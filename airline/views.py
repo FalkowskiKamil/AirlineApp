@@ -18,7 +18,7 @@ def main(request: HttpRequest) -> HttpResponse:
     }
     return render(request, template_name="airline/main.html", context=context)
 
-
+@lru_cache(maxsize=None)
 def country_map(request: HttpRequest) -> HttpResponse:
     context: dict = {}
     if request.method == "POST":

@@ -15,6 +15,7 @@ import os
 from django.contrib.messages import constants as messages
 from configurations import Configuration, values
 import dj_database_url
+from datetime import timedelta
 
 
 class Dev(Configuration):
@@ -53,6 +54,8 @@ class Dev(Configuration):
         "allauth.socialaccount.providers.google",
         "rest_framework",
         "rest_framework.authtoken",
+        "drf_yasg",
+        "django_filters",
     ]
 
     MIDDLEWARE = [
@@ -192,16 +195,38 @@ class Dev(Configuration):
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = "email"
 
+    
     REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly"
     ],
-}
+    "DEFAULT_FILTER_BACKENDS": [
+            "django_filters.rest_framework.DjangoFilterBackend"
+    ],
+    "DEFAULT_THROTTLE_CLASSES": [
+        "airline.api.throttling.AnonSustainedThrottle",
+        "airline.api.throttling.AnonBurstThrottle",
+        "airline.api.throttling.UserSustainedThrottle",
+        "airline.api.throttling.UserBurstThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon_sustained": "500/day",
+        "anon_burst": "10/minute",
+        "user_sustained": "5000/day",
+        "user_burst": "100/minute",
+    },
+    }
+    SIMPLE_JWT = {
+        "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+        "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    }
+
 
 
 
