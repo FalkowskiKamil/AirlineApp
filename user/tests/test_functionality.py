@@ -10,44 +10,45 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
+
 class TestFunctionalityUser(StaticLiveServerTestCase):
-  def setUp(self):
-    options = webdriver.FirefoxOptions()
-    options.add_argument('--headless')
-    self.driver = webdriver.Firefox(options=options)
-    self.vars = {}
-    self.data = self.random_register_data()
-  
-  def tearDown(self):
-    self.driver.quit()
-  
-  def random_register_data(self):
-    return (''.join(random.choice(string.printable) for i in range(8)))
+    def setUp(self):
+        options = webdriver.FirefoxOptions()
+        options.add_argument('--headless')
+        self.driver = webdriver.Firefox(options=options)
+        self.vars = {}
+        self.data = self.random_register_data()
 
-  def test_bad_data_login(self):
-    self.driver.get("http://localhost:8000/")
-    self.driver.find_element(By.NAME, "username").send_keys("qqqqqqqqqq")
-    self.driver.find_element(By.NAME, "psw").send_keys("qqqqqqqq")
-    self.driver.find_element(By.CSS_SELECTOR, ".btn:nth-child(3)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".d-flex").click()
-    self.driver.close()
+    def tearDown(self):
+        self.driver.quit()
 
-  def test_register_and_logout(self):
-    self.driver.get("http://localhost:8000/")
-    self.driver.find_element(By.LINK_TEXT, "Sign Up").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".form-control:nth-child(4)").send_keys(self.data)
-    self.driver.find_element(By.NAME, "firstname").send_keys(self.data)
-    self.driver.find_element(By.NAME, "lastname").send_keys(self.data)
-    self.driver.find_element(By.CSS_SELECTOR, ".form-control:nth-child(10)").send_keys(self.data)
-    self.driver.find_element(By.CSS_SELECTOR, ".form-control-sm").click()
-    self.driver.find_element(By.LINK_TEXT, "Logout").click()
-    self.driver.close()
-  
-  def test_login(self):
-    self.driver.get("http://localhost:8000/")
-    self.driver.find_element(By.NAME, "username").send_keys(self.data)
-    self.driver.find_element(By.NAME, "psw").send_keys(self.data)
-    self.driver.find_element(By.CSS_SELECTOR, ".btn:nth-child(3)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".d-flex").click()
-    self.driver.close()
-  
+    @staticmethod
+    def random_register_data():
+        return (''.join(random.choice(string.printable) for i in range(8)))
+
+    def test_bad_data_login(self):
+        self.driver.get("http://localhost:8000/")
+        self.driver.find_element(By.NAME, "username").send_keys("qqqqqqqqqq")
+        self.driver.find_element(By.NAME, "psw").send_keys("qqqqqqqq")
+        self.driver.find_element(By.CSS_SELECTOR, ".btn:nth-child(3)").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".d-flex").click()
+        self.driver.close()
+
+    def test_register_and_logout(self):
+        self.driver.get("http://localhost:8000/")
+        self.driver.find_element(By.LINK_TEXT, "Sign Up").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".form-control:nth-child(4)").send_keys(self.data)
+        self.driver.find_element(By.NAME, "firstname").send_keys(self.data)
+        self.driver.find_element(By.NAME, "lastname").send_keys(self.data)
+        self.driver.find_element(By.CSS_SELECTOR, ".form-control:nth-child(10)").send_keys(self.data)
+        self.driver.find_element(By.CSS_SELECTOR, ".form-control-sm").click()
+        self.driver.find_element(By.LINK_TEXT, "Logout").click()
+        self.driver.close()
+
+    def test_login(self):
+        self.driver.get("http://localhost:8000/")
+        self.driver.find_element(By.NAME, "username").send_keys(self.data)
+        self.driver.find_element(By.NAME, "psw").send_keys(self.data)
+        self.driver.find_element(By.CSS_SELECTOR, ".btn:nth-child(3)").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".d-flex").click()
+        self.driver.close()

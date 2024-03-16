@@ -4,10 +4,10 @@ from .models import Airport, Flight, Passager, Route, FlightPassager
 
 # Register your models here.
 class AirportAdmin(admin.ModelAdmin):
-    list_display: list[str]= ["name", "city", "country"]
-    list_filter: list[str]= ["country"]
+    list_display: list[str] = ["name", "city", "country"]
+    list_filter: list[str] = ["country"]
     exclude: tuple = ("longitude", "latitude", "departures", "arrivals")
-    search_fields: list[str]= ["airport_id", "name", "city", "country"]
+    search_fields: list[str] = ["airport_id", "name", "city", "country"]
 
     def has_add_permission(self, request) -> bool:
         return False
@@ -25,11 +25,11 @@ class AirportAdmin(admin.ModelAdmin):
 
     flight_departures.short_description = "Departures"
     flight_arrival.short_description = "Arrival"
-    readonly_fields: list[str]= ["flight_departures", "flight_arrival"]
+    readonly_fields: list[str] = ["flight_departures", "flight_arrival"]
 
 
 class FlightAdmin(admin.ModelAdmin):
-    list_display: list[str]= [
+    list_display: list[str] = [
         "id",
         "start",
         "destination",
@@ -37,8 +37,8 @@ class FlightAdmin(admin.ModelAdmin):
         "number_routes",
         "get_passager_flight",
     ]
-    list_filter: list[str]= ["start", "destination"]
-    search_fields: list[str]= [
+    list_filter: list[str] = ["start", "destination"]
+    search_fields: list[str] = [
         "start__name",
         "start__city",
         "start__country",
@@ -48,7 +48,8 @@ class FlightAdmin(admin.ModelAdmin):
         "id",
     ]
 
-    def number_routes(self, obj) -> str:
+    @staticmethod
+    def number_routes(_, obj) -> str:
         return ", ".join(str(route) for route in obj.routes.all())
 
     def get_passager_flight(self, obj: Flight) -> str:
@@ -65,12 +66,12 @@ class FlightAdmin(admin.ModelAdmin):
         model: Airport = Flight.passengers_flights.through
         extra = 1
 
-    inlines: list= [PassengerInline]
+    inlines: list = [PassengerInline]
 
 
 class PassagerAdmin(admin.ModelAdmin):
-    list_display: list[str]= ["id", "first_name", "surname", "get_flight_passager"]
-    search_fields: list[str]= ["id", "first_name", "surname"]
+    list_display: list[str] = ["id", "first_name", "surname", "get_flight_passager"]
+    search_fields: list[str] = ["id", "first_name", "surname"]
 
     def get_flight_passager(self, obj: Passager) -> str:
         if obj.flights.exists():

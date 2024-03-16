@@ -1,7 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
-app_name:str = "airline"
+app_name: str = "airline"
 urlpatterns: list = [
     path("", views.main, name="main"),
     path("country_map/", views.country_map, name="country_map"),

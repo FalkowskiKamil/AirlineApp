@@ -36,7 +36,7 @@ def registration_request(request: HttpRequest) -> HttpResponse:
             messages.success(request, "Successfully registered!")
             return redirect(reverse("airline:main"))
         else:
-            messages.error(request,"User already exists!")
+            messages.error(request, "User already exists!")
             return redirect(reverse("user:registration_request"))
     return render(request, "user/user_registration.html")
 
@@ -50,8 +50,8 @@ def login_request(request: HttpRequest) -> HttpResponse:
             login(request, user)
             logger.debug(f"Login user: {username} ")
             messages.success(request, "Successfully logged in!")
-            if user == "Staff" or user.is_superuser:# type: ignore
-                Thread(target= connect_to_mongodb, daemon=True).start()
+            if user == "Staff" or user.is_superuser:
+                Thread(target=connect_to_mongodb, daemon=True).start()
             return redirect(reverse("airline:main"))
         else:
             messages.error(request, "Invalid username or password")
@@ -61,15 +61,15 @@ def login_request(request: HttpRequest) -> HttpResponse:
 
 def logout_request(request: HttpRequest) -> HttpResponse:
     logout(request)
-    logger.debug(f"Logout user: {request.user.username}")# type: ignore
+    logger.debug(f"Logout user: {request.user.username}")
     messages.success(request, "Successfully logged out!")
     return redirect(reverse("airline:main"))
-
 
 
 @login_required
 def profile(request):
     return render(request, "user/profile.html")
+
 
 class AirlineRegistrationForm(RegistrationForm):
     class Meta(RegistrationForm.Meta):

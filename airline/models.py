@@ -6,7 +6,7 @@ from django.db.models.constraints import UniqueConstraint
 # Create your models here.
 class Airport(models.Model):
     airport_id = models.IntegerField(primary_key=True, unique=True)
-    name= models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     latitude = models.FloatField()
@@ -42,7 +42,7 @@ class Flight(models.Model):
             raise ValueError("Start and destination cannot be the same.")
 
     def __str__(self) -> str:
-        return f"Flight: {self.start} to {self.destination}, id: {self.id}" # type: ignore
+        return f"Flight: {self.start} to {self.destination}, id: {self.id}"
 
     def formatted_date(self) -> str:
         return self.date.strftime("%d-%m-%Y")
@@ -74,7 +74,7 @@ class Route(models.Model):
     flights = models.ManyToManyField(Flight, related_name="routes")
 
     def __str__(self) -> str:
-        return f"Route: {self.start} {self.destination}" # type: ignore
+        return f"Route: {self.start} {self.destination}"
 
 
 class Passager(models.Model):

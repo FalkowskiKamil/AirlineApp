@@ -4,6 +4,7 @@ import sys
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AirlinesApp.settings")
 os.environ.setdefault("DJANGO_CONFIGURATION", "Dev")
 
+
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AirlinesApp.settings")
     try:
@@ -17,6 +18,7 @@ def main():
     try:
         execute_from_command_line(sys.argv)
     except Exception as e:
+        print(e)
         sys.exit(1)
 
 

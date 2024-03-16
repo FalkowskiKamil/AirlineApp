@@ -1,6 +1,7 @@
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle, BaseThrottle
 import random
 
+
 class AnonSustainedThrottle(AnonRateThrottle):
     scope = "anon_sustained"
 

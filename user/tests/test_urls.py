@@ -2,6 +2,7 @@ from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from user.views import register_request, login_request, logout_request
 
+
 class TestUrlsUser(SimpleTestCase):
     def test_registration_url_is_resolved(self):
         url = reverse("user:register_request")

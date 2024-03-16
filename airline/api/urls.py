@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from airline.api.views import  AirportViewSet, FlightsViewSet, PassagersViewSet, RoutesViewSet
+from airline.api.views import AirportViewSet, FlightsViewSet, PassagersViewSet, RoutesViewSet
 
 router = DefaultRouter()
 router.register("airports", AirportViewSet)

@@ -26,6 +26,7 @@ class FlightsViewSet(viewsets.ModelViewSet):
         if self.action in ("list", "create"):
             return FlightSerializzer
 
+
 class PassagersViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUserForObject]
     queryset = Passager.objects.all()
@@ -35,7 +36,8 @@ class PassagersViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ("list", "create"):
             return PassagerSerializzer
-        
+
+
 class RoutesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUserForObject]
     queryset = Route.objects.all()
